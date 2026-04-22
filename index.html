@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蓐収株式会社 | 玄學・風水・命理</title>
+<meta name="description" content="蓐収株式会社提供專業風水諮詢、不動產室內佈置及奇門遁甲命理服務，立足大阪，服務海內外華人。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0b0906;
+  --bg2:       #111009;
+  --bg3:       #181510;
+  --gold:      #c9a553;
+  --gold-lt:   #e2c07a;
+  --gold-dk:   #7a5e22;
+  --cream:     #f0e8d8;
+  --cream2:    #b8a88a;
+  --cream3:    #6b5d48;
+  --jade:      #4a9e7f;
+  --border:    rgba(201,165,83,0.18);
+  --serif:     'Noto Serif SC', serif;
+  --sans:      'Noto Sans SC', sans-serif;
+  --en:        'Cinzel', serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ─── NOISE TEXTURE OVERLAY ─── */
+body::before {
+  content:'';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.2rem 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(11,9,6,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: all .3s;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: .12em;
+  text-decoration: none;
+}
+.nav-logo span {
+  color: var(--cream);
+  font-weight: 300;
+  font-size: .85rem;
+  display: block;
+  letter-spacing: .2em;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--cream2);
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: .88rem;
+  font-weight: 300;
+  letter-spacing: .1em;
+  transition: color .25s;
+}
+.nav-links a:hover { color: var(--gold); }
+.lang-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--cream3);
+  padding: .35rem .75rem;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: .78rem;
+  letter-spacing: .08em;
+  transition: all .2s;
+}
+.lang-btn.active { background: var(--gold); color: var(--bg); font-weight: 500; }
+.nav-cta {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: .5rem 1.4rem;
+  font-family: var(--sans);
+  font-size: .85rem;
+  letter-spacing: .1em;
+  cursor: pointer;
+  transition: all .25s;
+  text-decoration: none;
+}
+.nav-cta:hover { background: var(--gold); color: var(--bg); }
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 8rem 5% 4rem;
+  text-align: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 60%, rgba(201,165,83,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 80% 20%, rgba(74,158,127,0.04) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg) 0%, #0f0c07 100%);
+}
+.hero-circle {
+  position: absolute;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,165,83,0.08);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  animation: rotateCircle 40s linear infinite;
+}
+.hero-circle::before {
+  content: '';
+  position: absolute;
+  width: 340px; height: 340px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,165,83,0.12);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+}
+.hero-circle::after {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,165,83,0.05);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+}
+@keyframes rotateCircle {
+  from { transform: translate(-50%,-50%) rotate(0deg); }
+  to { transform: translate(-50%,-50%) rotate(360deg); }
+}
+.hero-content { position: relative; z-index: 2; max-width: 720px; }
+.hero-eyebrow {
+  font-family: var(--en);
+  font-size: .78rem;
+  letter-spacing: .35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+  opacity: 0;
+  animation: fadeUp .8s .2s forwards;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: .05em;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeUp .8s .4s forwards;
+}
+.hero-title em {
+  font-style: normal;
+  color: var(--gold);
+}
+.hero-sub {
+  font-family: var(--en);
+  font-size: 1rem;
+  color: var(--cream2);
+  letter-spacing: .15em;
+  margin-bottom: 1.6rem;
+  opacity: 0;
+  animation: fadeUp .8s .5s forwards;
+}
+.hero-desc {
+  font-size: .95rem;
+  color: var(--cream2);
+  line-height: 2;
+  max-width: 520px;
+  margin: 0 auto 2.8rem;
+  font-weight: 300;
+  opacity: 0;
+  animation: fadeUp .8s .6s forwards;
+}
+.hero-actions {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp .8s .75s forwards;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--bg);
+  padding: .9rem 2.4rem;
+  font-family: var(--sans);
+  font-size: .9rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .25s;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--gold-lt); }
+.btn-outline {
+  background: transparent;
+  color: var(--cream);
+  padding: .9rem 2.4rem;
+  font-family: var(--sans);
+  font-size: .9rem;
+  letter-spacing: .12em;
+  border: 1px solid rgba(240,232,216,0.25);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .25s;
+  display: inline-block;
+}
+.btn-outline:hover { border-color: var(--cream); }
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(24px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .6rem;
+  color: var(--cream3); font-family: var(--sans); font-size: .75rem; letter-spacing: .2em;
+  animation: fadeUp 1s 1.2s forwards; opacity: 0;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%,100% { opacity: .4; } 50% { opacity: 1; }
+}
+
+/* ─── SECTION COMMON ─── */
+section { position: relative; z-index: 1; }
+.section-inner { max-width: 1140px; margin: 0 auto; padding: 6rem 5%; }
+.section-label {
+  font-family: var(--en);
+  font-size: .72rem;
+  letter-spacing: .35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: .06em;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+.section-title em { font-style: normal; color: var(--gold); }
+.section-divider {
+  width: 48px; height: 1px;
+  background: var(--gold);
+  margin: 1.4rem 0;
+  opacity: .6;
+}
+.section-desc {
+  color: var(--cream2);
+  font-size: .93rem;
+  line-height: 2;
+  font-weight: 300;
+  max-width: 500px;
+}
+
+/* ─── MARQUEE STRIP ─── */
+.marquee-strip {
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: .75rem 0;
+  background: var(--bg2);
+}
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-item {
+  font-family: var(--en);
+  font-size: .78rem;
+  letter-spacing: .25em;
+  color: var(--cream3);
+  white-space: nowrap;
+}
+.marquee-dot { color: var(--gold); margin-right: 3rem; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ─── SERVICES ─── */
+#services { background: var(--bg2); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-top: 4rem;
+  border: 1px solid var(--border);
+}
+.service-card {
+  background: var(--bg2);
+  padding: 3rem 2.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: background .3s;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s;
+}
+.service-card:hover { background: var(--bg3); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-num {
+  font-family: var(--en);
+  font-size: .72rem;
+  color: var(--gold-dk);
+  letter-spacing: .2em;
+  margin-bottom: 1.8rem;
+}
+.service-icon {
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+  opacity: .85;
+}
+.service-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  margin-bottom: .5rem;
+  color: var(--cream);
+}
+.service-en {
+  font-family: var(--en);
+  font-size: .72rem;
+  color: var(--gold);
+  letter-spacing: .2em;
+  margin-bottom: 1.2rem;
+}
+.service-desc {
+  font-size: .88rem;
+  color: var(--cream2);
+  line-height: 1.9;
+  font-weight: 300;
+}
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  margin-top: 1.6rem;
+  color: var(--gold);
+  font-family: var(--sans);
+  font-size: .8rem;
+  letter-spacing: .1em;
+  text-decoration: none;
+  transition: gap .2s;
+}
+.service-link:hover { gap: .8rem; }
+
+/* ─── ABOUT ─── */
+#about { background: var(--bg); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.about-visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+}
+.about-visual-inner {
+  position: absolute;
+  inset: 1.5rem;
+  border: 1px solid rgba(201,165,83,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bagua-symbol {
+  font-size: 8rem;
+  opacity: .12;
+  animation: rotateSlow 60s linear infinite;
+}
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); } to { transform: rotate(360deg); }
+}
+.about-stat-row {
+  display: flex;
+  gap: 3rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.about-stat-num {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--gold);
+  font-family: var(--en);
+  line-height: 1;
+}
+.about-stat-label {
+  font-size: .82rem;
+  color: var(--cream3);
+  margin-top: .4rem;
+  font-family: var(--sans);
+  font-weight: 300;
+  letter-spacing: .05em;
+}
+.credential-list {
+  list-style: none;
+  margin-top: 2rem;
+}
+.credential-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: .8rem;
+  padding: .7rem 0;
+  border-bottom: 1px solid rgba(201,165,83,0.08);
+  font-size: .88rem;
+  color: var(--cream2);
+  font-weight: 300;
+}
+.credential-list li::before {
+  content: '✦';
+  color: var(--gold);
+  font-size: .6rem;
+  margin-top: .4rem;
+  flex-shrink: 0;
+}
+
+/* ─── CASES ─── */
+#cases { background: var(--bg2); }
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+.case-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .3s;
+}
+.case-card:hover { border-color: rgba(201,165,83,0.5); }
+.case-img {
+  aspect-ratio: 4/3;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  opacity: .3;
+  position: relative;
+  overflow: hidden;
+}
+.case-img-pattern {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 12px,
+    rgba(201,165,83,0.04) 12px,
+    rgba(201,165,83,0.04) 13px
+  );
+}
+.case-body { padding: 1.4rem 1.6rem; }
+.case-tag {
+  font-family: var(--en);
+  font-size: .65rem;
+  letter-spacing: .2em;
+  color: var(--jade);
+  margin-bottom: .6rem;
+}
+.case-name {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  margin-bottom: .5rem;
+}
+.case-loc {
+  font-size: .82rem;
+  color: var(--cream3);
+  font-family: var(--sans);
+  font-weight: 300;
+}
+
+/* ─── BLOG ─── */
+#blog { background: var(--bg); }
+.blog-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+.blog-featured {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 2.4rem;
+  cursor: pointer;
+  transition: border-color .3s;
+}
+.blog-featured:hover { border-color: rgba(201,165,83,0.4); }
+.blog-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+.blog-item {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 1.4rem 1.6rem;
+  cursor: pointer;
+  transition: border-color .3s;
+}
+.blog-item:hover { border-color: rgba(201,165,83,0.4); }
+.blog-date {
+  font-family: var(--en);
+  font-size: .68rem;
+  color: var(--cream3);
+  letter-spacing: .15em;
+  margin-bottom: .6rem;
+}
+.blog-tag {
+  display: inline-block;
+  background: rgba(201,165,83,0.12);
+  color: var(--gold);
+  font-family: var(--sans);
+  font-size: .72rem;
+  padding: .2rem .7rem;
+  letter-spacing: .08em;
+  margin-bottom: 1rem;
+}
+.blog-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  line-height: 1.5;
+  margin-bottom: .8rem;
+}
+.blog-excerpt {
+  font-size: .85rem;
+  color: var(--cream2);
+  line-height: 1.9;
+  font-weight: 300;
+}
+.blog-item .blog-title { font-size: .95rem; }
+
+/* ─── BOOKING ─── */
+#booking { background: var(--bg2); }
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 6rem;
+  align-items: start;
+}
+.booking-info-item {
+  display: flex;
+  gap: 1.2rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.booking-icon {
+  width: 2.4rem; height: 2.4rem;
+  background: rgba(201,165,83,0.08);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem;
+  flex-shrink: 0;
+}
+.booking-info-label {
+  font-family: var(--sans);
+  font-size: .72rem;
+  color: var(--cream3);
+  letter-spacing: .12em;
+  margin-bottom: .3rem;
+}
+.booking-info-val {
+  font-size: .9rem;
+  color: var(--cream);
+  font-weight: 300;
+}
+.form-group { margin-bottom: 1.4rem; }
+.form-group label {
+  display: block;
+  font-family: var(--sans);
+  font-size: .78rem;
+  color: var(--cream3);
+  letter-spacing: .1em;
+  margin-bottom: .5rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--cream);
+  padding: .9rem 1rem;
+  font-family: var(--sans);
+  font-size: .88rem;
+  outline: none;
+  transition: border-color .2s;
+  appearance: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: rgba(201,165,83,0.5); }
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-submit {
+  width: 100%;
+  background: var(--gold);
+  color: var(--bg);
+  border: none;
+  padding: 1rem;
+  font-family: var(--sans);
+  font-size: .9rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  cursor: pointer;
+  transition: background .25s;
+  margin-top: .4rem;
+}
+.form-submit:hover { background: var(--gold-lt); }
+.contact-channels {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.channel-btn {
+  flex: 1;
+  padding: .9rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--cream2);
+  font-family: var(--sans);
+  font-size: .82rem;
+  letter-spacing: .1em;
+  cursor: pointer;
+  transition: all .25s;
+  text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+}
+.channel-btn.line:hover { border-color: #06c755; color: #06c755; }
+.channel-btn.wechat:hover { border-color: #07c160; color: #07c160; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 4rem 5% 2rem;
+}
+.footer-grid {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.footer-brand p {
+  font-size: .85rem;
+  color: var(--cream3);
+  line-height: 1.9;
+  font-weight: 300;
+  margin-top: 1rem;
+  max-width: 260px;
+}
+.footer-col h4 {
+  font-family: var(--sans);
+  font-size: .78rem;
+  letter-spacing: .2em;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: .6rem; }
+.footer-col ul a {
+  font-size: .85rem;
+  color: var(--cream3);
+  text-decoration: none;
+  font-weight: 300;
+  transition: color .2s;
+}
+.footer-col ul a:hover { color: var(--gold); }
+.footer-bottom {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-bottom p {
+  font-size: .78rem;
+  color: var(--cream3);
+  font-family: var(--sans);
+  font-weight: 300;
+}
+
+/* ─── LANGUAGE SWITCH ─── */
+[data-lang="en"] { display: none; }
+body.en [data-lang="zh"] { display: none; }
+body.en [data-lang="en"] { display: unset; }
+
+/* ─── SCROLL REVEAL ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .7s, transform .7s;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+
+/* ─── MOBILE ─── */
+@media (max-width: 960px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-visual { display: none; }
+  .cases-grid { grid-template-columns: 1fr 1fr; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .booking-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+}
+@media (max-width: 600px) {
+  .cases-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    蓐収株式会社
+    <span>JOKUSHU CO., LTD.</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services" data-lang="zh">服務</a><a href="#services" data-lang="en">Services</a></li>
+    <li><a href="#about" data-lang="zh">關於我們</a><a href="#about" data-lang="en">About</a></li>
+    <li><a href="#cases" data-lang="zh">案例</a><a href="#cases" data-lang="en">Cases</a></li>
+    <li><a href="#blog" data-lang="zh">文章</a><a href="#blog" data-lang="en">Articles</a></li>
+    <li><a href="#booking" data-lang="zh">預約諮詢</a><a href="#booking" data-lang="en">Book</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1.2rem;">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('zh')">中文</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a class="nav-cta" href="#booking" data-lang="zh">立即預約</a>
+    <a class="nav-cta" href="#booking" data-lang="en">Book Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Feng Shui · Divination · Interior Arrangement</p>
+    <h1 class="hero-title">
+      <span data-lang="zh">以天地之道<br><em>守護您的家業</em></span>
+      <span data-lang="en">Harmonize Your Space<br><em>With Heaven & Earth</em></span>
+    </h1>
+    <p class="hero-sub">蓐収株式会社 · OSAKA, JAPAN</p>
+    <p class="hero-desc" data-lang="zh">
+      融合奇門遁甲、風水堪輿與現代室內佈置，為在日華人提供全方位玄學諮詢服務。十一年跨領域專業，以古法智慧引導現代決策。
+    </p>
+    <p class="hero-desc" data-lang="en">
+      Bridging classical Chinese metaphysics — Qimen Dunjia, Feng Shui — with contemporary interior arrangement consulting for the global Chinese community. Eleven years of cross-sector expertise.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#booking" data-lang="zh">預約免費初談</a>
+      <a class="btn-primary" href="#booking" data-lang="en">Book Free Consultation</a>
+      <a class="btn-outline" href="#services" data-lang="zh">瞭解服務</a>
+      <a class="btn-outline" href="#services" data-lang="en">Explore Services</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span data-lang="zh">向下滾動</span>
+    <span data-lang="en">SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Our Services</p>
+      <h2 class="section-title" data-lang="zh">四大核心<em>服務</em></h2>
+      <h2 class="section-title" data-lang="en">Four Core <em>Services</em></h2>
+      <div class="section-divider"></div>
+      <p class="section-desc" data-lang="zh">從術數推演到空間佈局，我們以系統性的玄學方法論，為您在工作、家居與人生規劃上提供深度支援。</p>
+      <p class="section-desc" data-lang="en">From metaphysical divination to spatial arrangement, our systematic approach supports your career, home, and life decisions.</p>
+    </div>
+    <div class="services-grid reveal reveal-delay-1" style="grid-template-columns: repeat(2, 1fr);">
+      <!-- Service 1 -->
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-icon">☯</div>
+        <div class="service-name" data-lang="zh">風水堪輿諮詢</div>
+        <div class="service-name" data-lang="en">Feng Shui Consulting</div>
+        <div class="service-en">FENG SHUI</div>
+        <p class="service-desc" data-lang="zh">結合傳統堪輿學與現代建築環境評估，針對住宅、辦公室及商業空間進行全面風水診斷，提出可落地的改善方案。</p>
+        <p class="service-desc" data-lang="en">Comprehensive Feng Shui assessment for residential, office, and commercial spaces, combining classical geomancy with modern environmental analysis.</p>
+        <a class="service-link" href="#booking" data-lang="zh">瞭解更多 →</a>
+        <a class="service-link" href="#booking" data-lang="en">Learn More →</a>
+      </div>
+      <!-- Service 2 -->
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-icon">🏡</div>
+        <div class="service-name" data-lang="zh">不動產室內佈置諮詢</div>
+        <div class="service-name" data-lang="en">Interior Arrangement Advisory</div>
+        <div class="service-en">INTERIOR ARRANGEMENT</div>
+        <p class="service-desc" data-lang="zh">在日購置不動產的佈局選擇、室內風格規劃，融入風水原則，讓空間佈置同時兼顧美觀、功能與氣場調和。</p>
+        <p class="service-desc" data-lang="en">Real estate layout selection and interior arrangement planning in Japan, integrating Feng Shui principles to balance aesthetics, function, and spatial energy.</p>
+        <a class="service-link" href="#booking" data-lang="zh">瞭解更多 →</a>
+        <a class="service-link" href="#booking" data-lang="en">Learn More →</a>
+      </div>
+      <!-- Service 3 -->
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon">☰</div>
+        <div class="service-name" data-lang="zh">術數擇日（奇門遁甲）</div>
+        <div class="service-name" data-lang="en">Predictive Arts &amp; Date Selection</div>
+        <div class="service-en">QIMEN DUNJIA · DATE SELECTION</div>
+        <p class="service-desc" data-lang="zh">以奇門遁甲為核心術數體系，針對事業決策、投資擇機、移居規劃等重大人生課題，進行精準的時空推演與擇日選機建議。</p>
+        <p class="service-desc" data-lang="en">Using Qimen Dunjia as the primary predictive framework for career decisions, investment timing, and relocation planning — mapping time, space, and strategy into actionable guidance.</p>
+        <a class="service-link" href="#booking" data-lang="zh">瞭解更多 →</a>
+        <a class="service-link" href="#booking" data-lang="en">Learn More →</a>
+      </div>
+      <!-- Service 4 -->
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-icon">✦</div>
+        <div class="service-name" data-lang="zh">命理解析</div>
+        <div class="service-name" data-lang="en">Destiny Analysis</div>
+        <div class="service-en">BAZI · ZIWEI · ASTROLOGY</div>
+        <p class="service-desc" data-lang="zh">涵蓋四柱八字、紫微斗數及西方占星三大命理體系，從先天命盤出發，深度解析個人性格特質、人生週期與重要抉擇時機。</p>
+        <p class="service-desc" data-lang="en">Encompassing Bazi (Four Pillars), Zi Wei Dou Shu, and Western Astrology — reading your natal chart to illuminate character, life cycles, and critical decision windows.</p>
+        <a class="service-link" href="#booking" data-lang="zh">瞭解更多 →</a>
+        <a class="service-link" href="#booking" data-lang="en">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-visual-inner">
+          <div class="bagua-symbol">☰☱☲☳☴☵☶☷</div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <p class="section-label">About</p>
+        <h2 class="section-title" data-lang="zh">十一年跨界經驗<br><em>守正出奇</em></h2>
+        <h2 class="section-title" data-lang="en">Eleven Years of<br><em>Cross-Sector Expertise</em></h2>
+        <div class="section-divider"></div>
+        <p class="section-desc" data-lang="zh">
+          代表取締役擁有涵蓋銀行、媒體與投資促進領域的十一年跨界從業經歷，深耕中國玄學體系，以奇門遁甲為核心，融合現代商業思維，為客戶提供兼具古典智慧與現代實用性的諮詢服務。
+        </p>
+        <p class="section-desc" data-lang="en">
+          Our Representative Director brings 11 years of cross-sector experience spanning banking, media, and investment promotion, combined with deep expertise in Chinese metaphysical systems, primarily Qimen Dunjia, to deliver consulting that bridges ancient wisdom with modern decision-making.
+        </p>
+        <ul class="credential-list">
+          <li data-lang="zh">奇門遁甲深度研習，具備術數師執業資歷</li>
+          <li data-lang="zh">銀行、媒體、投資促進三大領域從業背景</li>
+          <li data-lang="zh">在日法人企業代表，熟悉中日跨境業務</li>
+          <li data-lang="zh">服務客群覆蓋大阪、東京及海外華人</li>
+          <li data-lang="en">Practitioner-level Qimen Dunjia expertise</li>
+          <li data-lang="en">Experience in banking, media, and investment promotion</li>
+          <li data-lang="en">Representative Director of Japanese-registered corporation</li>
+          <li data-lang="en">Serving clients in Osaka, Tokyo, and overseas</li>
+        </ul>
+        <div class="about-stat-row">
+          <div>
+            <div class="about-stat-num">11+</div>
+            <div class="about-stat-label" data-lang="zh">年從業年資</div>
+            <div class="about-stat-label" data-lang="en">Years Experience</div>
+          </div>
+          <div>
+            <div class="about-stat-num">3</div>
+            <div class="about-stat-label" data-lang="zh">核心服務領域</div>
+            <div class="about-stat-label" data-lang="en">Service Domains</div>
+          </div>
+          <div>
+            <div class="about-stat-num">大阪</div>
+            <div class="about-stat-label" data-lang="zh">總部所在地</div>
+            <div class="about-stat-label" data-lang="en">HQ Location</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="section-inner">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;" class="reveal">
+      <div>
+        <p class="section-label">Case Studies</p>
+        <h2 class="section-title" data-lang="zh">精選<em>案例</em></h2>
+        <h2 class="section-title" data-lang="en">Featured <em>Cases</em></h2>
+        <div class="section-divider"></div>
+      </div>
+      <a class="btn-outline" href="#" style="padding:.6rem 1.4rem;font-size:.82rem;" data-lang="zh">查看全部</a>
+      <a class="btn-outline" href="#" style="padding:.6rem 1.4rem;font-size:.82rem;" data-lang="en">View All</a>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <div class="case-img">
+          <div class="case-img-pattern"></div>
+          <span>☰</span>
+        </div>
+        <div class="case-body">
+          <div class="case-tag">FENG SHUI</div>
+          <div class="case-name" data-lang="zh">大阪市某餐廳旺場風水改造</div>
+          <div class="case-name" data-lang="en">Restaurant Feng Shui Revamp</div>
+          <div class="case-loc" data-lang="zh">大阪市中央區</div>
+          <div class="case-loc" data-lang="en">Chuo-ku, Osaka</div>
+        </div>
+      </div>
+      <div class="case-card reveal reveal-delay-1">
+        <div class="case-img">
+          <div class="case-img-pattern"></div>
+          <span>🏡</span>
+        </div>
+        <div class="case-body">
+          <div class="case-tag">INTERIOR ARRANGEMENT</div>
+          <div class="case-name" data-lang="zh">在日華人住宅風水室內佈置規劃</div>
+          <div class="case-name" data-lang="en">Feng Shui-Integrated Home Arrangement</div>
+          <div class="case-loc" data-lang="zh">神戸市灘區</div>
+          <div class="case-loc" data-lang="en">Nada-ku, Kobe</div>
+        </div>
+      </div>
+      <div class="case-card reveal reveal-delay-2">
+        <div class="case-img">
+          <div class="case-img-pattern"></div>
+          <span>☵</span>
+        </div>
+        <div class="case-body">
+          <div class="case-tag">QIMEN DUNJIA</div>
+          <div class="case-name" data-lang="zh">企業創立擇時奇門遁甲推演</div>
+          <div class="case-name" data-lang="en">Business Launch Timing Analysis</div>
+          <div class="case-loc" data-lang="zh">東京都港區</div>
+          <div class="case-loc" data-lang="en">Minato-ku, Tokyo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="section-inner">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;" class="reveal">
+      <div>
+        <p class="section-label">Knowledge</p>
+        <h2 class="section-title" data-lang="zh">玄學<em>文章</em></h2>
+        <h2 class="section-title" data-lang="en">Metaphysics <em>Articles</em></h2>
+        <div class="section-divider"></div>
+      </div>
+      <a class="btn-outline" href="#" style="padding:.6rem 1.4rem;font-size:.82rem;" data-lang="zh">全部文章</a>
+      <a class="btn-outline" href="#" style="padding:.6rem 1.4rem;font-size:.82rem;" data-lang="en">All Articles</a>
+    </div>
+    <div class="blog-grid reveal reveal-delay-1">
+      <div class="blog-featured">
+        <div class="blog-date">2025.03.15</div>
+        <div class="blog-tag" data-lang="zh">奇門遁甲</div>
+        <div class="blog-tag" data-lang="en">Qimen Dunjia</div>
+        <h3 class="blog-title" data-lang="zh">奇門遁甲入門：八門、九星、八神如何構成完整推演體系</h3>
+        <h3 class="blog-title" data-lang="en">Introduction to Qimen Dunjia: How the Eight Gates, Nine Stars & Eight Deities Form a Complete System</h3>
+        <p class="blog-excerpt" data-lang="zh">奇門遁甲被譽為中國術數之王，其推演體系涵蓋時間、空間與人事三大維度。本文從八門的基本屬性講起，帶您系統性地理解這套古老智慧的現代應用邏輯……</p>
+        <p class="blog-excerpt" data-lang="en">Regarded as the pinnacle of Chinese metaphysical systems, Qimen Dunjia encompasses time, space, and human affairs. This article introduces the Eight Gates and their modern applications...</p>
+      </div>
+      <div class="blog-sidebar">
+        <div class="blog-item">
+          <div class="blog-date">2025.02.28</div>
+          <div class="blog-tag" data-lang="zh">風水</div>
+          <div class="blog-tag" data-lang="en">Feng Shui</div>
+          <h4 class="blog-title" data-lang="zh">在日購屋：從玄學角度評估樓層與朝向</h4>
+          <h4 class="blog-title" data-lang="en">Buying Property in Japan: Floor & Orientation from a Feng Shui Perspective</h4>
+        </div>
+        <div class="blog-item">
+          <div class="blog-date">2025.01.10</div>
+          <div class="blog-tag" data-lang="zh">命理</div>
+          <div class="blog-tag" data-lang="en">Divination</div>
+          <h4 class="blog-title" data-lang="zh">2025乙巳年：在日華人的流年運勢與佈局要點</h4>
+          <h4 class="blog-title" data-lang="en">2025 Yi Si Year: Annual Fortune & Strategy for Chinese in Japan</h4>
+        </div>
+        <div class="blog-item">
+          <div class="blog-date">2024.12.05</div>
+          <div class="blog-tag" data-lang="zh">室內佈置</div>
+          <div class="blog-tag" data-lang="en">Interior</div>
+          <h4 class="blog-title" data-lang="zh">日式空間融合中式風水的五個實用原則</h4>
+          <h4 class="blog-title" data-lang="en">Five Practical Principles for Integrating Chinese Feng Shui into Japanese Interiors</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="section-inner">
+    <div class="booking-grid">
+      <div class="reveal">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title" data-lang="zh"><em>預約</em>諮詢</h2>
+        <h2 class="section-title" data-lang="en">Book a <em>Consultation</em></h2>
+        <div class="section-divider"></div>
+        <p class="section-desc" data-lang="zh">初次諮詢提供免費三十分鐘線上交流，讓我們瞭解您的需求，為您規劃最適合的服務方案。</p>
+        <p class="section-desc" data-lang="en">First consultation includes a complimentary 30-minute online session to understand your needs and design the most suitable service plan.</p>
+        <div style="margin-top:2rem;">
+          <div class="booking-info-item">
+            <div class="booking-icon">📍</div>
+            <div>
+              <div class="booking-info-label" data-lang="zh">公司地址</div>
+              <div class="booking-info-label" data-lang="en">LOCATION</div>
+              <div class="booking-info-val" data-lang="zh">日本 · 大阪府</div>
+              <div class="booking-info-val" data-lang="en">Osaka Prefecture, Japan</div>
+            </div>
+          </div>
+          <div class="booking-info-item">
+            <div class="booking-icon">🌐</div>
+            <div>
+              <div class="booking-info-label" data-lang="zh">服務語言</div>
+              <div class="booking-info-label" data-lang="en">LANGUAGES</div>
+              <div class="booking-info-val">中文（普通話）· English</div>
+            </div>
+          </div>
+          <div class="booking-info-item">
+            <div class="booking-icon">📅</div>
+            <div>
+              <div class="booking-info-label" data-lang="zh">諮詢方式</div>
+              <div class="booking-info-label" data-lang="en">FORMAT</div>
+              <div class="booking-info-val" data-lang="zh">線上（Zoom / WeChat）· 大阪面談</div>
+              <div class="booking-info-val" data-lang="en">Online (Zoom / WeChat) · In-person Osaka</div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-channels">
+          <button class="channel-btn line" onclick="alert('LINE ID: @jokushu')">
+            <span>LINE</span>
+          </button>
+          <button class="channel-btn wechat" onclick="alert('WeChat: jokushu_co')">
+            <span>WeChat</span>
+          </button>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <form id="bookingForm" onsubmit="submitForm(event)" style="background:var(--bg3);border:1px solid var(--border);padding:2.4rem;">
+          <div class="form-row">
+            <div class="form-group">
+              <label data-lang="zh">姓名 *</label>
+              <label data-lang="en">Name *</label>
+              <input type="text" required placeholder="您的姓名">
+            </div>
+            <div class="form-group">
+              <label data-lang="zh">聯繫方式 *</label>
+              <label data-lang="en">Contact *</label>
+              <input type="text" required placeholder="Email / LINE / WeChat">
+            </div>
+          </div>
+          <div class="form-group">
+            <label data-lang="zh">諮詢服務類型 *</label>
+            <label data-lang="en">Service Type *</label>
+            <select required>
+              <option value="" data-lang="zh">請選擇服務</option>
+              <option value="" data-lang="en">Select a service</option>
+              <option data-lang="zh">風水堪輿諮詢</option>
+              <option data-lang="zh">不動產室內佈置諮詢</option>
+              <option data-lang="zh">術數擇日（奇門遁甲）</option>
+              <option data-lang="zh">綜合套餐</option>
+              <option data-lang="en">Feng Shui Consulting</option>
+              <option data-lang="en">Interior Arrangement Advisory</option>
+              <option data-lang="en">Qimen Dunjia Divination</option>
+              <option data-lang="en">Comprehensive Package</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label data-lang="zh">希望諮詢時間</label>
+            <label data-lang="en">Preferred Date/Time</label>
+            <input type="datetime-local">
+          </div>
+          <div class="form-group">
+            <label data-lang="zh">諮詢主題 / 問題描述</label>
+            <label data-lang="en">Topic / Description</label>
+            <textarea data-lang="zh" placeholder="請簡述您的需求或問題（可中英文）"></textarea>
+            <textarea data-lang="en" placeholder="Briefly describe your needs or questions"></textarea>
+          </div>
+          <button type="submit" class="form-submit" data-lang="zh">提交預約申請</button>
+          <button type="submit" class="form-submit" data-lang="en">Submit Booking Request</button>
+          <p id="form-msg" style="display:none;text-align:center;color:var(--gold);font-size:.85rem;margin-top:1rem;font-family:var(--sans);" data-lang="zh">✦ 感謝您的預約，我們將在24小時內與您聯繫。</p>
+          <p id="form-msg-en" style="display:none;text-align:center;color:var(--gold);font-size:.85rem;margin-top:1rem;font-family:var(--sans);" data-lang="en">✦ Thank you! We'll reach out within 24 hours.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="nav-logo" href="#">
+        蓐収株式会社
+        <span>JOKUSHU CO., LTD.</span>
+      </a>
+      <p data-lang="zh">融天地之道，守護您的家業與人生。立足大阪，服務全球華人。</p>
+      <p data-lang="en">Harmonizing heaven and earth to protect your home, career, and life. Based in Osaka, serving the global Chinese community.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-lang="zh">服務</h4>
+      <h4 data-lang="en">SERVICES</h4>
+      <ul>
+        <li><a href="#" data-lang="zh">風水堪輿諮詢</a><a href="#" data-lang="en">Feng Shui</a></li>
+        <li><a href="#" data-lang="zh">室內佈置諮詢</a><a href="#" data-lang="en">Interior Arrangement</a></li>
+        <li><a href="#" data-lang="zh">術數擇日（奇門遁甲）</a><a href="#" data-lang="en">Qimen Dunjia</a></li>
+        <li><a href="#" data-lang="zh">命理解析</a><a href="#" data-lang="en">Destiny Analysis</a></li>
+        <li><a href="#" data-lang="zh">綜合套餐</a><a href="#" data-lang="en">Packages</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-lang="zh">關於</h4>
+      <h4 data-lang="en">ABOUT</h4>
+      <ul>
+        <li><a href="#" data-lang="zh">公司介紹</a><a href="#" data-lang="en">Company</a></li>
+        <li><a href="#" data-lang="zh">案例展示</a><a href="#" data-lang="en">Cases</a></li>
+        <li><a href="#" data-lang="zh">玄學文章</a><a href="#" data-lang="en">Articles</a></li>
+        <li><a href="#" data-lang="zh">常見問題</a><a href="#" data-lang="en">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>CONTACT</h4>
+      <ul>
+        <li><a href="#">LINE</a></li>
+        <li><a href="#">WeChat</a></li>
+        <li><a href="#">Email</a></li>
+        <li><a href="#" data-lang="zh">預約諮詢</a><a href="#" data-lang="en">Book Now</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 蓐収株式会社 JOKUSHU CO., LTD. All rights reserved.</p>
+    <p data-lang="zh" style="font-size:.75rem;">大阪府 · 日本法人 · 玄學諮詢</p>
+    <p data-lang="en" style="font-size:.75rem;">Osaka, Japan · Metaphysics Consulting</p>
+  </div>
+</footer>
+
+<script>
+// ─── MARQUEE ───
+const items = [
+  '奇門遁甲 QIMEN DUNJIA','風水堪輿 FENG SHUI','室內佈置 INTERIOR ARRANGEMENT',
+  '命理解析 DESTINY ANALYSIS','四柱八字 BAZI','紫微斗數 ZI WEI DOU SHU','西方占星 WESTERN ASTROLOGY',
+  '命理推演 DIVINATION','大阪・東京 OSAKA · TOKYO','在日華人服務 CHINESE IN JAPAN',
+  '玄學智慧 METAPHYSICAL WISDOM','選期擇日 AUSPICIOUS TIMING'
+];
+const track = document.getElementById('marqueeTrack');
+const doubled = [...items,...items];
+doubled.forEach(t=>{
+  const span = document.createElement('span');
+  span.className='marquee-item';
+  span.innerHTML = `<span class="marquee-dot">✦</span>${t}`;
+  track.appendChild(span);
+});
+
+// ─── LANGUAGE ───
+let currentLang = 'zh';
+function setLang(lang) {
+  currentLang = lang;
+  document.body.classList.toggle('en', lang === 'en');
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active', b.textContent.trim().toLowerCase().includes(lang));
+  });
+  // fix selects
+  document.querySelectorAll('select').forEach(sel=>{
+    sel.innerHTML='';
+    const opts = lang==='zh'
+      ? ['請選擇服務','風水堪輿諮詢','不動產室內佈置諮詢','術數擇日（奇門遁甲）','命理解析（四柱八字／紫微斗數／西方占星）','綜合套餐']
+      : ['Select a service','Feng Shui Consulting','Interior Arrangement Advisory','Predictive Arts &amp; Date Selection','Destiny Analysis — Bazi / Ziwei / Astrology','Comprehensive Package'];
+    opts.forEach((o,i)=>{
+      const opt=document.createElement('option');
+      opt.value=i===0?'':o;
+      opt.textContent=o;
+      sel.appendChild(opt);
+    });
+  });
+}
+
+// ─── SCROLL REVEAL ───
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:.12});
+reveals.forEach(r=>io.observe(r));
+
+// ─── FORM ───
+function submitForm(e) {
+  e.preventDefault();
+  document.getElementById('form-msg').style.display='block';
+  document.getElementById('form-msg-en').style.display='block';
+  e.target.querySelector('button[type="submit"]').textContent = currentLang==='zh' ? '已提交 ✦' : 'Submitted ✦';
+}
+
+// ─── NAV SCROLL ───
+window.addEventListener('scroll',()=>{
+  const nav=document.querySelector('nav');
+  nav.style.background = window.scrollY>60 ? 'rgba(11,9,6,0.97)' : 'rgba(11,9,6,0.85)';
+});
+</script>
+</body>
+</html>
