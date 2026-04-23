@@ -429,89 +429,11 @@ section { position: relative; z-index: 1; }
   justify-content: center;
   overflow: hidden;
 }
-.bagua-orbit {
-  position: relative;
-  width: min(90%, 25rem);
+.bagua-static {
+  width: min(92%, 25rem);
   aspect-ratio: 1 / 1;
-  animation: rotateSlow 80s linear infinite;
-}
-.bagua-item {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: rotate(var(--angle)) translateY(calc(var(--orbit-size) * -1)) translateX(-50%);
-  transform-origin: center center;
-  text-align: center;
-  color: rgba(230, 216, 191, .88);
-  width: 4.4rem;
-  pointer-events: none;
-}
-.bagua-item-symbol {
-  display: block;
-  font-size: 2rem;
-  line-height: 1.15;
-  animation: rotateCounter 80s linear infinite;
-}
-.bagua-item-name {
-  display: block;
-  margin-top: .25rem;
-  font-size: .82rem;
-  color: rgba(201,165,83,.9);
-  letter-spacing: .08em;
-}
-.taiji-core {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 7.8rem;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  border: 2px solid rgba(201,165,83,.85);
-  box-shadow: 0 0 26px rgba(201,165,83,.18);
-  background: linear-gradient(90deg, #121212 0 50%, #f0ede5 50% 100%);
-}
-.taiji-core::before,
-.taiji-core::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50%;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-}
-.taiji-core::before {
-  top: 0;
-  background: #f0ede5;
-}
-.taiji-core::after {
-  bottom: 0;
-  background: #121212;
-}
-.taiji-dot {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: .85rem;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  z-index: 2;
-}
-.taiji-dot-light {
-  top: 25%;
-  background: #121212;
-}
-.taiji-dot-dark {
-  bottom: 25%;
-  background: #f0ede5;
-}
-@keyframes rotateSlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-@keyframes rotateCounter {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
+  object-fit: contain;
+  filter: drop-shadow(0 0 24px rgba(201,165,83,.2));
 }
 .about-stat-row {
   display: flex;
@@ -993,44 +915,12 @@ body.en [data-lang="en"] { display: unset; }
     <div class="about-grid">
       <div class="about-visual reveal">
         <div class="about-visual-inner">
-          <div class="bagua-orbit" style="--orbit-size: 10rem;">
-            <div class="bagua-item" style="--angle: 0deg;">
-              <span class="bagua-item-symbol">☲</span>
-              <span class="bagua-item-name">離</span>
-            </div>
-            <div class="bagua-item" style="--angle: 45deg;">
-              <span class="bagua-item-symbol">☷</span>
-              <span class="bagua-item-name">坤</span>
-            </div>
-            <div class="bagua-item" style="--angle: 90deg;">
-              <span class="bagua-item-symbol">☱</span>
-              <span class="bagua-item-name">兌</span>
-            </div>
-            <div class="bagua-item" style="--angle: 135deg;">
-              <span class="bagua-item-symbol">☰</span>
-              <span class="bagua-item-name">乾</span>
-            </div>
-            <div class="bagua-item" style="--angle: 180deg;">
-              <span class="bagua-item-symbol">☵</span>
-              <span class="bagua-item-name">坎</span>
-            </div>
-            <div class="bagua-item" style="--angle: 225deg;">
-              <span class="bagua-item-symbol">☶</span>
-              <span class="bagua-item-name">艮</span>
-            </div>
-            <div class="bagua-item" style="--angle: 270deg;">
-              <span class="bagua-item-symbol">☳</span>
-              <span class="bagua-item-name">震</span>
-            </div>
-            <div class="bagua-item" style="--angle: 315deg;">
-              <span class="bagua-item-symbol">☴</span>
-              <span class="bagua-item-name">巽</span>
-            </div>
-            <div class="taiji-core">
-              <span class="taiji-dot taiji-dot-light"></span>
-              <span class="taiji-dot taiji-dot-dark"></span>
-            </div>
-          </div>
+          <img
+            class="bagua-static"
+            src="assets/houtian-bagua-taiji.svg"
+            alt="後天八卦太極圖"
+            loading="lazy"
+          />
         </div>
       </div>
       <div class="reveal reveal-delay-1">

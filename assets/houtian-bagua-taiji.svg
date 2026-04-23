@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">后天八卦太极图</title>
+  <desc id="desc">静态后天八卦与太极图示意</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a2620"/>
+      <stop offset="100%" stop-color="#11100d"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .ring{fill:none;stroke:#c9a553;stroke-width:8}
+      .inner{stroke:#8b7440;stroke-width:2;opacity:.7}
+      .sym{fill:#e9dcc0;font-size:60px;font-family:'Noto Serif CJK SC','Songti SC','STSong',serif;text-anchor:middle;dominant-baseline:middle}
+      .name{fill:#c9a553;font-size:28px;font-family:'Noto Serif CJK SC','Songti SC','STSong',serif;text-anchor:middle;dominant-baseline:middle;letter-spacing:2px}
+    </style>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <circle cx="400" cy="400" r="330" class="ring"/>
+  <circle cx="400" cy="400" r="280" class="inner"/>
+  <circle cx="400" cy="400" r="210" class="inner"/>
+
+  <g filter="url(#glow)">
+    <text x="400" y="115" class="sym">☲</text><text x="400" y="168" class="name">離</text>
+    <text x="597" y="197" class="sym">☷</text><text x="560" y="237" class="name">坤</text>
+    <text x="685" y="400" class="sym">☱</text><text x="630" y="400" class="name">兌</text>
+    <text x="597" y="603" class="sym">☰</text><text x="560" y="563" class="name">乾</text>
+    <text x="400" y="685" class="sym">☵</text><text x="400" y="632" class="name">坎</text>
+    <text x="203" y="603" class="sym">☶</text><text x="240" y="563" class="name">艮</text>
+    <text x="115" y="400" class="sym">☳</text><text x="170" y="400" class="name">震</text>
+    <text x="203" y="197" class="sym">☴</text><text x="240" y="237" class="name">巽</text>
+  </g>
+
+  <g transform="translate(400 400)">
+    <circle r="150" fill="#c9a553" opacity=".8"/>
+    <path d="M0,-140A140,140 0 1,1 0,140A70,70 0 1,0 0,-140" fill="#0f0f0f"/>
+    <path d="M0,-140A70,70 0 1,1 0,0A70,70 0 1,0 0,140A140,140 0 1,1 0,-140" fill="#f3ede0"/>
+    <circle cy="-70" r="18" fill="#f3ede0"/>
+    <circle cy="70" r="18" fill="#0f0f0f"/>
+    <circle r="140" fill="none" stroke="#c9a553" stroke-width="4"/>
+  </g>
+</svg>
