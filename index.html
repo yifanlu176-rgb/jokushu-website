@@ -694,6 +694,95 @@ section { position: relative; z-index: 1; }
 .channel-btn.line:hover { border-color: #06c755; color: #06c755; }
 .channel-btn.wechat:hover { border-color: #07c160; color: #07c160; }
 
+
+
+/* ─── PROCESS & PRICING (FAQ) ─── */
+#process-pricing { background: var(--bg2); }
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+.faq-item {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 1.2rem 1.3rem;
+}
+.faq-item h3 {
+  color: var(--gold-lt);
+  font-size: .95rem;
+  margin-bottom: .55rem;
+}
+.faq-item p {
+  color: var(--cream2);
+  font-size: .84rem;
+  line-height: 1.8;
+}
+
+/* ─── TRUST SECTION ─── */
+#trust { background: var(--bg); }
+.trust-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.flow-shot {
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  padding: .8rem;
+  margin-bottom: 1rem;
+}
+.flow-shot img { width:100%; height:auto; display:block; }
+.flow-shot p { font-size: .8rem; color: var(--cream3); margin-top: .5rem; }
+.review-card {
+  border: 1px solid var(--border);
+  padding: 1rem 1.1rem;
+  background: var(--bg3);
+  margin-bottom: .9rem;
+}
+.review-card p { font-size: .84rem; color: var(--cream2); line-height: 1.8; }
+.review-meta { font-size: .74rem; color: var(--gold); margin-top: .35rem; letter-spacing:.08em; }
+
+/* ─── FORM NOTICE ─── */
+.form-notice {
+  background: rgba(201,165,83,0.08);
+  border: 1px solid var(--border);
+  padding: .8rem 1rem;
+  margin-bottom: 1rem;
+  font-size: .78rem;
+  line-height: 1.7;
+  color: var(--cream2);
+  font-family: var(--sans);
+}
+.consent-wrap {
+  display:flex;
+  gap:.6rem;
+  align-items:flex-start;
+  margin-bottom:1rem;
+}
+.consent-wrap input { margin-top:.18rem; }
+.consent-wrap label { font-size:.78rem; color:var(--cream2); line-height:1.7; }
+
+/* ─── LEGAL PANEL ─── */
+.legal-panel {
+  border: 1px solid rgba(201,165,83,0.35);
+  background: rgba(201,165,83,0.07);
+  padding: 1rem 1.1rem;
+}
+.legal-panel h4 {
+  font-size: .76rem;
+  letter-spacing: .18em;
+  color: var(--gold-lt);
+  margin-bottom: .7rem;
+}
+.legal-panel ul { list-style:none; }
+.legal-panel li { margin-bottom: .45rem; font-size:.82rem; color:var(--cream); }
+.legal-links { margin-top: .9rem; display:flex; flex-direction:column; gap:.45rem; }
+.legal-links a { color: var(--gold-lt); font-size: .82rem; text-decoration: none; }
+.legal-links a:hover { text-decoration: underline; }
+
 /* ─── FOOTER ─── */
 footer {
   background: var(--bg);
@@ -769,6 +858,8 @@ body.en [data-lang="en"] { display: unset; }
 /* ─── MOBILE ─── */
 @media (max-width: 960px) {
   .services-grid { grid-template-columns: 1fr; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr; }
   .about-grid { grid-template-columns: 1fr; }
   .about-visual { display: none; }
   .cases-grid { grid-template-columns: 1fr 1fr; }
@@ -1069,6 +1160,92 @@ body.en [data-lang="en"] { display: unset; }
   </div>
 </section>
 
+<!-- PROCESS & PRICING -->
+<section id="process-pricing">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Process & Pricing</p>
+      <h2 class="section-title" data-lang="zh">服務流程與<em>收費說明</em></h2>
+      <h2 class="section-title" data-lang="en">Service Flow & <em>Pricing</em></h2>
+      <div class="section-divider"></div>
+      <p class="section-desc" data-lang="zh">以下為簡版流程與收費 FAQ，正式報價將依案件範圍於初談後提供書面明細。</p>
+      <p class="section-desc" data-lang="en">Below is a simplified FAQ for process and pricing. A formal written quote is provided after the first consultation.</p>
+    </div>
+    <div class="faq-grid reveal reveal-delay-1">
+      <div class="faq-item">
+        <h3 data-lang="zh">Q1｜服務流程怎麼走？</h3>
+        <h3 data-lang="en">Q1 | What is the workflow?</h3>
+        <p data-lang="zh">預約填表 → 30 分鐘初談 → 方案與報價確認 → 正式諮詢/現勘 → 7 日內交付建議報告與後續追蹤。</p>
+        <p data-lang="en">Booking form → 30-min intro call → proposal & quote confirmation → consultation/on-site review → report delivery within 7 days.</p>
+      </div>
+      <div class="faq-item">
+        <h3 data-lang="zh">Q2｜費用如何計算？</h3>
+        <h3 data-lang="en">Q2 | How is pricing calculated?</h3>
+        <p data-lang="zh">線上方案 ¥18,000 起；到場風水與室內佈局 ¥48,000 起；奇門擇日專案 ¥28,000 起。跨城市交通費實報實銷。</p>
+        <p data-lang="en">Online plans start at ¥18,000; on-site Feng Shui/interior starts at ¥48,000; Qimen timing projects start at ¥28,000.</p>
+      </div>
+      <div class="faq-item">
+        <h3 data-lang="zh">Q3｜付款與發票方式？</h3>
+        <h3 data-lang="en">Q3 | Payment and invoice?</h3>
+        <p data-lang="zh">支援日本銀行轉帳與 Stripe。法人客戶可開立適格請求書（インボイス）與合約書。</p>
+        <p data-lang="en">Bank transfer (JP) and Stripe are supported. Corporate clients can request invoice-compliant documents.</p>
+      </div>
+      <div class="faq-item">
+        <h3 data-lang="zh">Q4｜有退款機制嗎？</h3>
+        <h3 data-lang="en">Q4 | Is there a refund policy?</h3>
+        <p data-lang="zh">未排程前可全額取消；已進入分析階段退 50%；報告交付後因屬知識服務不提供退款。</p>
+        <p data-lang="en">Full refund before scheduling; 50% after analysis starts; no refund after report delivery due to the nature of knowledge service.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Trust Signals</p>
+      <h2 class="section-title" data-lang="zh">真實流程截圖與<em>匿名評價</em></h2>
+      <h2 class="section-title" data-lang="en">Process Screens & <em>Anonymous Reviews</em></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="trust-grid reveal reveal-delay-1">
+      <div>
+        <div class="flow-shot">
+          <img src="assets/consult-flow-1.svg" alt="初談需求整理截圖">
+          <p data-lang="zh">匿名案件 A｜初談需求整理（個資已遮蔽）</p>
+          <p data-lang="en">Case A | Intro consultation summary (personal data masked)</p>
+        </div>
+        <div class="flow-shot">
+          <img src="assets/consult-flow-2.svg" alt="風水盤面分析截圖">
+          <p data-lang="zh">匿名案件 B｜風水盤面分析紀錄（地址已遮蔽）</p>
+          <p data-lang="en">Case B | Feng Shui analysis record (address masked)</p>
+        </div>
+      </div>
+      <div>
+        <div class="review-card">
+          <p data-lang="zh">「搬家後兩個月內，睡眠與工作節奏明顯改善，建議非常具體且能立即執行。」</p>
+          <p data-lang="en">“Within two months after moving, my sleep and work rhythm improved clearly. The recommendations were practical and actionable.”</p>
+          <div class="review-meta" data-lang="zh">匿名客戶｜大阪｜住宅風水</div>
+          <div class="review-meta" data-lang="en">Anonymous | Osaka | Residential Feng Shui</div>
+        </div>
+        <div class="review-card">
+          <p data-lang="zh">「餐廳入口動線調整後，晚餐時段來客量有感提升，員工流動也更順。」</p>
+          <p data-lang="en">“After adjusting the entrance flow, dinner traffic improved and staff movement became smoother.”</p>
+          <div class="review-meta" data-lang="zh">匿名客戶｜神戶｜商業空間</div>
+          <div class="review-meta" data-lang="en">Anonymous | Kobe | Commercial Space</div>
+        </div>
+        <div class="review-card">
+          <p data-lang="zh">「奇門擇日幫我避開了高風險窗口，簽約時機和談判節奏都更穩定。」</p>
+          <p data-lang="en">“Qimen date selection helped me avoid high-risk windows and stabilized my contract timing and negotiation rhythm.”</p>
+          <div class="review-meta" data-lang="zh">匿名客戶｜東京｜奇門擇日</div>
+          <div class="review-meta" data-lang="en">Anonymous | Tokyo | Qimen Timing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BOOKING -->
 <section id="booking">
   <div class="section-inner">
@@ -1158,6 +1335,13 @@ body.en [data-lang="en"] { display: unset; }
             <textarea data-lang="zh" placeholder="請簡述您的需求或問題（可中英文）"></textarea>
             <textarea data-lang="en" placeholder="Briefly describe your needs or questions"></textarea>
           </div>
+          <div class="form-notice" data-lang="zh">送出資料僅用於預約聯繫、服務評估與後續顧問履約，不會出售或提供給無關第三方。詳見隱私政策。</div>
+          <div class="form-notice" data-lang="en">Your data is used only for booking communication, service evaluation, and fulfillment. We do not sell data to unrelated third parties.</div>
+          <div class="consent-wrap">
+            <input id="consent" type="checkbox" required>
+            <label for="consent" data-lang="zh">我已閱讀並同意《隱私政策》與《服務條款》，同意蓐収株式会社依上述目的處理我的資料。*</label>
+            <label for="consent" data-lang="en">I have read and agree to the Privacy Policy and Terms, and consent to data processing for the purposes above. *</label>
+          </div>
           <button type="submit" class="form-submit" data-lang="zh">提交預約申請</button>
           <button type="submit" class="form-submit" data-lang="en">Submit Booking Request</button>
           <p id="form-msg" style="display:none;text-align:center;color:var(--gold);font-size:.85rem;margin-top:1rem;font-family:var(--sans);" data-lang="zh">✦ 感謝您的預約，我們將在24小時內與您聯繫。</p>
@@ -1170,7 +1354,7 @@ body.en [data-lang="en"] { display: unset; }
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
+  <div class="footer-grid" style="grid-template-columns: 1.5fr 1fr 1fr 1.3fr;">
     <div class="footer-brand">
       <a class="nav-logo" href="#">
         蓐収株式会社
@@ -1200,14 +1384,24 @@ body.en [data-lang="en"] { display: unset; }
         <li><a href="#" data-lang="zh">常見問題</a><a href="#" data-lang="en">FAQ</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h4>CONTACT</h4>
+    <div class="footer-col legal-panel">
+      <h4 data-lang="zh">法定資訊 / 特商法</h4>
+      <h4 data-lang="en">LEGAL DISCLOSURE</h4>
       <ul>
-        <li><a href="#">LINE</a></li>
-        <li><a href="#">WeChat</a></li>
-        <li><a href="#">Email</a></li>
-        <li><a href="#" data-lang="zh">預約諮詢</a><a href="#" data-lang="en">Book Now</a></li>
+        <li data-lang="zh">法人名：蓐収株式会社（JOKUSHU CO., LTD.）</li>
+        <li data-lang="en">Corporate Name: JOKUSHU CO., LTD.</li>
+        <li data-lang="zh">地址：大阪府大阪市（詳細地址依交易時揭示）</li>
+        <li data-lang="en">Address: Osaka-shi, Osaka (full address disclosed per transaction)</li>
+        <li data-lang="zh">聯絡：contact@jokushu.jp / LINE: @jokushu</li>
+        <li data-lang="en">Contact: contact@jokushu.jp / LINE: @jokushu</li>
+        <li data-lang="zh">營業時間：10:00–19:00（JST，週一至週六）</li>
+        <li data-lang="en">Business Hours: 10:00–19:00 JST (Mon–Sat)</li>
       </ul>
+      <div class="legal-links">
+        <a href="privacy-policy.html">Privacy Policy / 隱私政策</a>
+        <a href="terms.html">Terms of Service / 服務條款</a>
+        <a href="tokutei-shotorihiki.html">特定商取引法に基づく表記</a>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">

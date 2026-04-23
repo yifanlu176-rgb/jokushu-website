@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680">
+  <rect width="1200" height="680" fill="#17130d"/>
+  <rect x="40" y="40" width="1120" height="600" rx="12" fill="#221b13" stroke="#c9a553" opacity="0.9"/>
+  <text x="80" y="100" fill="#e2c07a" font-size="30" font-family="Arial">初談紀錄（匿名化）</text>
+  <rect x="80" y="140" width="1040" height="70" fill="#111" stroke="#7a5e22"/>
+  <text x="100" y="185" fill="#d6c4a1" font-size="24" font-family="Arial">客戶需求：搬家後睡眠不穩、工作壓力增加（姓名／地址已遮蔽）</text>
+  <rect x="80" y="240" width="1040" height="340" fill="#111" stroke="#7a5e22"/>
+  <text x="100" y="295" fill="#d6c4a1" font-size="22" font-family="Arial">流程：需求訪談 → 平面圖檢視 → 初步建議 → 報價確認</text>
+  <text x="100" y="340" fill="#d6c4a1" font-size="22" font-family="Arial">預計交付：7日內提供優先調整清單與時程。</text>
+</svg>
