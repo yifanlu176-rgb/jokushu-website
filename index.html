@@ -594,6 +594,14 @@ section { position: relative; z-index: 1; }
   font-weight: 300;
 }
 .blog-item .blog-title { font-size: .95rem; }
+.blog-hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.2rem;}
+.hub-card{background:var(--bg3);border:1px solid var(--border);padding:1rem 1.1rem;text-decoration:none;color:inherit;display:block;transition:border-color .25s;}
+.hub-card:hover{border-color:rgba(201,165,83,0.45);}
+.hub-card h4{font-size:1rem;margin:.4rem 0;}
+.hub-card p{font-size:.85rem;color:var(--cream2);line-height:1.8;}
+.content-roadmap{margin-top:1.5rem;background:var(--bg3);border:1px solid var(--border);padding:1.3rem;}
+.roadmap-list{display:grid;gap:.6rem;color:var(--cream2);font-size:.9rem;padding-left:1.1rem;}
+
 
 /* ─── BOOKING ─── */
 #booking { background: var(--bg2); }
@@ -1034,37 +1042,30 @@ body.en [data-lang="en"] { display: unset; }
     </div>
     <div class="blog-grid reveal reveal-delay-1">
       <a href="article-qimen.html" style="text-decoration:none;color:inherit;display:block;" class="blog-featured">
-        <div class="blog-date">2025.03.15</div>
-        <div class="blog-tag" data-lang="zh">奇門遁甲</div>
-        <div class="blog-tag" data-lang="en">Qimen Dunjia</div>
-        <h3 class="blog-title" data-lang="zh">奇門遁甲入門：八門、九星、八神如何構成完整推演體系</h3>
-        <h3 class="blog-title" data-lang="en">Introduction to Qimen Dunjia: How the Eight Gates, Nine Stars & Eight Deities Form a Complete System</h3>
-        <p class="blog-excerpt" data-lang="zh">奇門遁甲被譽為中國術數之王，其推演體系涵蓋時間、空間與人事三大維度。本文從八門的基本屬性講起，帶您系統性地理解這套古老智慧的現代應用邏輯……</p>
-        <p class="blog-excerpt" data-lang="en">Regarded as the pinnacle of Chinese metaphysical systems, Qimen Dunjia encompasses time, space, and human affairs. This article introduces the Eight Gates and their modern applications...</p>
+        <div class="blog-date">2026.04.23</div>
+        <div class="blog-tag">內容架構升級</div>
+        <h3 class="blog-title">文章頁已全面加入 TOC、閱讀進度、下一步行動與 Lead Magnet。</h3>
+        <p class="blog-excerpt">每篇文章可直接下載《在日住宅風水自檢清單（PDF）》並預約諮詢，相關內容改為按標籤自動關聯。</p>
       </a>
       <div class="blog-sidebar">
-        <a href="article-japan-property.html" style="text-decoration:none;color:inherit;display:block;" class="blog-item">
-          <div class="blog-date">2025.02.28</div>
-          <div class="blog-tag" data-lang="zh">風水</div>
-          <div class="blog-tag" data-lang="en">Feng Shui</div>
-          <h4 class="blog-title" data-lang="zh">在日購屋：從玄學角度評估樓層與朝向</h4>
-          <h4 class="blog-title" data-lang="en">Buying Property in Japan: Floor & Orientation from a Feng Shui Perspective</h4>
-        </a>
-        <a href="article-2025.html" style="text-decoration:none;color:inherit;display:block;" class="blog-item">
-          <div class="blog-date">2025.01.10</div>
-          <div class="blog-tag" data-lang="zh">命理</div>
-          <div class="blog-tag" data-lang="en">Divination</div>
-          <h4 class="blog-title" data-lang="zh">2025乙巳年：在日華人的流年運勢與佈局要點</h4>
-          <h4 class="blog-title" data-lang="en">2025 Yi Si Year: Annual Fortune & Strategy for Chinese in Japan</h4>
-        </a>
-        <a href="article-japanese-fengshui.html" style="text-decoration:none;color:inherit;display:block;" class="blog-item">
-          <div class="blog-date">2024.12.05</div>
-          <div class="blog-tag" data-lang="zh">室內佈置</div>
-          <div class="blog-tag" data-lang="en">Interior</div>
-          <h4 class="blog-title" data-lang="zh">日式空間融合中式風水的五個實用原則</h4>
-          <h4 class="blog-title" data-lang="en">Five Practical Principles for Integrating Chinese Feng Shui into Japanese Interiors</h4>
-        </a>
+        <a href="article-qimen.html" style="text-decoration:none;color:inherit;display:block;" class="blog-item"><div class="blog-date">2025.03.15</div><div class="blog-tag">術語科普</div><h4 class="blog-title">奇門遁甲入門：八門、九星、八神</h4></a>
+        <a href="article-japan-property.html" style="text-decoration:none;color:inherit;display:block;" class="blog-item"><div class="blog-date">2025.02.28</div><div class="blog-tag">案例拆解</div><h4 class="blog-title">在日購屋：樓層與朝向五個維度</h4></a>
+        <a href="article-2025.html" style="text-decoration:none;color:inherit;display:block;" class="blog-item"><div class="blog-date">2025.01.10</div><div class="blog-tag">年度趨勢</div><h4 class="blog-title">2025乙巳年流年運勢與佈局要點</h4></a>
       </div>
+    </div>
+    <div class="blog-hub-grid reveal reveal-delay-2">
+      <a class="hub-card" href="feng-shui-in-japan.html"><div class="blog-tag">Hub</div><h4>在日風水指南</h4><p>聚焦住宅/商業空間、搬遷與改造，含案例與自檢清單。</p></a>
+      <a class="hub-card" href="qimen-guide.html"><div class="blog-tag">Hub</div><h4>奇門遁甲學習地圖</h4><p>入門路徑、術語科普與問事 SOP，連結核心文章。</p></a>
+      <a class="hub-card" href="annual-forecast.html"><div class="blog-tag">Hub</div><h4>年度 / 季度趨勢</h4><p>年度-季度-月度節奏，搭配行動清單與風險窗口。</p></a>
+    </div>
+    <div class="content-roadmap reveal reveal-delay-2">
+      <h4 style="margin-bottom:.6rem;">8~12 週發布節奏（建議）</h4>
+      <ol class="roadmap-list">
+        <li>第 1-2 週：案例拆解（看屋 / 搬家 / 創業選址）。</li>
+        <li>第 3-4 週：常見問題（方位、樓層、時機、是否需要擇日）。</li>
+        <li>第 5-8 週：術語科普（每篇 1 術語 + 1 實戰情境）。</li>
+        <li>第 9-12 週：年度 / 季度趨勢與對應策略調整。</li>
+      </ol>
     </div>
   </div>
 </section>

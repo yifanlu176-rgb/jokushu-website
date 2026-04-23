@@ -47,9 +47,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 5%;display:fl
 .related-list{display:flex;flex-direction:column;gap:.8rem;}
 .related-item{color:var(--cream2);text-decoration:none;font-size:.88rem;font-weight:300;padding:.6rem 0;border-bottom:1px solid var(--border);transition:color .2s;display:block;}
 .related-item:hover{color:var(--gold);}
+
+.reading-progress{position:fixed;top:0;left:0;width:100%;height:3px;background:rgba(201,165,83,0.1);z-index:120;}
+.reading-progress span{display:block;height:100%;width:0;background:var(--gold);transition:width .15s;}
+.toc-box{max-width:720px;margin:0 auto 1.5rem;padding:0 5%;}
+.toc-inner{background:var(--bg3);border:1px solid var(--border);padding:1.2rem 1.4rem;}
+.toc-title{font-family:var(--en);font-size:.72rem;letter-spacing:.2em;color:var(--gold);margin-bottom:.6rem;}
+.toc-list{list-style:none;display:grid;gap:.5rem;}
+.toc-list a{color:var(--cream2);text-decoration:none;font-size:.88rem;}
+.toc-list a:hover{color:var(--gold);}
+.next-actions{margin-top:2rem;background:var(--bg2);border:1px solid var(--border);padding:1.6rem;}
+.next-actions h4,.lead-magnet h4{font-size:1rem;margin-bottom:.5rem;}
+.next-actions p,.lead-magnet p{font-size:.86rem;color:var(--cream2);margin-bottom:1rem;}
+.action-row{display:flex;gap:.8rem;flex-wrap:wrap;}
+.btn-secondary{background:transparent;color:var(--gold);border:1px solid var(--gold);padding:.7rem 1.2rem;text-decoration:none;font-size:.82rem;letter-spacing:.08em;}
+.lead-magnet{margin-top:1.2rem;background:var(--bg3);border:1px solid var(--border);padding:1.4rem;}
+.lead-form{display:grid;grid-template-columns:1fr 1fr auto;gap:.6rem;}
+.lead-form input,.lead-form select{background:#0f0d09;border:1px solid var(--border);color:var(--cream);padding:.55rem .7rem;font-size:.8rem;}
+.lead-form button{background:var(--gold);border:none;color:#120f08;padding:.6rem 1rem;font-size:.8rem;cursor:pointer;}
+@media (max-width:720px){.lead-form{grid-template-columns:1fr;}}
+
 </style>
 </head>
 <body>
+<div class="reading-progress"><span id="readingProgressBar"></span></div>
 <nav>
   <a class="nav-logo" href="index.html">蓐収株式会社<span>JOKUSHU CO., LTD.</span></a>
   <a class="nav-back" href="index.html#blog">← 返回文章列表</a>
@@ -66,7 +87,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 5%;display:fl
     <span class="meta-item">閱讀約8分鐘</span>
   </div>
 </div>
-<div class="article-body">
+<div class="toc-box"><div class="toc-inner"><div class="toc-title">TABLE OF CONTENTS</div><ul class="toc-list" id="tocList"></ul></div></div>
+<div class="article-body" data-article-tags="奇門遁甲,術數入門,決策擇時">
   <p>奇門遁甲被歷代術數家譽為「帝王之學」，相傳起源於軒轅黃帝時期，歷經千年傳承與完善，是中國玄學體系中結構最為嚴密、推演最為精密的術數之一。它以時間、空間與人事三大維度為核心，將天道、地道、人道融為一體，形成了一套完整的宇宙資訊解讀系統。</p>
   <p>許多初學者接觸奇門遁甲時，往往被其繁複的術語所嚇退。本文將從最基礎的結構入手，帶你理解<strong>八門、九星、八神</strong>這三大核心要素如何相互配合，共同構成一個完整的推演體系。</p>
   <div class="article-divider"></div>
@@ -125,18 +147,71 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 5%;display:fl
 </div>
 <div class="article-footer">
   <div class="cta-box">
-    <h3>有相關問題想進一步諮詢？</h3>
-    <p>蓐収株式会社提供免費三十分鐘初次諮詢，歡迎預約線上交流。</p>
-    <a class="btn-primary" href="index.html#booking">預約免費初談</a>
+    <h3>讀完本文後，你的下一步行動</h3>
+    <p>先完成自檢，再安排 30 分鐘策略諮詢，讓我們把建議落到你的住宅/事業場景。</p>
+    <div class="action-row">
+      <a class="btn-primary" href="#lead-magnet">下載《在日住宅風水自檢清單（PDF）》</a>
+      <a class="btn-secondary" href="index.html#booking">預約 1 對 1 諮詢（Zoom / WeChat）</a>
+    </div>
+  </div>
+  <div class="lead-magnet" id="lead-magnet">
+    <h4>Lead Magnet：免費領取 PDF 清單</h4>
+    <p>留下 Email 或 WeChat，我們會將《在日住宅風水自檢清單（PDF）》與延伸閱讀包發送給你。</p>
+    <form class="lead-form" onsubmit="event.preventDefault();alert('已收到，我們會在 24 小時內發送清單。')">
+      <input type="text" placeholder="稱呼">
+      <input type="email" placeholder="Email">
+      <select><option>WeChat（可選）</option><option>LINE</option><option>WhatsApp</option></select>
+      <button type="submit">立即領取</button>
+    </form>
   </div>
   <div class="related-articles">
     <h4>相關文章</h4>
-    <div class="related-list">
-      <a class="related-item" href="article-qimen.html">奇門遁甲入門：八門、九星、八神如何構成完整推演體系</a>
-      <a class="related-item" href="article-japan-property.html">在日購屋：從玄學角度評估樓層與朝向</a>
-      <a class="related-item" href="article-2025.html">2025乙巳年：在日華人的流年運勢與佈局要點</a>
-      <a class="related-item" href="article-japanese-fengshui.html">日式空間融合中式風水的五個實用原則</a>
-    </div>
+    <div class="related-list" id="relatedList"></div>
   </div>
 </div>
+
+<script>
+const contentCatalog = [
+  { url: 'article-qimen.html', title: '奇門遁甲入門：八門、九星、八神如何構成完整推演體系', tags: ['奇門遁甲','術數入門','決策擇時'] },
+  { url: 'article-japan-property.html', title: '在日購屋：從玄學角度評估樓層與朝向', tags: ['在日置業','住宅風水','案例拆解'] },
+  { url: 'article-2025.html', title: '2025乙巳年：在日華人的流年運勢與佈局要點', tags: ['年度運勢','季度趨勢','命理規劃'] },
+  { url: 'article-japanese-fengshui.html', title: '日式空間融合中式風水的五個實用原則', tags: ['住宅風水','空間佈局','常見問題'] },
+  { url: 'feng-shui-in-japan.html', title: '在日風水指南 Hub：住宅、商業與搬遷佈局', tags: ['住宅風水','在日置業','案例拆解'] },
+  { url: 'qimen-guide.html', title: '奇門遁甲學習地圖 Hub：入門、術語與問事流程', tags: ['奇門遁甲','術語科普','常見問題'] },
+  { url: 'annual-forecast.html', title: '年度/季度趨勢 Hub：流年節奏與行動清單', tags: ['年度運勢','季度趨勢','命理規劃'] }
+];
+const currentTags = (document.querySelector('.article-body')?.dataset.articleTags || '').split(',').filter(Boolean);
+const currentUrl = 'article-qimen.html';
+const tocList = document.getElementById('tocList');
+document.querySelectorAll('.article-body h2').forEach((h2,idx)=>{
+  const id = `section-${idx+1}`;
+  h2.id = id;
+  const li = document.createElement('li');
+  li.innerHTML = `<a href="#${id}">${h2.textContent}</a>`;
+  tocList.appendChild(li);
+});
+const progressBar = document.getElementById('readingProgressBar');
+window.addEventListener('scroll', ()=>{
+  const doc = document.documentElement;
+  const total = doc.scrollHeight - doc.clientHeight;
+  const progress = total > 0 ? (doc.scrollTop / total) * 100 : 0;
+  progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+});
+const relatedList = document.getElementById('relatedList');
+const related = contentCatalog
+  .filter(item => item.url !== currentUrl)
+  .map(item => ({...item, score: item.tags.filter(tag => currentTags.includes(tag)).length}))
+  .filter(item => item.score > 0)
+  .sort((a,b)=>b.score-a.score)
+  .slice(0,4);
+related.forEach(item=>{
+  const a=document.createElement('a');
+  a.className='related-item';
+  a.href=item.url;
+  a.textContent=`${item.title}（${item.tags.join(' / ')}）`;
+  relatedList.appendChild(a);
+});
+if(!related.length){relatedList.innerHTML='<span class="meta-item">暫無匹配內容，請先查看三大 Hub 導覽頁。</span>';}
+</script>
+
 </body></html>
