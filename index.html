@@ -672,6 +672,11 @@ section { position: relative; z-index: 1; }
   margin-top: .4rem;
 }
 .form-submit:hover { background: var(--gold-lt); }
+.form-submit.loading { opacity: .7; cursor: not-allowed; }
+.form-status { display:none; text-align:center; font-size:.85rem; margin-top:1rem; font-family:var(--sans); }
+.form-status.success { color: var(--gold); }
+.form-status.error { color:#ff8f8f; }
+.hp-field { position:absolute !important; left:-9999px !important; width:1px; height:1px; overflow:hidden; }
 .contact-channels {
   display: flex;
   gap: 1rem;
@@ -1118,23 +1123,31 @@ body.en [data-lang="en"] { display: unset; }
         </div>
       </div>
       <div class="reveal reveal-delay-1">
-        <form id="bookingForm" onsubmit="submitForm(event)" style="background:var(--bg3);border:1px solid var(--border);padding:2.4rem;">
+        <form id="bookingForm" onsubmit="submitForm(event)" style="background:var(--bg3);border:1px solid var(--border);padding:2.4rem;position:relative;" data-endpoint="https://YOUR_CLOUDFLARE_WORKER_URL/lead-intake">
+          <input type="hidden" name="form_started_at" id="form_started_at">
+          <input type="hidden" name="utm_source" id="utm_source">
+          <input type="hidden" name="utm_medium" id="utm_medium">
+          <input type="hidden" name="utm_campaign" id="utm_campaign">
+          <div class="hp-field" aria-hidden="true">
+            <label for="company_website">Website</label>
+            <input id="company_website" type="text" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
           <div class="form-row">
             <div class="form-group">
               <label data-lang="zh">姓名 *</label>
               <label data-lang="en">Name *</label>
-              <input type="text" required placeholder="您的姓名">
+              <input type="text" name="name" required placeholder="您的姓名">
             </div>
             <div class="form-group">
               <label data-lang="zh">聯繫方式 *</label>
               <label data-lang="en">Contact *</label>
-              <input type="text" required placeholder="Email / LINE / WeChat">
+              <input type="text" name="contact" required placeholder="Email / LINE / WeChat">
             </div>
           </div>
           <div class="form-group">
             <label data-lang="zh">諮詢服務類型 *</label>
             <label data-lang="en">Service Type *</label>
-            <select required>
+            <select name="service_type" required>
               <option value="" data-lang="zh">請選擇服務</option>
               <option value="" data-lang="en">Select a service</option>
               <option data-lang="zh">風水堪輿諮詢</option>
@@ -1148,20 +1161,29 @@ body.en [data-lang="en"] { display: unset; }
             </select>
           </div>
           <div class="form-group">
-            <label data-lang="zh">希望諮詢時間</label>
-            <label data-lang="en">Preferred Date/Time</label>
-            <input type="datetime-local">
+            <label data-lang="zh">希望諮詢時間 *</label>
+            <label data-lang="en">Preferred Date/Time *</label>
+            <input type="datetime-local" name="preferred_datetime" required>
           </div>
           <div class="form-group">
-            <label data-lang="zh">諮詢主題 / 問題描述</label>
-            <label data-lang="en">Topic / Description</label>
-            <textarea data-lang="zh" placeholder="請簡述您的需求或問題（可中英文）"></textarea>
-            <textarea data-lang="en" placeholder="Briefly describe your needs or questions"></textarea>
+            <label data-lang="zh">偏好語言 *</label>
+            <label data-lang="en">Preferred Language *</label>
+            <select name="language" required>
+              <option value="zh">中文（普通話）</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label data-lang="zh">諮詢主題 / 問題描述 *</label>
+            <label data-lang="en">Topic / Description *</label>
+            <textarea name="message" placeholder="請簡述您的需求或問題 / Briefly describe your needs" required></textarea>
           </div>
           <button type="submit" class="form-submit" data-lang="zh">提交預約申請</button>
           <button type="submit" class="form-submit" data-lang="en">Submit Booking Request</button>
-          <p id="form-msg" style="display:none;text-align:center;color:var(--gold);font-size:.85rem;margin-top:1rem;font-family:var(--sans);" data-lang="zh">✦ 感謝您的預約，我們將在24小時內與您聯繫。</p>
-          <p id="form-msg-en" style="display:none;text-align:center;color:var(--gold);font-size:.85rem;margin-top:1rem;font-family:var(--sans);" data-lang="en">✦ Thank you! We'll reach out within 24 hours.</p>
+          <p id="form-msg-success" class="form-status success" data-lang="zh"></p>
+          <p id="form-msg-success-en" class="form-status success" data-lang="en"></p>
+          <p id="form-msg-error" class="form-status error" data-lang="zh"></p>
+          <p id="form-msg-error-en" class="form-status error" data-lang="en"></p>
         </form>
       </div>
     </div>
@@ -1214,6 +1236,10 @@ body.en [data-lang="en"] { display: unset; }
     <p>© 2025 蓐収株式会社 JOKUSHU CO., LTD. All rights reserved.</p>
     <p data-lang="zh" style="font-size:.75rem;">大阪府 · 日本法人 · 玄學諮詢</p>
     <p data-lang="en" style="font-size:.75rem;">Osaka, Japan · Metaphysics Consulting</p>
+    <p style="font-size:.75rem;">
+      <a href="privacy.html" style="color:var(--gold);" data-lang="zh">隱私聲明（個人資料使用目的與保存期限）</a>
+      <a href="privacy.html" style="color:var(--gold);" data-lang="en">Privacy Notice (Purpose & Retention Period)</a>
+    </p>
   </div>
 </footer>
 
@@ -1244,6 +1270,7 @@ function setLang(lang) {
   });
   // fix selects
   document.querySelectorAll('select').forEach(sel=>{
+    if (sel.name !== 'service_type') return;
     sel.innerHTML='';
     const opts = lang==='zh'
       ? ['請選擇服務','風水堪輿諮詢','不動產室內佈置諮詢','術數擇日（奇門遁甲）','命理解析（四柱八字／紫微斗數／西方占星）','綜合套餐']
@@ -1265,11 +1292,90 @@ const io = new IntersectionObserver(entries=>{
 reveals.forEach(r=>io.observe(r));
 
 // ─── FORM ───
-function submitForm(e) {
+function setupTrackingFields() {
+  const params = new URLSearchParams(window.location.search);
+  document.getElementById('utm_source').value = params.get('utm_source') || 'direct';
+  document.getElementById('utm_medium').value = params.get('utm_medium') || 'none';
+  document.getElementById('utm_campaign').value = params.get('utm_campaign') || 'none';
+  document.getElementById('form_started_at').value = new Date().toISOString();
+  const languageField = document.querySelector('select[name="language"]');
+  if (languageField) languageField.value = currentLang;
+}
+
+function trackLeadSuccess(bookingId) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'lead_submit_success', booking_id: bookingId });
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'lead_submit_success', { booking_id: bookingId });
+  }
+}
+
+function setSubmitState(isLoading) {
+  document.querySelectorAll('.form-submit').forEach(btn => {
+    const isZh = btn.getAttribute('data-lang') === 'zh';
+    btn.disabled = isLoading;
+    btn.classList.toggle('loading', isLoading);
+    btn.textContent = isLoading
+      ? (isZh ? '提交中...' : 'Submitting...')
+      : (isZh ? '提交預約申請' : 'Submit Booking Request');
+  });
+}
+
+function showStatus(type, bookingId) {
+  const successZh = document.getElementById('form-msg-success');
+  const successEn = document.getElementById('form-msg-success-en');
+  const errorZh = document.getElementById('form-msg-error');
+  const errorEn = document.getElementById('form-msg-error-en');
+  [successZh, successEn, errorZh, errorEn].forEach(el => el.style.display = 'none');
+
+  if (type === 'success') {
+    successZh.textContent = `✦ 已成功提交，預約編號：${bookingId}。我們將在24小時內與您聯繫。`;
+    successEn.textContent = `✦ Submitted successfully. Booking ID: ${bookingId}. We'll contact you within 24 hours.`;
+    successZh.style.display = 'block';
+    successEn.style.display = 'block';
+  } else if (type === 'error') {
+    errorZh.textContent = '✦ 提交失敗，請稍後重試或改用 LINE / WeChat 聯絡。';
+    errorEn.textContent = '✦ Submission failed. Please retry or contact us via LINE / WeChat.';
+    errorZh.style.display = 'block';
+    errorEn.style.display = 'block';
+  }
+}
+
+async function submitForm(e) {
   e.preventDefault();
-  document.getElementById('form-msg').style.display='block';
-  document.getElementById('form-msg-en').style.display='block';
-  e.target.querySelector('button[type="submit"]').textContent = currentLang==='zh' ? '已提交 ✦' : 'Submitted ✦';
+  const form = e.target;
+  const endpoint = form.dataset.endpoint;
+  const now = Date.now();
+  const lastSubmit = Number(localStorage.getItem('last_booking_submit_at') || 0);
+  if (now - lastSubmit < 5000) {
+    showStatus('error');
+    return;
+  }
+
+  setSubmitState(true);
+  const formData = new FormData(form);
+  formData.set('language', currentLang);
+
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(formData.entries()))
+    });
+    const result = await response.json();
+    if (!response.ok || !result.ok) throw new Error(result.error || 'Submit failed');
+
+    localStorage.setItem('last_booking_submit_at', String(now));
+    showStatus('success', result.booking_id || 'PENDING');
+    trackLeadSuccess(result.booking_id || 'PENDING');
+    form.reset();
+    setupTrackingFields();
+  } catch (error) {
+    console.error(error);
+    showStatus('error');
+  } finally {
+    setSubmitState(false);
+  }
 }
 
 // ─── NAV SCROLL ───
@@ -1277,6 +1383,8 @@ window.addEventListener('scroll',()=>{
   const nav=document.querySelector('nav');
   nav.style.background = window.scrollY>60 ? 'rgba(11,9,6,0.97)' : 'rgba(11,9,6,0.85)';
 });
+
+setupTrackingFields();
 </script>
 </body>
 </html>
