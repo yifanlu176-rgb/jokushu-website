@@ -35,6 +35,17 @@ body {
   line-height: 1.8;
   overflow-x: hidden;
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* ─── NOISE TEXTURE OVERLAY ─── */
 body::before {
@@ -694,6 +705,59 @@ section { position: relative; z-index: 1; }
 .channel-btn.line:hover { border-color: #06c755; color: #06c755; }
 .channel-btn.wechat:hover { border-color: #07c160; color: #07c160; }
 
+.focusable:focus-visible,
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--gold-lt);
+  outline-offset: 2px;
+}
+
+.contact-modal[hidden] { display: none; }
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+}
+.contact-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .6);
+}
+.contact-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 440px);
+  margin: 12vh auto 0;
+  padding: 1.5rem;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+}
+.contact-modal-title {
+  font-size: 1.1rem;
+  margin-bottom: .8rem;
+}
+.contact-modal-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  margin: .8rem 0 1rem;
+  padding: .75rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+.copy-btn,
+.close-modal-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--cream);
+  padding: .5rem .8rem;
+  cursor: pointer;
+}
+
 /* ─── FOOTER ─── */
 footer {
   background: var(--bg);
@@ -786,9 +850,10 @@ body.en [data-lang="en"] { display: unset; }
 </style>
 </head>
 <body>
+<a href="#main-content" class="sr-only focusable">Skip to main content</a>
 
 <!-- NAV -->
-<nav>
+<nav aria-label="Main navigation">
   <a class="nav-logo" href="#">
     蓐収株式会社
     <span>JOKUSHU CO., LTD.</span>
@@ -802,21 +867,22 @@ body.en [data-lang="en"] { display: unset; }
   </ul>
   <div style="display:flex;align-items:center;gap:1.2rem;">
     <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('zh')">中文</button>
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button id="lang-zh" class="lang-btn active" type="button" aria-pressed="true" aria-label="切換為繁體中文" onclick="setLang('zh')">中文</button>
+      <button id="lang-en" class="lang-btn" type="button" aria-pressed="false" aria-label="Switch to English" onclick="setLang('en')">EN</button>
     </div>
     <a class="nav-cta" href="#booking" data-lang="zh">立即預約</a>
     <a class="nav-cta" href="#booking" data-lang="en">Book Now</a>
   </div>
 </nav>
 
+<main id="main-content">
 <!-- HERO -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-circle"></div>
+<section id="hero" aria-labelledby="hero-title-main">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-circle" aria-hidden="true"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Feng Shui · Divination · Interior Arrangement</p>
-    <h1 class="hero-title">
+    <h1 id="hero-title-main" class="hero-title">
       <span data-lang="zh">以天地之道<br><em>守護您的家業</em></span>
       <span data-lang="en">Harmonize Your Space<br><em>With Heaven & Earth</em></span>
     </h1>
@@ -834,25 +900,25 @@ body.en [data-lang="en"] { display: unset; }
       <a class="btn-outline" href="#services" data-lang="en">Explore Services</a>
     </div>
   </div>
-  <div class="scroll-hint">
+  <div class="scroll-hint" aria-hidden="true">
     <span data-lang="zh">向下滾動</span>
     <span data-lang="en">SCROLL</span>
-    <div class="scroll-line"></div>
+    <div class="scroll-line" aria-hidden="true"></div>
   </div>
 </section>
 
 <!-- MARQUEE -->
-<div class="marquee-strip">
+<section class="marquee-strip" aria-label="Service keywords">
   <div class="marquee-track" id="marqueeTrack"></div>
-</div>
+</section>
 
 <!-- SERVICES -->
-<section id="services">
+<section id="services" aria-labelledby="services-title-zh services-title-en">
   <div class="section-inner">
     <div class="reveal">
       <p class="section-label">Our Services</p>
-      <h2 class="section-title" data-lang="zh">四大核心<em>服務</em></h2>
-      <h2 class="section-title" data-lang="en">Four Core <em>Services</em></h2>
+      <h2 id="services-title-zh" class="section-title" data-lang="zh">四大核心<em>服務</em></h2>
+      <h2 id="services-title-en" class="section-title" data-lang="en">Four Core <em>Services</em></h2>
       <div class="section-divider"></div>
       <p class="section-desc" data-lang="zh">從術數推演到空間佈局，我們以系統性的玄學方法論，為您在工作、家居與人生規劃上提供深度支援。</p>
       <p class="section-desc" data-lang="en">From metaphysical divination to spatial arrangement, our systematic approach supports your career, home, and life decisions.</p>
@@ -861,7 +927,7 @@ body.en [data-lang="en"] { display: unset; }
       <!-- Service 1 -->
       <div class="service-card">
         <div class="service-num">01</div>
-        <div class="service-icon">☯</div>
+        <div class="service-icon" aria-hidden="true">☯</div>
         <div class="service-name" data-lang="zh">風水堪輿諮詢</div>
         <div class="service-name" data-lang="en">Feng Shui Consulting</div>
         <div class="service-en">FENG SHUI</div>
@@ -873,7 +939,7 @@ body.en [data-lang="en"] { display: unset; }
       <!-- Service 2 -->
       <div class="service-card">
         <div class="service-num">02</div>
-        <div class="service-icon">🏡</div>
+        <div class="service-icon" aria-hidden="true">🏡</div>
         <div class="service-name" data-lang="zh">不動產室內佈置諮詢</div>
         <div class="service-name" data-lang="en">Interior Arrangement Advisory</div>
         <div class="service-en">INTERIOR ARRANGEMENT</div>
@@ -885,7 +951,7 @@ body.en [data-lang="en"] { display: unset; }
       <!-- Service 3 -->
       <div class="service-card">
         <div class="service-num">03</div>
-        <div class="service-icon">☰</div>
+        <div class="service-icon" aria-hidden="true">☰</div>
         <div class="service-name" data-lang="zh">術數擇日（奇門遁甲）</div>
         <div class="service-name" data-lang="en">Predictive Arts &amp; Date Selection</div>
         <div class="service-en">QIMEN DUNJIA · DATE SELECTION</div>
@@ -897,7 +963,7 @@ body.en [data-lang="en"] { display: unset; }
       <!-- Service 4 -->
       <div class="service-card">
         <div class="service-num">04</div>
-        <div class="service-icon">✦</div>
+        <div class="service-icon" aria-hidden="true">✦</div>
         <div class="service-name" data-lang="zh">命理解析</div>
         <div class="service-name" data-lang="en">Destiny Analysis</div>
         <div class="service-en">BAZI · ZIWEI · ASTROLOGY</div>
@@ -911,18 +977,18 @@ body.en [data-lang="en"] { display: unset; }
 </section>
 
 <!-- ABOUT -->
-<section id="about">
+<section id="about" aria-labelledby="about-title-zh about-title-en">
   <div class="section-inner">
     <div class="about-grid">
-      <div class="about-visual reveal">
+      <div class="about-visual reveal" aria-hidden="true">
         <div class="about-visual-inner">
-          <div class="bagua-symbol">☰☱☲☳☴☵☶☷</div>
+          <div class="bagua-symbol" aria-hidden="true">☰☱☲☳☴☵☶☷</div>
         </div>
       </div>
       <div class="reveal reveal-delay-1">
         <p class="section-label">About</p>
-        <h2 class="section-title" data-lang="zh">十一年跨界經驗<br><em>守正出奇</em></h2>
-        <h2 class="section-title" data-lang="en">Eleven Years of<br><em>Cross-Sector Expertise</em></h2>
+        <h2 id="about-title-zh" class="section-title" data-lang="zh">十一年跨界經驗<br><em>守正出奇</em></h2>
+        <h2 id="about-title-en" class="section-title" data-lang="en">Eleven Years of<br><em>Cross-Sector Expertise</em></h2>
         <div class="section-divider"></div>
         <p class="section-desc" data-lang="zh">
           代表取締役擁有涵蓋銀行、媒體與投資促進領域的十一年跨界從業經歷，深耕中國玄學體系，以奇門遁甲為核心，融合現代商業思維，為客戶提供兼具古典智慧與現代實用性的諮詢服務。
@@ -963,13 +1029,13 @@ body.en [data-lang="en"] { display: unset; }
 </section>
 
 <!-- CASES -->
-<section id="cases">
+<section id="cases" aria-labelledby="cases-title-zh cases-title-en">
   <div class="section-inner">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;" class="reveal">
       <div>
         <p class="section-label">Case Studies</p>
-        <h2 class="section-title" data-lang="zh">精選<em>案例</em></h2>
-        <h2 class="section-title" data-lang="en">Featured <em>Cases</em></h2>
+        <h2 id="cases-title-zh" class="section-title" data-lang="zh">精選<em>案例</em></h2>
+        <h2 id="cases-title-en" class="section-title" data-lang="en">Featured <em>Cases</em></h2>
         <div class="section-divider"></div>
       </div>
       <a class="btn-outline" href="#" style="padding:.6rem 1.4rem;font-size:.82rem;" data-lang="zh">查看全部</a>
@@ -978,8 +1044,8 @@ body.en [data-lang="en"] { display: unset; }
     <div class="cases-grid">
       <div class="case-card reveal">
         <div class="case-img">
-          <div class="case-img-pattern"></div>
-          <span>☰</span>
+          <div class="case-img-pattern" aria-hidden="true"></div>
+          <span aria-hidden="true">☰</span>
         </div>
         <div class="case-body">
           <div class="case-tag">FENG SHUI</div>
@@ -991,8 +1057,8 @@ body.en [data-lang="en"] { display: unset; }
       </div>
       <div class="case-card reveal reveal-delay-1">
         <div class="case-img">
-          <div class="case-img-pattern"></div>
-          <span>🏡</span>
+          <div class="case-img-pattern" aria-hidden="true"></div>
+          <span aria-hidden="true">🏡</span>
         </div>
         <div class="case-body">
           <div class="case-tag">INTERIOR ARRANGEMENT</div>
@@ -1004,8 +1070,8 @@ body.en [data-lang="en"] { display: unset; }
       </div>
       <div class="case-card reveal reveal-delay-2">
         <div class="case-img">
-          <div class="case-img-pattern"></div>
-          <span>☵</span>
+          <div class="case-img-pattern" aria-hidden="true"></div>
+          <span aria-hidden="true">☵</span>
         </div>
         <div class="case-body">
           <div class="case-tag">QIMEN DUNJIA</div>
@@ -1020,13 +1086,13 @@ body.en [data-lang="en"] { display: unset; }
 </section>
 
 <!-- BLOG -->
-<section id="blog">
+<section id="blog" aria-labelledby="blog-title-zh blog-title-en">
   <div class="section-inner">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;" class="reveal">
       <div>
         <p class="section-label">Knowledge</p>
-        <h2 class="section-title" data-lang="zh">玄學<em>文章</em></h2>
-        <h2 class="section-title" data-lang="en">Metaphysics <em>Articles</em></h2>
+        <h2 id="blog-title-zh" class="section-title" data-lang="zh">玄學<em>文章</em></h2>
+        <h2 id="blog-title-en" class="section-title" data-lang="en">Metaphysics <em>Articles</em></h2>
         <div class="section-divider"></div>
       </div>
       <a class="btn-outline" href="article-qimen.html" style="padding:.6rem 1.4rem;font-size:.82rem;" data-lang="zh">全部文章</a>
@@ -1070,19 +1136,19 @@ body.en [data-lang="en"] { display: unset; }
 </section>
 
 <!-- BOOKING -->
-<section id="booking">
+<section id="booking" aria-labelledby="booking-title-zh booking-title-en">
   <div class="section-inner">
     <div class="booking-grid">
       <div class="reveal">
         <p class="section-label">Contact</p>
-        <h2 class="section-title" data-lang="zh"><em>預約</em>諮詢</h2>
-        <h2 class="section-title" data-lang="en">Book a <em>Consultation</em></h2>
+        <h2 id="booking-title-zh" class="section-title" data-lang="zh"><em>預約</em>諮詢</h2>
+        <h2 id="booking-title-en" class="section-title" data-lang="en">Book a <em>Consultation</em></h2>
         <div class="section-divider"></div>
         <p class="section-desc" data-lang="zh">初次諮詢提供免費三十分鐘線上交流，讓我們瞭解您的需求，為您規劃最適合的服務方案。</p>
         <p class="section-desc" data-lang="en">First consultation includes a complimentary 30-minute online session to understand your needs and design the most suitable service plan.</p>
         <div style="margin-top:2rem;">
           <div class="booking-info-item">
-            <div class="booking-icon">📍</div>
+            <div class="booking-icon" aria-hidden="true">📍</div>
             <div>
               <div class="booking-info-label" data-lang="zh">公司地址</div>
               <div class="booking-info-label" data-lang="en">LOCATION</div>
@@ -1091,7 +1157,7 @@ body.en [data-lang="en"] { display: unset; }
             </div>
           </div>
           <div class="booking-info-item">
-            <div class="booking-icon">🌐</div>
+            <div class="booking-icon" aria-hidden="true">🌐</div>
             <div>
               <div class="booking-info-label" data-lang="zh">服務語言</div>
               <div class="booking-info-label" data-lang="en">LANGUAGES</div>
@@ -1099,7 +1165,7 @@ body.en [data-lang="en"] { display: unset; }
             </div>
           </div>
           <div class="booking-info-item">
-            <div class="booking-icon">📅</div>
+            <div class="booking-icon" aria-hidden="true">📅</div>
             <div>
               <div class="booking-info-label" data-lang="zh">諮詢方式</div>
               <div class="booking-info-label" data-lang="en">FORMAT</div>
@@ -1109,32 +1175,33 @@ body.en [data-lang="en"] { display: unset; }
           </div>
         </div>
         <div class="contact-channels">
-          <button class="channel-btn line" onclick="alert('LINE ID: @jokushu')">
+          <button class="channel-btn line" type="button" aria-label="顯示 LINE 聯絡資訊" onclick="openContactModal('line')">
             <span>LINE</span>
           </button>
-          <button class="channel-btn wechat" onclick="alert('WeChat: jokushu_co')">
+          <button class="channel-btn wechat" type="button" aria-label="顯示 WeChat 聯絡資訊" onclick="openContactModal('wechat')">
             <span>WeChat</span>
           </button>
         </div>
       </div>
       <div class="reveal reveal-delay-1">
-        <form id="bookingForm" onsubmit="submitForm(event)" style="background:var(--bg3);border:1px solid var(--border);padding:2.4rem;">
+        <form id="bookingForm" onsubmit="submitForm(event)" style="background:var(--bg3);border:1px solid var(--border);padding:2.4rem;" aria-labelledby="booking-form-title">
+          <h3 id="booking-form-title" class="sr-only">Booking form</h3>
           <div class="form-row">
             <div class="form-group">
-              <label data-lang="zh">姓名 *</label>
-              <label data-lang="en">Name *</label>
-              <input type="text" required placeholder="您的姓名">
+              <label for="name-input" data-lang="zh">姓名 *</label>
+              <label for="name-input" data-lang="en">Name *</label>
+              <input id="name-input" type="text" required placeholder="您的姓名" data-placeholder-zh="您的姓名" data-placeholder-en="Your name" aria-label="姓名 Name">
             </div>
             <div class="form-group">
-              <label data-lang="zh">聯繫方式 *</label>
-              <label data-lang="en">Contact *</label>
-              <input type="text" required placeholder="Email / LINE / WeChat">
+              <label for="contact-input" data-lang="zh">聯繫方式 *</label>
+              <label for="contact-input" data-lang="en">Contact *</label>
+              <input id="contact-input" type="text" required placeholder="Email / LINE / WeChat" data-placeholder-zh="Email / LINE / WeChat" data-placeholder-en="Email / LINE / WeChat" aria-label="聯繫方式 Contact">
             </div>
           </div>
           <div class="form-group">
-            <label data-lang="zh">諮詢服務類型 *</label>
-            <label data-lang="en">Service Type *</label>
-            <select required>
+            <label for="service-select" data-lang="zh">諮詢服務類型 *</label>
+            <label for="service-select" data-lang="en">Service Type *</label>
+            <select id="service-select" required aria-label="諮詢服務類型 Service Type">
               <option value="" data-lang="zh">請選擇服務</option>
               <option value="" data-lang="en">Select a service</option>
               <option data-lang="zh">風水堪輿諮詢</option>
@@ -1148,28 +1215,43 @@ body.en [data-lang="en"] { display: unset; }
             </select>
           </div>
           <div class="form-group">
-            <label data-lang="zh">希望諮詢時間</label>
-            <label data-lang="en">Preferred Date/Time</label>
-            <input type="datetime-local">
+            <label for="datetime-input" data-lang="zh">希望諮詢時間</label>
+            <label for="datetime-input" data-lang="en">Preferred Date/Time</label>
+            <input id="datetime-input" type="datetime-local" aria-label="希望諮詢時間 Preferred Date Time">
           </div>
           <div class="form-group">
-            <label data-lang="zh">諮詢主題 / 問題描述</label>
-            <label data-lang="en">Topic / Description</label>
-            <textarea data-lang="zh" placeholder="請簡述您的需求或問題（可中英文）"></textarea>
-            <textarea data-lang="en" placeholder="Briefly describe your needs or questions"></textarea>
+            <label for="topic-input-zh" data-lang="zh">諮詢主題 / 問題描述</label>
+            <label for="topic-input-en" data-lang="en">Topic / Description</label>
+            <textarea id="topic-input-zh" data-lang="zh" placeholder="請簡述您的需求或問題（可中英文）" data-placeholder-zh="請簡述您的需求或問題（可中英文）" data-placeholder-en="Briefly describe your needs or questions" aria-label="諮詢主題 / 問題描述"></textarea>
+            <textarea id="topic-input-en" data-lang="en" placeholder="Briefly describe your needs or questions" data-placeholder-zh="請簡述您的需求或問題（可中英文）" data-placeholder-en="Briefly describe your needs or questions" aria-label="Topic / Description"></textarea>
           </div>
-          <button type="submit" class="form-submit" data-lang="zh">提交預約申請</button>
-          <button type="submit" class="form-submit" data-lang="en">Submit Booking Request</button>
-          <p id="form-msg" style="display:none;text-align:center;color:var(--gold);font-size:.85rem;margin-top:1rem;font-family:var(--sans);" data-lang="zh">✦ 感謝您的預約，我們將在24小時內與您聯繫。</p>
-          <p id="form-msg-en" style="display:none;text-align:center;color:var(--gold);font-size:.85rem;margin-top:1rem;font-family:var(--sans);" data-lang="en">✦ Thank you! We'll reach out within 24 hours.</p>
+          <button id="submit-btn-zh" type="submit" class="form-submit" data-lang="zh">提交預約申請</button>
+          <button id="submit-btn-en" type="submit" class="form-submit" data-lang="en">Submit Booking Request</button>
+          <p id="form-status" style="display:none;text-align:center;color:var(--gold);font-size:.85rem;margin-top:1rem;font-family:var(--sans);" aria-live="polite" role="status"></p>
         </form>
       </div>
     </div>
   </div>
 </section>
+<div id="contact-modal" class="contact-modal" hidden>
+  <div class="contact-modal-backdrop" aria-hidden="true"></div>
+  <div class="contact-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+    <h3 id="contact-modal-title" class="contact-modal-title"></h3>
+    <p id="contact-modal-tip" data-lang="zh">可複製以下聯絡方式：</p>
+    <p data-lang="en">Copy the contact detail below:</p>
+    <div class="contact-modal-value">
+      <code id="contact-modal-value"></code>
+      <button id="copy-contact-btn" class="copy-btn" type="button">Copy</button>
+    </div>
+    <p id="contact-copy-status" aria-live="polite" role="status"></p>
+    <button id="close-contact-btn" class="close-modal-btn" type="button">Close</button>
+  </div>
+</div>
+ </main>
 
 <!-- FOOTER -->
-<footer>
+<footer aria-labelledby="footer-title">
+  <h2 id="footer-title" class="sr-only">Footer</h2>
   <div class="footer-grid">
     <div class="footer-brand">
       <a class="nav-logo" href="#">
@@ -1238,10 +1320,20 @@ doubled.forEach(t=>{
 let currentLang = 'zh';
 function setLang(lang) {
   currentLang = lang;
+  document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
   document.body.classList.toggle('en', lang === 'en');
-  document.querySelectorAll('.lang-btn').forEach(b=>{
-    b.classList.toggle('active', b.textContent.trim().toLowerCase().includes(lang));
+  const isZh = lang === 'zh';
+  document.getElementById('lang-zh').classList.toggle('active', isZh);
+  document.getElementById('lang-en').classList.toggle('active', !isZh);
+  document.getElementById('lang-zh').setAttribute('aria-pressed', isZh ? 'true' : 'false');
+  document.getElementById('lang-en').setAttribute('aria-pressed', isZh ? 'false' : 'true');
+  document.querySelectorAll('[data-placeholder-zh]').forEach(el => {
+    el.placeholder = isZh ? el.dataset.placeholderZh : el.dataset.placeholderEn;
   });
+  const copyBtn = document.getElementById('copy-contact-btn');
+  const closeBtn = document.getElementById('close-contact-btn');
+  if (copyBtn) copyBtn.textContent = isZh ? '複製' : 'Copy';
+  if (closeBtn) closeBtn.textContent = isZh ? '關閉' : 'Close';
   // fix selects
   document.querySelectorAll('select').forEach(sel=>{
     sel.innerHTML='';
@@ -1267,16 +1359,60 @@ reveals.forEach(r=>io.observe(r));
 // ─── FORM ───
 function submitForm(e) {
   e.preventDefault();
-  document.getElementById('form-msg').style.display='block';
-  document.getElementById('form-msg-en').style.display='block';
-  e.target.querySelector('button[type="submit"]').textContent = currentLang==='zh' ? '已提交 ✦' : 'Submitted ✦';
+  const status = document.getElementById('form-status');
+  status.style.display = 'block';
+  status.textContent = currentLang === 'zh'
+    ? '✦ 感謝您的預約，我們將在 24 小時內與您聯繫。'
+    : "✦ Thank you! We'll reach out within 24 hours.";
+  document.getElementById('submit-btn-zh').textContent = currentLang === 'zh' ? '已提交 ✦' : '提交預約申請';
+  document.getElementById('submit-btn-en').textContent = currentLang === 'en' ? 'Submitted ✦' : 'Submit Booking Request';
 }
+
+const contactMap = {
+  line: { zhTitle: 'LINE 聯絡方式', enTitle: 'LINE Contact', value: '@jokushu' },
+  wechat: { zhTitle: 'WeChat 聯絡方式', enTitle: 'WeChat Contact', value: 'jokushu_co' }
+};
+let lastFocus = null;
+function openContactModal(type) {
+  const modal = document.getElementById('contact-modal');
+  const payload = contactMap[type];
+  if (!payload) return;
+  lastFocus = document.activeElement;
+  document.getElementById('contact-modal-title').textContent = currentLang === 'zh' ? payload.zhTitle : payload.enTitle;
+  document.getElementById('contact-modal-value').textContent = payload.value;
+  document.getElementById('contact-copy-status').textContent = '';
+  modal.hidden = false;
+  document.getElementById('copy-contact-btn').focus();
+}
+function closeContactModal() {
+  const modal = document.getElementById('contact-modal');
+  modal.hidden = true;
+  if (lastFocus) lastFocus.focus();
+}
+document.getElementById('close-contact-btn').addEventListener('click', closeContactModal);
+document.querySelector('.contact-modal-backdrop').addEventListener('click', closeContactModal);
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !document.getElementById('contact-modal').hidden) {
+    closeContactModal();
+  }
+});
+document.getElementById('copy-contact-btn').addEventListener('click', async () => {
+  const value = document.getElementById('contact-modal-value').textContent;
+  const status = document.getElementById('contact-copy-status');
+  try {
+    await navigator.clipboard.writeText(value);
+    status.textContent = currentLang === 'zh' ? '已複製到剪貼簿。' : 'Copied to clipboard.';
+  } catch {
+    status.textContent = `${currentLang === 'zh' ? '請手動複製：' : 'Please copy manually: '}${value}`;
+  }
+});
 
 // ─── NAV SCROLL ───
 window.addEventListener('scroll',()=>{
   const nav=document.querySelector('nav');
   nav.style.background = window.scrollY>60 ? 'rgba(11,9,6,0.97)' : 'rgba(11,9,6,0.85)';
 });
+setLang('zh');
 </script>
 </body>
 </html>
