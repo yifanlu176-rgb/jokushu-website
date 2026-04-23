@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>奇門遁甲入門 | 蓐収株式会社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{--bg:#0b0906;--bg2:#111009;--bg3:#181510;--gold:#c9a553;--gold-lt:#e2c07a;--cream:#f0e8d8;--cream2:#b8a88a;--cream3:#6b5d48;--jade:#4a9e7f;--border:rgba(201,165,83,0.18);--serif:'Noto Serif SC',serif;--sans:'Noto Sans SC',sans-serif;--en:'Cinzel',serif;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--cream);font-family:var(--serif);font-size:16px;line-height:1.8;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(11,9,6,0.97);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--gold);letter-spacing:.12em;text-decoration:none;}
+.nav-logo span{color:var(--cream);font-weight:300;font-size:.85rem;display:block;letter-spacing:.2em;}
+.nav-back{color:var(--cream2);text-decoration:none;font-family:var(--sans);font-size:.85rem;letter-spacing:.1em;display:flex;align-items:center;gap:.5rem;transition:color .2s;}
+.nav-back:hover{color:var(--gold);}
+.article-hero{padding:8rem 5% 4rem;max-width:800px;margin:0 auto;}
+.article-eyebrow{font-family:var(--en);font-size:.72rem;letter-spacing:.3em;color:var(--gold);margin-bottom:1.2rem;}
+.article-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:600;line-height:1.3;letter-spacing:.05em;margin-bottom:1rem;}
+.article-meta{display:flex;gap:1.5rem;align-items:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+.meta-item{font-family:var(--sans);font-size:.78rem;color:var(--cream3);letter-spacing:.08em;}
+.meta-divider{width:1px;height:1rem;background:var(--border);}
+.article-body{max-width:720px;margin:0 auto;padding:0 5% 6rem;}
+.article-body h2{font-size:1.3rem;font-weight:600;letter-spacing:.06em;margin:3rem 0 1rem;color:var(--gold);padding-left:1rem;border-left:2px solid var(--gold);}
+.article-body h3{font-size:1.05rem;font-weight:600;letter-spacing:.05em;margin:2rem 0 .8rem;color:var(--cream);}
+.article-body p{font-size:.95rem;color:var(--cream2);line-height:2;font-weight:300;margin-bottom:1.2rem;}
+.article-body strong{color:var(--cream);font-weight:500;}
+.article-divider{width:48px;height:1px;background:var(--gold);margin:2.5rem 0;opacity:.5;}
+.info-box{background:var(--bg3);border:1px solid var(--border);border-left:2px solid var(--gold);padding:1.4rem 1.6rem;margin:2rem 0;}
+.info-box p{margin:0;font-size:.88rem;}
+.tag-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:1.5rem 0;}
+.tag-card{background:var(--bg3);border:1px solid var(--border);padding:1rem 1.2rem;}
+.tag-card .tag-name{font-size:.95rem;font-weight:600;color:var(--cream);margin-bottom:.3rem;}
+.tag-card .tag-en{font-family:var(--en);font-size:.65rem;color:var(--gold);letter-spacing:.15em;margin-bottom:.5rem;}
+.tag-card .tag-desc{font-size:.82rem;color:var(--cream2);line-height:1.8;font-weight:300;}
+.article-footer{max-width:720px;margin:0 auto;padding:2rem 5% 4rem;border-top:1px solid var(--border);}
+.cta-box{background:var(--bg2);border:1px solid var(--border);padding:2.4rem;text-align:center;}
+.cta-box h3{font-size:1.2rem;letter-spacing:.06em;margin-bottom:.8rem;}
+.cta-box p{font-size:.88rem;color:var(--cream2);font-weight:300;margin-bottom:1.6rem;}
+.btn-primary{background:var(--gold);color:var(--bg);padding:.9rem 2.4rem;font-family:var(--sans);font-size:.9rem;font-weight:500;letter-spacing:.12em;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:background .25s;}
+.btn-primary:hover{background:var(--gold-lt);}
+.related-articles{margin-top:3rem;}
+.related-articles h4{font-family:var(--en);font-size:.72rem;letter-spacing:.25em;color:var(--gold);margin-bottom:1.2rem;}
+.related-list{display:flex;flex-direction:column;gap:.8rem;}
+.related-item{color:var(--cream2);text-decoration:none;font-size:.88rem;font-weight:300;padding:.6rem 0;border-bottom:1px solid var(--border);transition:color .2s;display:block;}
+.related-item:hover{color:var(--gold);}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">蓐収株式会社<span>JOKUSHU CO., LTD.</span></a>
+  <a class="nav-back" href="index.html#blog">← 返回文章列表</a>
+</nav>
+
+<div class="article-hero">
+  <p class="article-eyebrow">QIMEN DUNJIA · 術數入門</p>
+  <h1 class="article-title">奇門遁甲入門：八門、九星、八神<br>如何構成完整推演體系</h1>
+  <div class="article-meta">
+    <span class="meta-item">2025年3月15日</span>
+    <div class="meta-divider"></div>
+    <span class="meta-item">蓐収株式会社</span>
+    <div class="meta-divider"></div>
+    <span class="meta-item">閱讀約8分鐘</span>
+  </div>
+</div>
+<div class="article-body">
+  <p>奇門遁甲被歷代術數家譽為「帝王之學」，相傳起源於軒轅黃帝時期，歷經千年傳承與完善，是中國玄學體系中結構最為嚴密、推演最為精密的術數之一。它以時間、空間與人事三大維度為核心，將天道、地道、人道融為一體，形成了一套完整的宇宙資訊解讀系統。</p>
+  <p>許多初學者接觸奇門遁甲時，往往被其繁複的術語所嚇退。本文將從最基礎的結構入手，帶你理解<strong>八門、九星、八神</strong>這三大核心要素如何相互配合，共同構成一個完整的推演體系。</p>
+  <div class="article-divider"></div>
+
+  <h2>奇門遁甲的四層結構</h2>
+  <p>在正式介紹八門、九星、八神之前，需要先理解奇門遁甲的整體框架。一張完整的奇門盤由四個層次疊加而成：</p>
+  <p><strong>地盤（九宮）</strong>是整個推演的根基，以洛書九宮為骨架，代表地理空間與方位資訊。<strong>天盤（九星）</strong>疊加其上，代表天象運行與時運流轉。<strong>人盤（八門）</strong>反映人事動態與行動抉擇。<strong>神盤（八神）</strong>則是天地人三盤之外的場域能量，起到綜合調諧的作用。</p>
+  <p>四盤疊合，便能在同一個時空座標中，同時讀取天時、地利、人和與神助四個維度的資訊——這正是奇門遁甲遠比單一術數體系複雜、也更為精準的根本原因。</p>
+  <div class="article-divider"></div>
+
+  <h2>八門：人事行動的指針</h2>
+  <p>八門對應人盤，是奇門推演中最直接關聯人事吉凶的符號系統。八門分別為：<strong>休門、生門、傷門、杜門、景門、死門、驚門、開門</strong>，各居後天八卦對應的九宮之中。</p>
+  <p>傳統歌訣將八門分為三類：三吉門（開門、休門、生門）、三凶門（死門、驚門、傷門）、兩中性門（杜門、景門）。但實際推演中，吉凶並非絕對，需視宮位五行生剋關係而定——吉門若受克，吉氣難以發揮；凶門若被克制，則凶意亦可化解。</p>
+  <div class="tag-grid">
+    <div class="tag-card"><div class="tag-name">開門</div><div class="tag-en">OPEN GATE</div><div class="tag-desc">居乾宮，五行屬金。主開創、出行、謀事有成，為最吉之門。歷代帝王開基立業多應乾位。</div></div>
+    <div class="tag-card"><div class="tag-name">休門</div><div class="tag-en">REST GATE</div><div class="tag-desc">居坎宮，五行屬水。主休養、交際、求財，利於靜守與人際往來。</div></div>
+    <div class="tag-card"><div class="tag-name">生門</div><div class="tag-en">LIFE GATE</div><div class="tag-desc">居艮宮，五行屬土。主生發、求財、農耕，財運之門，求財問事最宜。</div></div>
+    <div class="tag-card"><div class="tag-name">杜門</div><div class="tag-en">CLOSE GATE</div><div class="tag-desc">居巽宮，五行屬木。主隱蔽、封閉，宜守不宜動，適合潛伏待機。</div></div>
+    <div class="tag-card"><div class="tag-name">景門</div><div class="tag-en">VIEW GATE</div><div class="tag-desc">居離宮，五行屬火。主文書、訴訟、虛名，宜文不宜武，過旺則主口舌。</div></div>
+    <div class="tag-card"><div class="tag-name">死門</div><div class="tag-en">DEATH GATE</div><div class="tag-desc">居坤宮，五行屬土。主阻滯、損耗，然亦主葬事、狩獵、掘墓等特殊用途。</div></div>
+    <div class="tag-card"><div class="tag-name">驚門</div><div class="tag-en">SHOCK GATE</div><div class="tag-desc">居兌宮，五行屬金。主驚嚇、波折、口舌是非，然亦可用於驚嚇敵方。</div></div>
+    <div class="tag-card"><div class="tag-name">傷門</div><div class="tag-en">HARM GATE</div><div class="tag-desc">居震宮，五行屬木。主破財、傷人，不利求財問事，但可用於打獵競技。</div></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <h2>九星：天道時運的映射</h2>
+  <p>九星屬天盤，代表天象能量在九宮中的分佈狀態。九星為：<strong>天蓬、天任、天冲、天輔、天英、天芮、天柱、天心、天禽</strong>。其中天禽星居中宮，實際流轉於八宮的為其餘八星。</p>
+  <p>九星從坎一宮天蓬星起，依後天八卦順序排列，各星五行屬性與其所居宮位密切相關。在推演中，九星提供的是「天時」層面的資訊——時運是否到位、整體氣場強弱、以及某類型事件的發生概率。</p>
+  <div class="info-box">
+    <p><strong>實務運用要點：</strong>九星與八門的組合是奇門推演的核心之一。例如「天心星+開門」落於乾宮，天心屬金、開門屬金、乾宮屬金，三金相疊，謀事出行大吉；若換作「天芮星+死門」落坤宮，土氣鬱結，則主阻滯損耗，不宜行動。</p>
+  </div>
+  <div class="article-divider"></div>
+
+  <h2>八神：場域能量的調諧者</h2>
+  <p>八神居神盤，是奇門四盤系統中最具動態性的一層。八神分別為：<strong>值符、螣蛇、太陰、六合、白虎（勾陳）、玄武（朱雀）、九地、九天</strong>。</p>
+  <p>八神的功能在於提供場域背景資訊——當前的資訊是否真實可信、對方的態度如何、事件的隱藏走向是什麼。古訣云「急則從神，緩從門」，急事先看八神判斷大方向，緩事再細看八門定吉凶。</p>
+  <div class="tag-grid">
+    <div class="tag-card"><div class="tag-name">值符</div><div class="tag-en">CHIEF DEITY</div><div class="tag-desc">八神之首，代表權威、貴人、高檔名品。出現主正面、可信，事情有貴人相助。</div></div>
+    <div class="tag-card"><div class="tag-name">螣蛇</div><div class="tag-en">SOARING SNAKE</div><div class="tag-desc">主波折、虛詐、變化不定。事情表面與實際有落差，需防欺騙與誤判。</div></div>
+    <div class="tag-card"><div class="tag-name">太陰</div><div class="tag-en">GREAT YIN</div><div class="tag-desc">主陰匿、暗中謀劃。適合低調行事、謀而後動，亦主女性相關事務。</div></div>
+    <div class="tag-card"><div class="tag-name">六合</div><div class="tag-en">SIX UNION</div><div class="tag-desc">主合作、開朗、中介居間。主合同締結、商業洽談、婚姻牽線。</div></div>
+    <div class="tag-card"><div class="tag-name">白虎</div><div class="tag-en">WHITE TIGER</div><div class="tag-desc">主凶禍、剛猛、技術執行力強。主血光之災，亦代表軍警、手術等。</div></div>
+    <div class="tag-card"><div class="tag-name">玄武</div><div class="tag-en">BLACK TORTOISE</div><div class="tag-desc">主小盜、虛假不實、陰謀詭計。出現需防小人暗中作祟或資訊失真。</div></div>
+    <div class="tag-card"><div class="tag-name">九地</div><div class="tag-en">NINE EARTH</div><div class="tag-desc">主穩定、踏實、防守。適合長期佈局、守業持家，不宜冒進。</div></div>
+    <div class="tag-card"><div class="tag-name">九天</div><div class="tag-en">NINE HEAVEN</div><div class="tag-desc">主剛強、志向遠大、開拓。利於出行遠謀，但過旺則好高騖遠。</div></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <h2>三者如何協同推演</h2>
+  <p>真正的奇門推演，並非單看某一符號，而是讀取同一宮位中八門、九星、八神三者的<strong>組合關係</strong>，再結合宮位五行進行綜合判斷。</p>
+  <p>以一個實際場景為例：某人問事業是否適合在當前時機推進。若用神宮位落的是「生門（吉）＋天心星（吉）＋值符（吉）」，三者皆正面且五行相生，則推演結論為當前時機極佳，可積極行動。若同一宮位出現「死門＋天芮星＋玄武」，則提示資訊不透明、對手有暗動，建議暫緩。</p>
+  <p>這種多維交叉驗證的邏輯，使奇門遁甲的推演精度遠超單一符號體系。同時也正是因為這種複雜性，初學者需要投入相當的時間建立符號系統的直覺，方能在實際推演中靈活運用。</p>
+  <div class="info-box">
+    <p><strong>學習建議：</strong>奇門遁甲入門的核心不在於死記硬背，而在於理解每個符號的<strong>內在邏輯與五行屬性</strong>，再由此推導組合意義。若有興趣深入學習或針對具體問題進行推演諮詢，歡迎預約我們的術數擇日服務。</p>
+  </div>
+</div>
+<div class="article-footer">
+  <div class="cta-box">
+    <h3>有相關問題想進一步諮詢？</h3>
+    <p>蓐収株式会社提供免費三十分鐘初次諮詢，歡迎預約線上交流。</p>
+    <a class="btn-primary" href="index.html#booking">預約免費初談</a>
+  </div>
+  <div class="related-articles">
+    <h4>相關文章</h4>
+    <div class="related-list">
+      <a class="related-item" href="article-qimen.html">奇門遁甲入門：八門、九星、八神如何構成完整推演體系</a>
+      <a class="related-item" href="article-japan-property.html">在日購屋：從玄學角度評估樓層與朝向</a>
+      <a class="related-item" href="article-2025.html">2025乙巳年：在日華人的流年運勢與佈局要點</a>
+      <a class="related-item" href="article-japanese-fengshui.html">日式空間融合中式風水的五個實用原則</a>
+    </div>
+  </div>
+</div>
+</body></html>
