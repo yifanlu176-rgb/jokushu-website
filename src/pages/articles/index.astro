@@ -92,7 +92,7 @@ const sortedArticles = articles.sort((a, b) => b.data.date.getTime() - a.data.da
 
   <div class="articles-grid">
     {sortedArticles.map(article => (
-      <a href={`/articles/${article.slug}`} class="article-card">
+      <a href={`/articles/${article.id}`} class="article-card">
         <div class="article-date">{article.data.date.toLocaleDateString('zh-TW')}</div>
         <div class="article-category" data-lang="zh">{article.data.category}</div>
         <div class="article-category" data-lang="en">{article.data.categoryEn}</div>
