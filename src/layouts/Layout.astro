@@ -1,0 +1,136 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: 'zh' | 'en';
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  author?: string;
+}
+
+const {
+  title = '蓐収株式会社 | 玄學・風水・命理',
+  description = '蓐収株式会社提供專業風水諮詢、不動產室內佈置及奇門遁甲命理服務，立足大阪，服務海內外華人。',
+  lang = 'zh',
+  image = '/logo.svg',
+  type = 'website',
+  publishedTime,
+  author = '蓐収株式会社'
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImage = new URL(image, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary Meta Tags -->
+  <title>{title}</title>
+  <meta name="title" content={title}>
+  <meta name="description" content={description}>
+  <meta name="author" content={author}>
+  <link rel="canonical" href={canonicalURL}>
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content={type}>
+  <meta property="og:url" content={canonicalURL}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={socialImage}>
+  <meta property="og:site_name" content="蓐収株式会社">
+  <meta property="og:locale" content="zh_TW">
+  {publishedTime && <meta property="article:published_time" content={publishedTime}>}
+  {author && <meta property="article:author" content={author}>}
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content={canonicalURL}>
+  <meta property="twitter:title" content={title}>
+  <meta property="twitter:description" content={description}>
+  <meta property="twitter:image" content={socialImage}>
+
+  <!-- Additional SEO -->
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <meta name="language" content="Chinese">
+  <meta name="geo.region" content="JP-27">
+  <meta name="geo.placename" content="Osaka">
+  <meta name="geo.position" content="34.6937;135.5023">
+  <meta name="ICBM" content="34.6937, 135.5023">
+
+  <!-- Keywords -->
+  <meta name="keywords" content="風水,奇門遁甲,命理,玄學,大阪,在日華人,風水諮詢,室內佈置,八字,紫微斗數,Feng Shui,Qimen Dunjia,Osaka,Japan">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/logo.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/styles/global.css">
+  <link rel="stylesheet" href="/src/styles/nav.css">
+  <link rel="stylesheet" href="/src/styles/sections.css">
+  <link rel="stylesheet" href="/src/styles/components.css">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "蓐収株式会社",
+      "alternateName": "Jokushu Co., Ltd.",
+      "description": "專業風水諮詢、不動產室內佈置及奇門遁甲命理服務",
+      "url": "https://www.jokushu.co.jp",
+      "logo": "https://www.jokushu.co.jp/logo.svg",
+      "image": "https://www.jokushu.co.jp/logo.svg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Osaka",
+        "addressRegion": "Osaka",
+        "addressCountry": "JP"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "34.6937",
+        "longitude": "135.5023"
+      },
+      "areaServed": ["JP", "CN", "TW", "HK"],
+      "serviceType": ["風水諮詢", "室內佈置", "奇門遁甲", "命理解析"],
+      "priceRange": "$$",
+      "telephone": "+81-XX-XXXX-XXXX",
+      "email": "contact@jokushu.co.jp"
+    }
+  </script>
+</head>
+<body class={lang === 'en' ? 'en' : ''}>
+  <Nav lang={lang} />
+
+  <slot />
+
+  <Footer />
+
+  <script>
+    // Scroll reveal animation
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => io.observe(r));
+  </script>
+</body>
+</html>

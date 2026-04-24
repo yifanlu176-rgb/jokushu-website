@@ -1,0 +1,106 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const articles = await getCollection('articles');
+const sortedArticles = articles.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout title="文章列表 | 蓐収株式会社">
+  <style>
+    .articles-hero {
+      padding: 8rem 5% 4rem;
+      max-width: 1140px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .articles-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      letter-spacing: .06em;
+      margin-bottom: 1rem;
+    }
+    .articles-desc {
+      font-size: .95rem;
+      color: var(--cream2);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .articles-grid {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 5% 6rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .article-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: border-color .3s;
+    }
+    .article-card:hover {
+      border-color: rgba(201,165,83,0.5);
+    }
+    .article-date {
+      font-family: var(--en);
+      font-size: .68rem;
+      color: var(--cream3);
+      letter-spacing: .15em;
+      margin-bottom: .8rem;
+    }
+    .article-category {
+      display: inline-block;
+      background: rgba(201,165,83,0.12);
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: .72rem;
+      padding: .2rem .7rem;
+      letter-spacing: .08em;
+      margin-bottom: 1rem;
+    }
+    .article-card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      line-height: 1.5;
+      margin-bottom: .8rem;
+    }
+    .article-excerpt {
+      font-size: .85rem;
+      color: var(--cream2);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+    @media (max-width: 768px) {
+      .articles-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <div class="articles-hero">
+    <h1 class="articles-title" data-lang="zh">玄學<em style="color: var(--gold);">文章</em></h1>
+    <h1 class="articles-title" data-lang="en">Metaphysics <em style="color: var(--gold);">Articles</em></h1>
+    <p class="articles-desc" data-lang="zh">探索奇門遁甲、風水堪輿、命理解析等玄學智慧，為您的人生決策提供參考。</p>
+    <p class="articles-desc" data-lang="en">Explore Qimen Dunjia, Feng Shui, and destiny analysis to guide your life decisions.</p>
+  </div>
+
+  <div class="articles-grid">
+    {sortedArticles.map(article => (
+      <a href={`/articles/${article.slug}`} class="article-card">
+        <div class="article-date">{article.data.date.toLocaleDateString('zh-TW')}</div>
+        <div class="article-category" data-lang="zh">{article.data.category}</div>
+        <div class="article-category" data-lang="en">{article.data.categoryEn}</div>
+        <h3 class="article-card-title" data-lang="zh">{article.data.title}</h3>
+        <h3 class="article-card-title" data-lang="en">{article.data.titleEn}</h3>
+        <p class="article-excerpt" data-lang="zh">{article.data.description}</p>
+        <p class="article-excerpt" data-lang="en">{article.data.descriptionEn}</p>
+      </a>
+    ))}
+  </div>
+</Layout>

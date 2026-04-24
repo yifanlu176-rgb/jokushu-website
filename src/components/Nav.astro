@@ -1,0 +1,63 @@
+---
+interface Props {
+  lang?: 'zh' | 'en';
+}
+
+const { lang = 'zh' } = Astro.props;
+---
+
+<nav>
+  <a class="nav-logo" href="/">
+    蓐収株式会社
+    <span>JOKUSHU CO., LTD.</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services" data-lang="zh">服務</a><a href="#services" data-lang="en">Services</a></li>
+    <li><a href="#about" data-lang="zh">關於我們</a><a href="#about" data-lang="en">About</a></li>
+    <li><a href="#cases" data-lang="zh">案例</a><a href="#cases" data-lang="en">Cases</a></li>
+    <li><a href="#blog" data-lang="zh">文章</a><a href="#blog" data-lang="en">Articles</a></li>
+    <li><a href="#booking" data-lang="zh">預約諮詢</a><a href="#booking" data-lang="en">Book</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1.2rem;">
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang-btn="zh">中文</button>
+      <button class="lang-btn" data-lang-btn="en">EN</button>
+    </div>
+    <a class="nav-cta" href="#booking" data-lang="zh">立即預約</a>
+    <a class="nav-cta" href="#booking" data-lang="en">Book Now</a>
+  </div>
+</nav>
+
+<script>
+  // Language switching
+  function setLang(lang: string) {
+    document.body.classList.toggle('en', lang === 'en');
+    localStorage.setItem('lang', lang);
+
+    // Update active button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      const btnLang = btn.getAttribute('data-lang-btn');
+      btn.classList.toggle('active', btnLang === lang);
+    });
+  }
+
+  // Initialize language from localStorage or default to 'zh'
+  const savedLang = localStorage.getItem('lang') || 'zh';
+  setLang(savedLang);
+
+  // Add click handlers
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang-btn');
+      if (lang) setLang(lang);
+    });
+  });
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (nav) {
+      nav.style.background = window.scrollY > 60 ? 'rgba(11,9,6,0.97)' : 'rgba(11,9,6,0.85)';
+    }
+  });
+</script>

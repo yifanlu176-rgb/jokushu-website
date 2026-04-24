@@ -1,17 +1,361 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-circle"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Feng Shui · Divination · Interior Arrangement</p>
+      <h1 class="hero-title">
+        <span data-lang="zh">以天地之道<br><em>守護您的家業</em></span>
+        <span data-lang="en">Harmonize Your Space<br><em>With Heaven & Earth</em></span>
+      </h1>
+      <p class="hero-sub">蓐収株式会社 · OSAKA, JAPAN</p>
+      <p class="hero-desc" data-lang="zh">
+        融合奇門遁甲、風水堪輿與現代室內佈置，為在日華人提供全方位玄學諮詢服務。十一年跨領域專業，以古法智慧引導現代決策。
+      </p>
+      <p class="hero-desc" data-lang="en">
+        Bridging classical Chinese metaphysics — Qimen Dunjia, Feng Shui — with contemporary interior arrangement consulting for the global Chinese community. Eleven years of cross-sector expertise.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#booking" data-lang="zh">預約免費初談</a>
+        <a class="btn-primary" href="#booking" data-lang="en">Book Free Consultation</a>
+        <a class="btn-outline" href="#services" data-lang="zh">瞭解服務</a>
+        <a class="btn-outline" href="#services" data-lang="en">Explore Services</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span data-lang="zh">向下滾動</span>
+      <span data-lang="en">SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="reveal">
+        <p class="section-label">Our Services</p>
+        <h2 class="section-title" data-lang="zh">四大核心<em>服務</em></h2>
+        <h2 class="section-title" data-lang="en">Four Core <em>Services</em></h2>
+        <div class="section-divider"></div>
+        <p class="section-desc" data-lang="zh">從術數推演到空間佈局，我們以系統性的玄學方法論，為您在工作、家居與人生規劃上提供深度支援。</p>
+        <p class="section-desc" data-lang="en">From metaphysical divination to spatial arrangement, our systematic approach supports your career, home, and life decisions.</p>
+      </div>
+      <div class="services-grid reveal reveal-delay-1">
+        <div class="service-card">
+          <div class="service-num">01</div>
+          <div class="service-icon">☯</div>
+          <div class="service-name" data-lang="zh">風水堪輿諮詢</div>
+          <div class="service-name" data-lang="en">Feng Shui Consulting</div>
+          <div class="service-en">FENG SHUI</div>
+          <p class="service-desc" data-lang="zh">結合傳統堪輿學與現代建築環境評估，針對住宅、辦公室及商業空間進行全面風水診斷，提出可落地的改善方案。</p>
+          <p class="service-desc" data-lang="en">Comprehensive Feng Shui assessment for residential, office, and commercial spaces, combining classical geomancy with modern environmental analysis.</p>
+          <a class="service-link" href="#booking" data-lang="zh">瞭解更多 →</a>
+          <a class="service-link" href="#booking" data-lang="en">Learn More →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-num">02</div>
+          <div class="service-icon">🏡</div>
+          <div class="service-name" data-lang="zh">不動產室內佈置諮詢</div>
+          <div class="service-name" data-lang="en">Interior Arrangement Advisory</div>
+          <div class="service-en">INTERIOR ARRANGEMENT</div>
+          <p class="service-desc" data-lang="zh">在日購置不動產的佈局選擇、室內風格規劃，融入風水原則，讓空間佈置同時兼顧美觀、功能與氣場調和。</p>
+          <p class="service-desc" data-lang="en">Real estate layout selection and interior arrangement planning in Japan, integrating Feng Shui principles to balance aesthetics, function, and spatial energy.</p>
+          <a class="service-link" href="#booking" data-lang="zh">瞭解更多 →</a>
+          <a class="service-link" href="#booking" data-lang="en">Learn More →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-num">03</div>
+          <div class="service-icon">☰</div>
+          <div class="service-name" data-lang="zh">術數擇日（奇門遁甲）</div>
+          <div class="service-name" data-lang="en">Predictive Arts &amp; Date Selection</div>
+          <div class="service-en">QIMEN DUNJIA · DATE SELECTION</div>
+          <p class="service-desc" data-lang="zh">以奇門遁甲為核心術數體系，針對事業決策、投資擇機、移居規劃等重大人生課題，進行精準的時空推演與擇日選機建議。</p>
+          <p class="service-desc" data-lang="en">Using Qimen Dunjia as the primary predictive framework for career decisions, investment timing, and relocation planning — mapping time, space, and strategy into actionable guidance.</p>
+          <a class="service-link" href="#booking" data-lang="zh">瞭解更多 →</a>
+          <a class="service-link" href="#booking" data-lang="en">Learn More →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-num">04</div>
+          <div class="service-icon">✦</div>
+          <div class="service-name" data-lang="zh">命理解析</div>
+          <div class="service-name" data-lang="en">Destiny Analysis</div>
+          <div class="service-en">BAZI · ZIWEI · ASTROLOGY</div>
+          <p class="service-desc" data-lang="zh">涵蓋四柱八字、紫微斗數及西方占星三大命理體系，從先天命盤出發，深度解析個人性格特質、人生週期與重要抉擇時機。</p>
+          <p class="service-desc" data-lang="en">Encompassing Bazi (Four Pillars), Zi Wei Dou Shu, and Western Astrology — reading your natal chart to illuminate character, life cycles, and critical decision windows.</p>
+          <a class="service-link" href="#booking" data-lang="zh">瞭解更多 →</a>
+          <a class="service-link" href="#booking" data-lang="en">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-visual reveal">
+          <div class="about-visual-inner">
+            <div class="bagua-symbol">☰☱☲☳☴☵☶☷</div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <p class="section-label">About</p>
+          <h2 class="section-title" data-lang="zh">十一年跨界經驗<br><em>守正出奇</em></h2>
+          <h2 class="section-title" data-lang="en">Eleven Years of<br><em>Cross-Sector Expertise</em></h2>
+          <div class="section-divider"></div>
+          <p class="section-desc" data-lang="zh">
+            代表取締役擁有涵蓋銀行、媒體與投資促進領域的十一年跨界從業經歷，深耕中國玄學體系，以奇門遁甲為核心，融合現代商業思維，為客戶提供兼具古典智慧與現代實用性的諮詢服務。
+          </p>
+          <p class="section-desc" data-lang="en">
+            Our Representative Director brings 11 years of cross-sector experience spanning banking, media, and investment promotion, combined with deep expertise in Chinese metaphysical systems, primarily Qimen Dunjia, to deliver consulting that bridges ancient wisdom with modern decision-making.
+          </p>
+          <ul class="credential-list">
+            <li data-lang="zh">奇門遁甲深度研習，具備術數師執業資歷</li>
+            <li data-lang="zh">銀行、媒體、投資促進三大領域從業背景</li>
+            <li data-lang="zh">在日法人企業代表，熟悉中日跨境業務</li>
+            <li data-lang="zh">服務客群覆蓋大阪、東京及海外華人</li>
+            <li data-lang="en">Practitioner-level Qimen Dunjia expertise</li>
+            <li data-lang="en">Experience in banking, media, and investment promotion</li>
+            <li data-lang="en">Representative Director of Japanese-registered corporation</li>
+            <li data-lang="en">Serving clients in Osaka, Tokyo, and overseas</li>
+          </ul>
+          <div class="about-stat-row">
+            <div>
+              <div class="about-stat-num">11+</div>
+              <div class="about-stat-label" data-lang="zh">年從業年資</div>
+              <div class="about-stat-label" data-lang="en">Years Experience</div>
+            </div>
+            <div>
+              <div class="about-stat-num">3</div>
+              <div class="about-stat-label" data-lang="zh">核心服務領域</div>
+              <div class="about-stat-label" data-lang="en">Service Domains</div>
+            </div>
+            <div>
+              <div class="about-stat-num">大阪</div>
+              <div class="about-stat-label" data-lang="zh">總部所在地</div>
+              <div class="about-stat-label" data-lang="en">HQ Location</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section id="cases">
+    <div class="section-inner">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;" class="reveal">
+        <div>
+          <p class="section-label">Case Studies</p>
+          <h2 class="section-title" data-lang="zh">精選<em>案例</em></h2>
+          <h2 class="section-title" data-lang="en">Featured <em>Cases</em></h2>
+          <div class="section-divider"></div>
+        </div>
+      </div>
+      <div class="cases-grid">
+        <div class="case-card reveal">
+          <div class="case-img">
+            <div class="case-img-pattern"></div>
+            <span>☰</span>
+          </div>
+          <div class="case-body">
+            <div class="case-tag">FENG SHUI</div>
+            <div class="case-name" data-lang="zh">大阪市某餐廳旺場風水改造</div>
+            <div class="case-name" data-lang="en">Restaurant Feng Shui Revamp</div>
+            <div class="case-loc" data-lang="zh">大阪市中央區</div>
+            <div class="case-loc" data-lang="en">Chuo-ku, Osaka</div>
+          </div>
+        </div>
+        <div class="case-card reveal reveal-delay-1">
+          <div class="case-img">
+            <div class="case-img-pattern"></div>
+            <span>🏡</span>
+          </div>
+          <div class="case-body">
+            <div class="case-tag">INTERIOR ARRANGEMENT</div>
+            <div class="case-name" data-lang="zh">在日華人住宅風水室內佈置規劃</div>
+            <div class="case-name" data-lang="en">Feng Shui-Integrated Home Arrangement</div>
+            <div class="case-loc" data-lang="zh">神戸市灘區</div>
+            <div class="case-loc" data-lang="en">Nada-ku, Kobe</div>
+          </div>
+        </div>
+        <div class="case-card reveal reveal-delay-2">
+          <div class="case-img">
+            <div class="case-img-pattern"></div>
+            <span>☵</span>
+          </div>
+          <div class="case-body">
+            <div class="case-tag">QIMEN DUNJIA</div>
+            <div class="case-name" data-lang="zh">企業創立擇時奇門遁甲推演</div>
+            <div class="case-name" data-lang="en">Business Launch Timing Analysis</div>
+            <div class="case-loc" data-lang="zh">東京都港區</div>
+            <div class="case-loc" data-lang="en">Minato-ku, Tokyo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="booking">
+    <div class="section-inner">
+      <div class="booking-grid">
+        <div class="reveal">
+          <p class="section-label">Contact</p>
+          <h2 class="section-title" data-lang="zh"><em>預約</em>諮詢</h2>
+          <h2 class="section-title" data-lang="en">Book a <em>Consultation</em></h2>
+          <div class="section-divider"></div>
+          <p class="section-desc" data-lang="zh">初次諮詢提供免費三十分鐘線上交流，讓我們瞭解您的需求，為您規劃最適合的服務方案。</p>
+          <p class="section-desc" data-lang="en">First consultation includes a complimentary 30-minute online session to understand your needs and design the most suitable service plan.</p>
+          <div class="contact-channels">
+            <button class="channel-btn line">LINE</button>
+            <button class="channel-btn wechat">WeChat</button>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <form id="bookingForm" action="https://formspree.io/f/xwvawkaw" method="POST" style="background:var(--bg3);border:1px solid var(--border);padding:2.4rem;">
+            <div class="form-row">
+              <div class="form-group">
+                <label data-lang="zh">姓名 *</label>
+                <label data-lang="en">Name *</label>
+                <input type="text" name="name" required>
+              </div>
+              <div class="form-group">
+                <label data-lang="zh">聯繫方式 *</label>
+                <label data-lang="en">Contact *</label>
+                <input type="text" name="contact" required placeholder="Email / LINE / WeChat">
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-lang="zh">諮詢服務類型 *</label>
+              <label data-lang="en">Service Type *</label>
+              <select name="service" required id="serviceSelect">
+                <option value="">請選擇服務</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label data-lang="zh">諮詢主題 / 問題描述</label>
+              <label data-lang="en">Topic / Description</label>
+              <textarea name="message" rows="4"></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="新的預約諮詢 - 蓐収株式会社">
+            <input type="hidden" name="_language" id="formLanguage" value="zh">
+            <button type="submit" class="form-submit" data-lang="zh">提交預約申請</button>
+            <button type="submit" class="form-submit" data-lang="en">Submit Booking Request</button>
+            <p id="form-status" style="display:none;text-align:center;margin-top:1rem;font-family:var(--sans);font-size:.85rem;"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Marquee
+    const items = [
+      '奇門遁甲 QIMEN DUNJIA','風水堪輿 FENG SHUI','室內佈置 INTERIOR ARRANGEMENT',
+      '命理解析 DESTINY ANALYSIS','四柱八字 BAZI','紫微斗數 ZI WEI DOU SHU'
+    ];
+    const track = document.getElementById('marqueeTrack');
+    if (track) {
+      const doubled = [...items,...items];
+      doubled.forEach(t => {
+        const span = document.createElement('span');
+        span.className = 'marquee-item';
+        span.innerHTML = `<span class="marquee-dot">✦</span>${t}`;
+        track.appendChild(span);
+      });
+    }
+
+    // Form submission
+    const form = document.getElementById('bookingForm');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const statusMsg = document.getElementById('form-status');
+        const isEn = document.body.classList.contains('en');
+
+        // Update language field
+        const langField = document.getElementById('formLanguage');
+        if (langField) langField.value = isEn ? 'en' : 'zh';
+
+        // Disable button and show loading
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = isEn ? 'Sending...' : '提交中...';
+        }
+
+        try {
+          const formData = new FormData(form);
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            if (statusMsg) {
+              statusMsg.style.display = 'block';
+              statusMsg.style.color = 'var(--gold)';
+              statusMsg.textContent = isEn
+                ? '✦ Thank you! We will contact you within 24 hours.'
+                : '✦ 感謝您的預約，我們將在24小時內與您聯繫。';
+            }
+            form.reset();
+            if (submitBtn) {
+              submitBtn.textContent = isEn ? 'Submitted ✦' : '已提交 ✦';
+            }
+          } else {
+            throw new Error('Form submission failed');
+          }
+        } catch (error) {
+          if (statusMsg) {
+            statusMsg.style.display = 'block';
+            statusMsg.style.color = '#ff6b6b';
+            statusMsg.textContent = isEn
+              ? '✗ Submission failed. Please try again or contact us directly.'
+              : '✗ 提交失敗，請重試或直接聯繫我們。';
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = isEn ? 'Submit Booking Request' : '提交預約申請';
+          }
+        }
+      });
+    }
+
+    // Select options
+    function updateSelect() {
+      const select = document.getElementById('serviceSelect');
+      if (!select) return;
+      const isEn = document.body.classList.contains('en');
+      const opts = isEn
+        ? ['Select service','Feng Shui','Interior Arrangement','Qimen Dunjia','Destiny Analysis']
+        : ['請選擇服務','風水堪輿諮詢','不動產室內佈置諮詢','術數擇日','命理解析'];
+      select.innerHTML = '';
+      opts.forEach((o, i) => {
+        const opt = document.createElement('option');
+        opt.value = i === 0 ? '' : o;
+        opt.textContent = o;
+        select.appendChild(opt);
+      });
+    }
+    updateSelect();
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setTimeout(updateSelect, 100));
+    });
+  </script>
+</Layout>

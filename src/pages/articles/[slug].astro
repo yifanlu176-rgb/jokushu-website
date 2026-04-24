@@ -1,0 +1,166 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map(article => ({
+    params: { slug: article.id },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+
+// SEO metadata
+const articleTitle = `${article.data.title} | 蓐収株式会社`;
+const articleDescription = article.data.description;
+const publishedTime = article.data.date.toISOString();
+---
+
+<Layout
+  title={articleTitle}
+  description={articleDescription}
+  type="article"
+  publishedTime={publishedTime}
+  author={article.data.author}
+>
+  <style>
+    .article-hero {
+      padding: 8rem 5% 4rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .article-eyebrow {
+      font-family: var(--en);
+      font-size: .72rem;
+      letter-spacing: .3em;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+    }
+    .article-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: .05em;
+      margin-bottom: 1rem;
+    }
+    .article-meta {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .meta-item {
+      font-family: var(--sans);
+      font-size: .78rem;
+      color: var(--cream3);
+      letter-spacing: .08em;
+    }
+    .meta-divider {
+      width: 1px;
+      height: 1rem;
+      background: var(--border);
+    }
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 5% 6rem;
+    }
+    .article-body :global(h2) {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      margin: 3rem 0 1rem;
+      color: var(--gold);
+      padding-left: 1rem;
+      border-left: 2px solid var(--gold);
+    }
+    .article-body :global(h3) {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      margin: 2rem 0 .8rem;
+      color: var(--cream);
+    }
+    .article-body :global(p) {
+      font-size: .95rem;
+      color: var(--cream2);
+      line-height: 2;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+    .article-body :global(strong) {
+      color: var(--cream);
+      font-weight: 500;
+    }
+    .article-body :global(ul), .article-body :global(ol) {
+      margin: 1.5rem 0;
+      padding-left: 2rem;
+    }
+    .article-body :global(li) {
+      font-size: .95rem;
+      color: var(--cream2);
+      line-height: 2;
+      margin-bottom: .8rem;
+    }
+    .article-body :global(hr) {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin: 2.5rem 0;
+      opacity: .5;
+      border: none;
+    }
+    .article-body :global(a) {
+      color: var(--gold);
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .article-body :global(a:hover) {
+      opacity: .8;
+    }
+    .nav-back {
+      color: var(--cream2);
+      text-decoration: none;
+      font-family: var(--sans);
+      font-size: .85rem;
+      letter-spacing: .1em;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      transition: color .2s;
+      margin-bottom: 2rem;
+    }
+    .nav-back:hover {
+      color: var(--gold);
+    }
+  </style>
+
+  <div class="article-hero">
+    <a href="/" class="nav-back">← <span data-lang="zh">返回首頁</span><span data-lang="en">Back to Home</span></a>
+    <p class="article-eyebrow">{article.data.categoryEn}</p>
+    <h1 class="article-title" data-lang="zh">{article.data.title}</h1>
+    <h1 class="article-title" data-lang="en">{article.data.titleEn}</h1>
+    <div class="article-meta">
+      <span class="meta-item">{article.data.date.toLocaleDateString('zh-TW')}</span>
+      <div class="meta-divider"></div>
+      <span class="meta-item">{article.data.author}</span>
+      {article.data.readTime && (
+        <>
+          <div class="meta-divider"></div>
+          <span class="meta-item" data-lang="zh">閱讀約{article.data.readTime}</span>
+          <span class="meta-item" data-lang="en">Read time: {article.data.readTime}</span>
+        </>
+      )}
+    </div>
+  </div>
+
+  <div class="article-body">
+    <Content />
+  </div>
+</Layout>
