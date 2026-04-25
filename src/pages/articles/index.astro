@@ -6,7 +6,10 @@ const articles = await getCollection('articles');
 const sortedArticles = articles.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<Layout title="文章列表 | 蓐収株式会社">
+<Layout
+  title="文章列表 | 蓐収株式会社"
+  description="蓐収株式会社玄學文章專欄，涵蓋奇門遁甲、風水堪輿與命理解析，提供在日華人可落地的實用建議。"
+>
   <style>
     .articles-hero {
       padding: 8rem 5% 4rem;
