@@ -26,10 +26,29 @@
   justify-content: center;
 }
 
-.bagua-symbol {
-  font-size: 8rem;
-  opacity: .12;
-  animation: rotateSlow 60s linear infinite;
+.bagua-image {
+  width: 75%;
+  height: auto;
+  max-width: 400px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 24px rgba(201, 165, 83, 0.15));
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+              filter 0.6s ease;
+  animation: baguaBreathe 6s ease-in-out infinite;
+}
+
+.about-visual:hover .bagua-image {
+  transform: translateY(-4px);
+  filter: drop-shadow(0 0 32px rgba(201, 165, 83, 0.28));
+}
+
+@keyframes baguaBreathe {
+  0%, 100% {
+    filter: drop-shadow(0 0 24px rgba(201, 165, 83, 0.15));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(201, 165, 83, 0.22));
+  }
 }
 
 .about-stat-row {
