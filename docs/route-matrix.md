@@ -33,6 +33,7 @@ Fixed decisions:
 | `/pricing` | 料金 | Required | New | Copy exists | Taskbook section 6 pricing table | Pricing table is already given |
 | `/faq` | FAQ | Required | New | To be written | Taskbook section 8 topics only | Topics are given, answers need authoring |
 | `/contact` | 初回相談・お問い合わせ | Required | New | Copy exists | Taskbook section 7 form fields + success copy + consent dependency on `/privacy` | Form fields and success copy are specified |
+| `/contact/thanks` | 送信完了 | Supporting | New | Copy exists | Taskbook section 7 success flow | Post-submit thank-you page for Formspree `_next` redirect |
 | `/company` | 会社概要 | Required | New | To be written | Taskbook section 2 basic company facts + taskbook section 9 legal/company-info requirements | Legal/company-info page, separate from `/about` |
 | `/privacy` | プライバシーポリシー | Required | New | To be written | Taskbook section 9 privacy checklist | Privacy policy body must be authored |
 | `/commerce-law` | 特定商取引法に基づく表記 | Required | New | To be written | Taskbook section 9 legal disclosure checklist | Legal disclosure page |

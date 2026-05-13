@@ -59,6 +59,7 @@
       "subject": "JOKUSHU contact form",
       "language": "ja",
       "honeypotName": "_gotcha",
+      "next": "/contact/thanks",
       "submitLabel": "送信する",
       "note": "送信前に、プライバシーポリシーへの同意を確認してください。",
       "fields": [

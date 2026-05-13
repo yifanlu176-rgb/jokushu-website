@@ -1,0 +1,59 @@
+{
+  "title": "送信完了 | JOKUSHU",
+  "description": "お問い合わせの送信後に表示するサンクスページです。",
+  "hero": {
+    "kicker": "通信",
+    "title": "送信を受け取りました。",
+    "lead": "お問い合わせ内容を確認のうえ、必要に応じて返信します。",
+    "summary": "急ぎの案件や補足がある場合は、別の連絡手段を本文で案内してください。",
+    "ctas": [
+      {
+        "label": "奉事一覧へ",
+        "href": "/services",
+        "variant": "primary"
+      },
+      {
+        "label": "トップへ戻る",
+        "href": "/",
+        "variant": "secondary"
+      }
+    ],
+    "aside": {
+      "title": "次の流れ",
+      "items": [
+        { "label": "確認", "value": "内容を確認します" },
+        { "label": "返信", "value": "必要に応じて返信します" },
+        { "label": "補足", "value": "追加情報があれば後送で可" }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "type": "text",
+      "kicker": "メッセージ",
+      "title": "送信ありがとうございます",
+      "body": [
+        "フォームは正常に送信されました。ご連絡の内容を確認し、順次対応します。",
+        "返信まで少し時間がかかる場合があります。お急ぎの場合は、別の連絡手段も併記してください。"
+      ]
+    },
+    {
+      "type": "cta",
+      "kicker": "次に見るもの",
+      "title": "関連ページ",
+      "body": "必要に応じて、サービス一覧や料金ページをご確認ください。",
+      "buttons": [
+        {
+          "label": "奉事一覧",
+          "href": "/services",
+          "variant": "primary"
+        },
+        {
+          "label": "料金を見る",
+          "href": "/pricing",
+          "variant": "secondary"
+        }
+      ]
+    }
+  ]
+}
