@@ -216,7 +216,7 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
               {section.lead && <p class="section-lead">{section.lead}</p>}
             </div>
 
-            <form class="card contact-form reveal" method="POST" action={action} id="contact-form">
+            <form class="card contact-form reveal" method="POST" action={action} id="contact-form" data-formspree data-formspree-thanks={section.next ?? '/contact/thanks'}>
               <input type="hidden" name="_subject" value={section.subject ?? 'JOKUSHU contact form'} />
               <input type="hidden" name="_language" value={section.language ?? 'ja'} />
               {section.next && <input type="hidden" name="_next" value={section.next} />}
@@ -301,6 +301,7 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
                 </button>
                 {section.note && <p class="page-note">{section.note}</p>}
               </div>
+              <p class="form-status" aria-live="polite" data-formspree-status></p>
             </form>
           </div>
         </section>

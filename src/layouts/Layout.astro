@@ -121,6 +121,42 @@ const locale = lang === 'zh' ? 'zh_TW' : lang === 'en' ? 'en_US' : 'ja_JP';
     }, { threshold: 0.12 });
 
     reveals.forEach(item => observer.observe(item));
+
+    const formspreeForms = document.querySelectorAll('form[data-formspree]');
+
+    formspreeForms.forEach((form) => {
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const submitButton = form.querySelector('[type="submit"]');
+        const status = form.querySelector('[data-formspree-status]');
+        const thanks = form.dataset.formspreeThanks || '/contact/thanks';
+
+        if (submitButton) submitButton.disabled = true;
+        if (status) status.textContent = '送信中...';
+
+        try {
+          const response = await fetch(form.action, {
+            method: form.method || 'POST',
+            body: new FormData(form),
+            headers: {
+              Accept: 'application/json',
+            },
+          });
+
+          if (response.ok) {
+            window.location.assign(thanks);
+            return;
+          }
+
+          if (status) status.textContent = '送信に失敗しました。内容を確認して、もう一度お試しください。';
+        } catch (error) {
+          if (status) status.textContent = '通信エラーが発生しました。時間をおいて再試行してください。';
+        }
+
+        if (submitButton) submitButton.disabled = false;
+      });
+    });
   </script>
 </body>
 </html>
