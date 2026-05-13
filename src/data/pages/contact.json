@@ -5,7 +5,7 @@
     "kicker": "通信",
     "title": "まずは、目的だけ送ってください。",
     "lead": "細かな文章に整える前でも構いません。何を決めたいのか、どの領域の相談か、いつまでに必要かを伝えていただければ十分です。",
-    "summary": "フォームの本実装は次段階で行います。現在は相談前の案内を整えています。",
+    "summary": "Formspree で送信する問い合わせフォームを用意し、必要な情報だけを先に受け取れるようにしています。",
     "ctas": [
       {
         "label": "奉事を見る",
@@ -52,10 +52,71 @@
       ]
     },
     {
+      "type": "form",
+      "kicker": "お問い合わせフォーム",
+      "title": "相談内容を送る",
+      "lead": "Formspree を使って、必要最小限の項目だけを送信します。返信先はメールまたは別の連絡手段を本文で指定してください。",
+      "subject": "JOKUSHU contact form",
+      "language": "ja",
+      "honeypotName": "_gotcha",
+      "submitLabel": "送信する",
+      "note": "送信前に、プライバシーポリシーへの同意を確認してください。",
+      "fields": [
+        {
+          "type": "text",
+          "name": "name",
+          "label": "お名前",
+          "placeholder": "山田 太郎",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "contact",
+          "label": "連絡先",
+          "placeholder": "email@example.com",
+          "required": true
+        },
+        {
+          "type": "select",
+          "name": "service",
+          "label": "相談領域",
+          "required": true,
+          "options": [
+            { "label": "風水鑑定", "value": "fengshui" },
+            { "label": "命理運勢相談", "value": "fortune" },
+            { "label": "道教科儀祈願相談", "value": "ritual" },
+            { "label": "開運用品文化商品", "value": "items" },
+            { "label": "事業戦略文化企画", "value": "strategy" }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "preferred_time",
+          "label": "希望時期",
+          "placeholder": "例: 2週間以内"
+        },
+        {
+          "type": "textarea",
+          "name": "message",
+          "label": "相談内容",
+          "placeholder": "何を決めたいか、いつまでに必要かを書いてください。",
+          "rows": 7,
+          "required": true
+        },
+        {
+          "type": "checkbox",
+          "name": "consent",
+          "label": "個人情報の取り扱いに同意します。",
+          "href": "/privacy",
+          "linkLabel": "プライバシーポリシーを確認"
+        }
+      ]
+    },
+    {
       "type": "cta",
       "kicker": "次の一歩",
-      "title": "フォーム実装前の暫定案内",
-      "body": "現在は案内ページを先に公開し、問い合わせ経路は次段階でフォームに接続します。",
+      "title": "送信以外の連絡手段",
+      "body": "フォーム送信が難しい場合は、メールでも受け付けます。送信後の詳細な案内は、個別に返信します。",
       "buttons": [
         {
           "label": "メールで連絡",

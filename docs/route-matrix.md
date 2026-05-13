@@ -55,8 +55,7 @@ Fixed decisions:
 
 ## Execution Order
 
-1. Foundation: layout, navigation, footer, tokens, SEO, deployment check
+1. Foundation: layout, navigation, footer, tokens, SEO, Vercel deployment check
 2. Core pages: home, about, services, pricing, faq, contact, company, legal pages
 3. Service detail pages: five service routes
 4. Form wiring and final QA
-

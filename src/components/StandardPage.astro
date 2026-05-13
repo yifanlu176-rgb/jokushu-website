@@ -7,6 +7,7 @@ const hero = page.hero ?? {};
 const sections = page.sections ?? [];
 const title = page.title ?? hero.title ?? 'JOKUSHU';
 const description = page.description ?? hero.lead ?? '';
+const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://formspree.io/f/YOUR_FORM_ID';
 ---
 
 <Layout title={title} description={description} lang="ja">
@@ -195,6 +196,112 @@ const description = page.description ?? hero.lead ?? '';
                 </div>
               ) : null}
             </div>
+          </div>
+        </section>
+      );
+    }
+
+    if (section.type === 'form') {
+      const fields = section.fields ?? [];
+      const action = section.action && section.action !== 'https://formspree.io/f/YOUR_FORM_ID'
+        ? section.action
+        : defaultFormAction;
+
+      return (
+        <section id={section.id ?? 'contact-form'} class="page-section">
+          <div class="section-inner">
+            <div class="reveal">
+              {section.kicker && <p class="section-kicker">{section.kicker}</p>}
+              {section.title && <h2 class="section-title">{section.title}</h2>}
+              {section.lead && <p class="section-lead">{section.lead}</p>}
+            </div>
+
+            <form class="card contact-form reveal" method="POST" action={action} id="contact-form">
+              <input type="hidden" name="_subject" value={section.subject ?? 'JOKUSHU contact form'} />
+              <input type="hidden" name="_language" value={section.language ?? 'ja'} />
+              {section.next && <input type="hidden" name="_next" value={section.next} />}
+              <input
+                type="text"
+                name={section.honeypotName ?? '_gotcha'}
+                class="form-honeypot"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+
+              <div class="form-grid">
+                {fields.map((field: any) => {
+                  if (field.type === 'textarea') {
+                    return (
+                      <label class="form-field form-field-full">
+                        <span>{field.label}</span>
+                        <textarea
+                          name={field.name}
+                          rows={field.rows ?? 6}
+                          placeholder={field.placeholder}
+                          required={field.required ?? false}
+                        />
+                      </label>
+                    );
+                  }
+
+                  if (field.type === 'select') {
+                    return (
+                      <label class="form-field">
+                        <span>{field.label}</span>
+                        <select name={field.name} required={field.required ?? false}>
+                          <option value="" disabled selected={!field.value}>
+                            {field.placeholder ?? '選択してください'}
+                          </option>
+                          {field.options?.map((option: any) => (
+                            <option value={option.value} selected={option.value === field.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    );
+                  }
+
+                  if (field.type === 'checkbox') {
+                    return (
+                      <label class="form-consent form-field-full">
+                        <input type="checkbox" name={field.name} value={field.value ?? 'yes'} required={field.required ?? true} />
+                        <span>
+                          {field.label}
+                          {field.href && field.linkLabel && (
+                            <>
+                              {' '}
+                              <a href={field.href}>{field.linkLabel}</a>
+                            </>
+                          )}
+                        </span>
+                      </label>
+                    );
+                  }
+
+                  return (
+                    <label class="form-field">
+                      <span>{field.label}</span>
+                      <input
+                        type={field.type ?? 'text'}
+                        name={field.name}
+                        placeholder={field.placeholder}
+                        required={field.required ?? false}
+                        value={field.value}
+                      />
+                    </label>
+                  );
+                })}
+              </div>
+
+              <div class="form-actions">
+                <button class="button button-primary" type="submit">
+                  {section.submitLabel ?? '送信する'}
+                </button>
+                {section.note && <p class="page-note">{section.note}</p>}
+              </div>
+            </form>
           </div>
         </section>
       );
@@ -391,6 +498,90 @@ const description = page.description ?? hero.lead ?? '';
     font-size: 0.95rem;
   }
 
+  .contact-form {
+    padding: 1.4rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.2rem;
+  }
+
+  .form-field,
+  .form-consent {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .form-field span,
+  .form-consent span {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 0.9rem;
+    border: 1px solid rgba(197, 155, 83, 0.22);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+    font: inherit;
+  }
+
+  .form-field input::placeholder,
+  .form-field textarea::placeholder {
+    color: var(--text-faint);
+  }
+
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-color: rgba(197, 155, 83, 0.6);
+    box-shadow: 0 0 0 3px rgba(197, 155, 83, 0.12);
+  }
+
+  .form-field-full {
+    grid-column: 1 / -1;
+  }
+
+  .form-consent {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    margin-top: 0.3rem;
+    color: var(--text-soft);
+  }
+
+  .form-consent input {
+    margin-top: 0.3rem;
+  }
+
+  .form-consent a {
+    color: var(--accent);
+  }
+
+  .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.2rem;
+  }
+
+  .form-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .legal-stack {
     display: grid;
     gap: 1rem;
@@ -418,7 +609,8 @@ const description = page.description ?? hero.lead ?? '';
 
   @media (max-width: 900px) {
     .page-hero-grid,
-    .info-table {
+    .info-table,
+    .form-grid {
       grid-template-columns: 1fr;
     }
   }

@@ -64,9 +64,9 @@ npm run preview
 ## 📝 下一步建议
 
 1. **文章系统** - 使用 Astro Content Collections 管理文章
-2. **表单功能** - 接入 Formspree 或 Netlify Forms
+2. **表单功能** - 接入 Formspree（Vercel 兼容）
 3. **多语言优化** - 使用 Astro i18n 插件
-4. **部署** - 推荐 Vercel、Netlify 或 Cloudflare Pages
+4. **部署** - 优先部署到 Vercel
 
 ## 📚 技术栈
 

@@ -231,7 +231,7 @@ export default defineConfig({
 
 ## 🚀 部署注意事项
 
-### Vercel/Netlify
+### Vercel
 
 图片优化会在构建时自动处理，无需额外配置。
 
