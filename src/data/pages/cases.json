@@ -1,0 +1,32 @@
+{
+  "title": "藏品 | JOKUSHU",
+  "description": "事例や記録を載せるためのプレースホルダーページです。",
+  "hero": {
+    "kicker": "藏品",
+    "title": "事例は、準備が整い次第公開する。",
+    "lead": "第一版では、まずはページの器を整えます。実例や記録は、公開できる形に整えてから掲載します。",
+    "summary": "このページはプレースホルダーです。後続フェーズで具体事例を追加してください。",
+    "ctas": [
+      {
+        "label": "奉事を見る",
+        "href": "/services",
+        "variant": "primary"
+      },
+      {
+        "label": "通信へ進む",
+        "href": "/contact",
+        "variant": "secondary"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "type": "placeholder",
+      "kicker": "準備中",
+      "title": "事例掲載のための枠",
+      "body": "公開できる事例が揃い次第、ここに相談の流れや成果の記録を追加します。",
+      "href": "/services",
+      "linkLabel": "奉事へ戻る"
+    }
+  ]
+}

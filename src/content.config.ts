@@ -12,7 +12,7 @@ const articles = defineCollection({
     category: z.string(),
     categoryEn: z.string(),
     tags: z.array(z.string()).optional(),
-    author: z.string().default('蓐収株式会社'),
+    author: z.string().default('蓐收株式會社'),
     readTime: z.string().optional(),
   }),
 });

@@ -1,0 +1,73 @@
+{
+  "title": "通信 | JOKUSHU",
+  "description": "JOKUSHU へのお問い合わせ方法をまとめたページです。",
+  "hero": {
+    "kicker": "通信",
+    "title": "まずは、目的だけ送ってください。",
+    "lead": "細かな文章に整える前でも構いません。何を決めたいのか、どの領域の相談か、いつまでに必要かを伝えていただければ十分です。",
+    "summary": "フォームの本実装は次段階で行います。現在は相談前の案内を整えています。",
+    "ctas": [
+      {
+        "label": "奉事を見る",
+        "href": "/services",
+        "variant": "primary"
+      },
+      {
+        "label": "FAQ を見る",
+        "href": "/faq",
+        "variant": "secondary"
+      }
+    ],
+    "aside": {
+      "title": "連絡先",
+      "items": [
+        { "label": "Email", "value": "contact@jokushu.co.jp" },
+        { "label": "返信目安", "value": "2営業日以内" },
+        { "label": "対応", "value": "内容確認後に案内" }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "type": "cards",
+      "kicker": "相談の進み方",
+      "title": "送ってほしい内容",
+      "lead": "最初の連絡は短くて構いません。次の三点が分かると、やり取りが速くなります。",
+      "items": [
+        {
+          "tag": "01",
+          "title": "何を決めたいか",
+          "body": "住まい、時期、方向性など、判断したいテーマを一行で共有してください。"
+        },
+        {
+          "tag": "02",
+          "title": "いつ必要か",
+          "body": "期限がある案件は、最初に希望時期を知らせていただくと調整しやすくなります。"
+        },
+        {
+          "tag": "03",
+          "title": "どの領域か",
+          "body": "風水、命理、祈願、企画のどれに近いかを知らせていただけると案内が速くなります。"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "kicker": "次の一歩",
+      "title": "フォーム実装前の暫定案内",
+      "body": "現在は案内ページを先に公開し、問い合わせ経路は次段階でフォームに接続します。",
+      "buttons": [
+        {
+          "label": "メールで連絡",
+          "href": "mailto:contact@jokushu.co.jp",
+          "variant": "primary"
+        },
+        {
+          "label": "料金を見る",
+          "href": "/pricing",
+          "variant": "secondary"
+        }
+      ]
+    }
+  ]
+}

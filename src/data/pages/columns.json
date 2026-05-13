@@ -1,0 +1,32 @@
+{
+  "title": "文錄 | JOKUSHU",
+  "description": "コラムや読み物を載せるためのプレースホルダーページです。",
+  "hero": {
+    "kicker": "文錄",
+    "title": "読み物は、後から育てる。",
+    "lead": "第一版では、ページの入口だけを先に用意します。解説記事やコラムは、編集方針が固まり次第追加します。",
+    "summary": "このページはプレースホルダーです。運用が固まったら、記事一覧や連載に置き換えてください。",
+    "ctas": [
+      {
+        "label": "源流を見る",
+        "href": "/about",
+        "variant": "primary"
+      },
+      {
+        "label": "FAQ を見る",
+        "href": "/faq",
+        "variant": "secondary"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "type": "placeholder",
+      "kicker": "準備中",
+      "title": "読み物の入口",
+      "body": "公開用の原稿が整い次第、ここにコラムや短文を追加します。",
+      "href": "/about",
+      "linkLabel": "源流へ戻る"
+    }
+  ]
+}

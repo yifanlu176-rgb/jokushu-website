@@ -1,0 +1,425 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const { page } = Astro.props as { page: any };
+
+const hero = page.hero ?? {};
+const sections = page.sections ?? [];
+const title = page.title ?? hero.title ?? 'JOKUSHU';
+const description = page.description ?? hero.lead ?? '';
+---
+
+<Layout title={title} description={description} lang="ja">
+  {hero.title && (
+    <section class="page-hero">
+      <div class="section-inner page-hero-grid">
+        <div class="page-hero-copy reveal">
+          {hero.kicker && <p class="section-kicker">{hero.kicker}</p>}
+          <h1 class="page-title">{hero.title}</h1>
+          {hero.lead && <p class="page-lead">{hero.lead}</p>}
+          {hero.summary && <p class="page-summary">{hero.summary}</p>}
+
+          {hero.ctas?.length ? (
+            <div class="button-row page-actions">
+              {hero.ctas.map((cta: any) => (
+                <a class={`button${cta.variant === 'primary' ? ' button-primary' : ''}`} href={cta.href}>
+                  {cta.label}
+                </a>
+              ))}
+            </div>
+          ) : null}
+        </div>
+
+        {hero.aside ? (
+          <aside class="card page-hero-aside reveal reveal-delay-1">
+            <p class="panel-title">{hero.aside.title}</p>
+            {hero.aside.items?.length ? (
+              <dl class="hero-facts">
+                {hero.aside.items.map((item: any) => (
+                  <>
+                    <dt>{item.label}</dt>
+                    <dd>{item.value}</dd>
+                  </>
+                ))}
+              </dl>
+            ) : null}
+            {hero.aside.note && <p class="page-note">{hero.aside.note}</p>}
+          </aside>
+        ) : null}
+      </div>
+    </section>
+  )}
+
+  {sections.map((section: any, index: number) => {
+    if (section.type === 'cards') {
+      return (
+        <section id={section.id} class="page-section">
+          <div class="section-inner">
+            <div class="reveal">
+              {section.kicker && <p class="section-kicker">{section.kicker}</p>}
+              {section.title && <h2 class="section-title">{section.title}</h2>}
+              {section.lead && <p class="section-lead">{section.lead}</p>}
+            </div>
+
+            <div class="section-grid-3 page-card-grid" style={`margin-top: 2rem; transition-delay:${index * 80}ms;`}>
+              {section.items.map((item: any) => (
+                <article class="card page-card reveal">
+                  {item.tag && <p class="panel-title">{item.tag}</p>}
+                  <h3 class="page-card-title">{item.title}</h3>
+                  <p class="page-card-body">{item.body}</p>
+                  {item.href && <a class="text-link" href={item.href}>{item.linkLabel ?? '詳細を見る'}</a>}
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    if (section.type === 'text') {
+      return (
+        <section id={section.id} class="page-section">
+          <div class="section-inner">
+            <div class="reveal">
+              {section.kicker && <p class="section-kicker">{section.kicker}</p>}
+              {section.title && <h2 class="section-title">{section.title}</h2>}
+              {section.lead && <p class="section-lead">{section.lead}</p>}
+            </div>
+
+            <div class="page-prose card reveal" style="margin-top: 2rem;">
+              {section.body?.map((paragraph: string) => <p>{paragraph}</p>)}
+              {section.points?.length ? (
+                <ul class="page-list">
+                  {section.points.map((point: string) => <li>{point}</li>)}
+                </ul>
+              ) : null}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    if (section.type === 'faq') {
+      return (
+        <section id={section.id} class="page-section">
+          <div class="section-inner">
+            <div class="reveal">
+              {section.kicker && <p class="section-kicker">{section.kicker}</p>}
+              {section.title && <h2 class="section-title">{section.title}</h2>}
+              {section.lead && <p class="section-lead">{section.lead}</p>}
+            </div>
+
+            <div class="page-faq reveal" style="margin-top: 2rem;">
+              {section.items.map((item: any) => (
+                <details class="card page-faq-item">
+                  <summary>{item.question}</summary>
+                  <p>{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    if (section.type === 'table') {
+      return (
+        <section id={section.id} class="page-section">
+          <div class="section-inner">
+            <div class="reveal">
+              {section.kicker && <p class="section-kicker">{section.kicker}</p>}
+              {section.title && <h2 class="section-title">{section.title}</h2>}
+              {section.lead && <p class="section-lead">{section.lead}</p>}
+            </div>
+
+            <dl class="card info-table reveal" style="margin-top: 2rem;">
+              {section.rows.map((row: any) => (
+                <>
+                  <dt>{row.label}</dt>
+                  <dd>{row.value}</dd>
+                </>
+              ))}
+            </dl>
+            {section.note && <p class="page-note reveal">{section.note}</p>}
+          </div>
+        </section>
+      );
+    }
+
+    if (section.type === 'legal') {
+      return (
+        <section id={section.id} class="page-section">
+          <div class="section-inner">
+            <div class="reveal">
+              {section.kicker && <p class="section-kicker">{section.kicker}</p>}
+              {section.title && <h2 class="section-title">{section.title}</h2>}
+              {section.lead && <p class="section-lead">{section.lead}</p>}
+            </div>
+
+            <div class="legal-stack">
+              {section.sections.map((item: any) => (
+                <article class="card legal-section reveal">
+                  <h3>{item.title}</h3>
+                  {item.paragraphs?.map((paragraph: string) => <p>{paragraph}</p>)}
+                  {item.bullets?.length ? (
+                    <ul class="page-list">
+                      {item.bullets.map((bullet: string) => <li>{bullet}</li>)}
+                    </ul>
+                  ) : null}
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    if (section.type === 'cta') {
+      return (
+        <section id={section.id} class="page-section">
+          <div class="section-inner">
+            <div class="card cta-panel reveal">
+              <div>
+                {section.kicker && <p class="section-kicker">{section.kicker}</p>}
+                {section.title && <h2 class="section-title">{section.title}</h2>}
+                {section.body && <p>{section.body}</p>}
+              </div>
+
+              {section.buttons?.length ? (
+                <div class="button-row">
+                  {section.buttons.map((button: any) => (
+                    <a class={`button${button.variant === 'primary' ? ' button-primary' : ''}`} href={button.href}>
+                      {button.label}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    if (section.type === 'placeholder') {
+      return (
+        <section id={section.id} class="page-section">
+          <div class="section-inner">
+            <div class="card placeholder-panel reveal">
+              <p class="section-kicker">{section.kicker ?? '準備中'}</p>
+              <h2 class="section-title">{section.title}</h2>
+              <p class="section-lead">{section.body}</p>
+              {section.href && (
+                <a class="button button-primary" href={section.href}>
+                  {section.linkLabel ?? 'ホームへ戻る'}
+                </a>
+              )}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    return null;
+  })}
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 3rem 0 1rem;
+  }
+
+  .page-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.75fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .page-title {
+    margin: 0.45rem 0 0;
+    font-size: clamp(2.4rem, 5vw, 4.6rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    font-family: var(--font-display);
+    color: var(--text-primary);
+  }
+
+  .page-lead,
+  .page-summary,
+  .page-prose,
+  .page-note {
+    color: var(--text-secondary);
+  }
+
+  .page-lead {
+    margin-top: 1rem;
+    font-size: 1.08rem;
+    max-width: 62ch;
+  }
+
+  .page-summary {
+    margin-top: 0.85rem;
+    max-width: 58ch;
+    line-height: 1.8;
+  }
+
+  .page-actions {
+    margin-top: 1.5rem;
+  }
+
+  .page-hero-aside {
+    padding: 1.4rem;
+  }
+
+  .hero-facts {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.45rem 0.9rem;
+    margin: 1rem 0 0;
+  }
+
+  .hero-facts dt {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .hero-facts dd {
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .page-section {
+    padding: 1rem 0 0;
+  }
+
+  .page-card-grid,
+  .page-faq,
+  .legal-stack {
+    margin-top: 0.5rem;
+  }
+
+  .page-card {
+    min-height: 100%;
+  }
+
+  .page-card-title {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+  }
+
+  .page-card-body {
+    margin: 0.8rem 0 0;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  .text-link {
+    display: inline-flex;
+    margin-top: 1rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .page-prose {
+    padding: 1.4rem;
+    line-height: 1.85;
+  }
+
+  .page-prose p + p {
+    margin-top: 0.9rem;
+  }
+
+  .page-list {
+    margin: 1rem 0 0;
+    padding-left: 1.15rem;
+    color: var(--text-secondary);
+  }
+
+  .page-list li + li {
+    margin-top: 0.5rem;
+  }
+
+  .page-faq {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .page-faq-item {
+    padding: 1rem 1.2rem;
+  }
+
+  .page-faq-item summary {
+    cursor: pointer;
+    list-style: none;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .page-faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .page-faq-item p {
+    margin: 0.9rem 0 0;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  .info-table {
+    display: grid;
+    grid-template-columns: minmax(160px, 0.8fr) minmax(0, 1.2fr);
+    gap: 0.8rem 1rem;
+    padding: 1.2rem;
+  }
+
+  .info-table dt,
+  .info-table dd {
+    margin: 0;
+  }
+
+  .info-table dt {
+    color: var(--text-secondary);
+  }
+
+  .info-table dd {
+    color: var(--text-primary);
+  }
+
+  .page-note {
+    margin: 0.9rem 0 0;
+    font-size: 0.95rem;
+  }
+
+  .legal-stack {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .legal-section {
+    padding: 1.25rem;
+  }
+
+  .legal-section h3 {
+    margin: 0;
+    font-size: 1.08rem;
+    color: var(--text-primary);
+  }
+
+  .legal-section p {
+    margin: 0.8rem 0 0;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .placeholder-panel {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .page-hero-grid,
+    .info-table {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

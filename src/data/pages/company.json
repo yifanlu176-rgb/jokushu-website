@@ -1,0 +1,53 @@
+{
+  "title": "会社概要 | JOKUSHU",
+  "description": "JOKUSHU の会社情報と基本事項をまとめたページです。",
+  "hero": {
+    "kicker": "会社概要",
+    "title": "運営主体を、公開できる範囲で明示する。",
+    "lead": "ブランド情報と会社情報を分けて見せることで、相談前に必要な確認がしやすいようにしています。",
+    "summary": "法人情報は、公開できる内容を優先して整理しています。最終版では登記情報に合わせて更新します。",
+    "ctas": [
+      {
+        "label": "プライバシー",
+        "href": "/privacy",
+        "variant": "primary"
+      },
+      {
+        "label": "通信へ進む",
+        "href": "/contact",
+        "variant": "secondary"
+      }
+    ],
+    "aside": {
+      "title": "確認事項",
+      "items": [
+        { "label": "区分", "value": "法人" },
+        { "label": "所在地", "value": "大阪" },
+        { "label": "公開", "value": "基本情報を優先" }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "type": "table",
+      "kicker": "会社情報",
+      "title": "基本事項",
+      "rows": [
+        { "label": "会社名", "value": "JOKUSHU CO., LTD." },
+        { "label": "所在地", "value": "大阪府大阪市" },
+        { "label": "事業内容", "value": "風水鑑定、命理相談、祈願、企画支援、関連商品の案内" },
+        { "label": "問い合わせ", "value": "contact@jokushu.co.jp" }
+      ],
+      "note": "正式な登記情報は、公開前に最終確認してください。"
+    },
+    {
+      "type": "text",
+      "kicker": "補足",
+      "title": "ブランドページとの違い",
+      "body": [
+        "源流ページは考え方を示す場所、会社概要は法人としての情報を示す場所です。",
+        "役割を分けておくことで、問い合わせ先や法務情報を探しやすくします。"
+      ]
+    }
+  ]
+}
