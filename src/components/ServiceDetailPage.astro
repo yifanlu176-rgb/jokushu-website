@@ -1,0 +1,188 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const { page } = Astro.props as { page: any };
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title={page.title} description={page.description}>
+  <section class="service-detail-page">
+    <div class="service-detail-shell">
+      <header class="service-detail-header reveal">
+        <p class="service-detail-badge" data-ui-copy="zh">{page.header.badgeZh}</p>
+        <p class="service-detail-badge" data-ui-copy="ja">{page.header.badgeJa}</p>
+        <h1 class="service-detail-title" data-ui-copy="zh">{page.header.titleZh}</h1>
+        <h1 class="service-detail-title" data-ui-copy="ja">{page.header.titleJa}</h1>
+      </header>
+
+      {page.sections.map((section: any, index: number) => (
+        <section class="service-detail-section reveal" style={`transition-delay:${index * 60}ms;`}>
+          <p class="service-detail-section-label" data-ui-copy="zh">─ {section.labelZh} ─</p>
+          <p class="service-detail-section-label" data-ui-copy="ja">─ {section.labelJa} ─</p>
+
+          <div class:list={['service-detail-language-block', section.muted && 'service-detail-language-block-muted']}>
+            <article class="service-detail-language" lang="zh-Hant" data-ui-copy="zh">
+              {section.zh?.map((paragraph: string) => <p>{paragraph}</p>)}
+              {section.listZh?.map((item: string) => <p class="service-detail-list-item">・{item}</p>)}
+              {section.href && section.buttonZh ? (
+                <div class="service-detail-button-row">
+                  <a class="button" href={section.href}>{section.buttonZh}</a>
+                </div>
+              ) : null}
+            </article>
+
+            <article class="service-detail-language" lang="ja-JP" data-ui-copy="ja">
+              {section.ja?.map((paragraph: string) => <p>{paragraph}</p>)}
+              {section.listJa?.map((item: string) => <p class="service-detail-list-item">・{item}</p>)}
+              {section.href && section.buttonJa ? (
+                <div class="service-detail-button-row">
+                  <a class="button" href={section.href}>{section.buttonJa}</a>
+                </div>
+              ) : null}
+            </article>
+          </div>
+        </section>
+      ))}
+
+      <nav class="service-detail-siblings reveal" aria-label="奉事四維">
+        <p class="service-detail-siblings-title" data-ui-copy="zh">{page.siblings.titleZh}</p>
+        <p class="service-detail-siblings-title" data-ui-copy="ja">{page.siblings.titleJa}</p>
+        <div class="service-detail-siblings-links">
+          {page.siblings.items
+            .filter((item: any) => item.href !== currentPath)
+            .map((item: any) => (
+              <>
+                <a class="service-detail-sibling-link" href={item.href} data-ui-copy="zh">{item.labelZh}</a>
+                <a class="service-detail-sibling-link" href={item.href} data-ui-copy="ja">{item.labelJa}</a>
+              </>
+            ))}
+        </div>
+      </nav>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .service-detail-page {
+    padding: 3rem 0 var(--space-screen-wide);
+  }
+
+  .service-detail-shell {
+    width: min(calc(100% - (var(--gutter) * 2)), 640px);
+    margin: 0 auto;
+  }
+
+  .service-detail-header {
+    text-align: center;
+  }
+
+  .service-detail-badge,
+  .service-detail-title,
+  .service-detail-section-label,
+  .service-detail-siblings-title {
+    margin: 0;
+  }
+
+  .service-detail-badge {
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    letter-spacing: 0.18em;
+  }
+
+  .service-detail-title {
+    margin-top: 0.75rem;
+    color: var(--ink-main);
+    font-size: var(--size-h1);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+  }
+
+  .service-detail-section {
+    margin-top: var(--space-screen);
+  }
+
+  .service-detail-section-label {
+    color: var(--ink-main);
+    text-align: center;
+    font-size: var(--size-small);
+    letter-spacing: 0.18em;
+  }
+
+  .service-detail-language-block {
+    margin-top: 2rem;
+  }
+
+  .service-detail-language {
+    width: 100%;
+  }
+
+  .service-detail-language p {
+    margin: 0;
+    color: var(--ink-mid);
+    font-size: var(--size-body);
+    line-height: 2.05;
+    letter-spacing: 0.06em;
+  }
+
+  .service-detail-language p + p {
+    margin-top: 1.35rem;
+  }
+
+  .service-detail-list-item {
+    color: var(--ink-main);
+  }
+
+  .service-detail-language-block-muted .service-detail-list-item,
+  .service-detail-language-block-muted p {
+    color: var(--ink-mid);
+  }
+
+  .service-detail-button-row {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .service-detail-siblings {
+    margin-top: var(--space-screen-wide);
+    padding-top: 2rem;
+    border-top: 1px solid rgba(31, 26, 21, 0.12);
+  }
+
+  .service-detail-siblings-title {
+    color: var(--ink-main);
+    text-align: center;
+    font-size: var(--size-small);
+    letter-spacing: 0.18em;
+  }
+
+  .service-detail-siblings-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .service-detail-sibling-link {
+    font-size: var(--size-small);
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 767px) {
+    .service-detail-page {
+      padding-top: 2rem;
+      padding-bottom: var(--space-screen);
+    }
+
+    .service-detail-section {
+      margin-top: 5.5rem;
+    }
+
+    .service-detail-siblings-links {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+    }
+  }
+</style>

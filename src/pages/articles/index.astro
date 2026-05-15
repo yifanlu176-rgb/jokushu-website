@@ -1,109 +1,195 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import page from '../../data/pages/articles.json';
+import { getAllArticles } from '../../lib/articles';
 
-const articles = await getCollection('articles');
-const sortedArticles = articles.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const displayArticles = getAllArticles()
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .map((article) => ({
+    href: `/articles/${article.slug}`,
+    titleZh: article.zh.title,
+    titleJa: article.ja.title,
+    dateZh: article.zh.dateDisplay,
+    dateJa: article.ja.dateDisplay,
+    categoryZh: article.zh.category,
+    categoryJa: article.ja.category,
+    authorZh: article.zh.author,
+    authorJa: article.ja.author,
+  }));
 ---
 
-<Layout
-  title="文章列表 | 蓐収株式会社"
-  description="蓐収株式会社玄學文章專欄，涵蓋奇門遁甲、風水堪輿與命理解析，提供在日華人可落地的實用建議。"
->
-  <style>
-    .articles-hero {
-      padding: 8rem 5% 4rem;
-      max-width: 1140px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .articles-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 600;
-      letter-spacing: .06em;
-      margin-bottom: 1rem;
-    }
-    .articles-desc {
-      font-size: .95rem;
-      color: var(--cream2);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .articles-grid {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 0 5% 6rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-    .article-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: border-color .3s;
-    }
-    .article-card:hover {
-      border-color: rgba(201,165,83,0.5);
-    }
-    .article-date {
-      font-family: var(--en);
-      font-size: .68rem;
-      color: var(--cream3);
-      letter-spacing: .15em;
-      margin-bottom: .8rem;
-    }
-    .article-category {
-      display: inline-block;
-      background: rgba(201,165,83,0.12);
-      color: var(--gold);
-      font-family: var(--sans);
-      font-size: .72rem;
-      padding: .2rem .7rem;
-      letter-spacing: .08em;
-      margin-bottom: 1rem;
-    }
-    .article-card-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: .05em;
-      line-height: 1.5;
-      margin-bottom: .8rem;
-    }
-    .article-excerpt {
-      font-size: .85rem;
-      color: var(--cream2);
-      line-height: 1.9;
-      font-weight: 300;
-    }
-    @media (max-width: 768px) {
-      .articles-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+<Layout title={page.title} description={page.description}>
+  <section class="articles-page">
+    <div class="articles-shell">
+      <header class="articles-header reveal">
+        <p class="articles-page-title" data-ui-copy="zh">{page.pageTitleZh}</p>
+        <p class="articles-page-title" data-ui-copy="ja">{page.pageTitleJa}</p>
+      </header>
 
-  <div class="articles-hero">
-    <h1 class="articles-title" data-lang="zh">玄學<em style="color: var(--gold);">文章</em></h1>
-    <h1 class="articles-title" data-lang="en">Metaphysics <em style="color: var(--gold);">Articles</em></h1>
-    <p class="articles-desc" data-lang="zh">探索奇門遁甲、風水堪輿、命理解析等玄學智慧，為您的人生決策提供參考。</p>
-    <p class="articles-desc" data-lang="en">Explore Qimen Dunjia, Feng Shui, and destiny analysis to guide your life decisions.</p>
-  </div>
+      <section class="articles-intro reveal reveal-delay-1">
+        <div class="articles-language-block" data-ui-copy="zh">
+          {page.intro.zh.map((paragraph) => <p class="articles-intro-line">{paragraph}</p>)}
+        </div>
 
-  <div class="articles-grid">
-    {sortedArticles.map(article => (
-      <a href={`/articles/${article.id}`} class="article-card">
-        <div class="article-date">{article.data.date.toLocaleDateString('zh-TW')}</div>
-        <div class="article-category" data-lang="zh">{article.data.category}</div>
-        <div class="article-category" data-lang="en">{article.data.categoryEn}</div>
-        <h3 class="article-card-title" data-lang="zh">{article.data.title}</h3>
-        <h3 class="article-card-title" data-lang="en">{article.data.titleEn}</h3>
-        <p class="article-excerpt" data-lang="zh">{article.data.description}</p>
-        <p class="article-excerpt" data-lang="en">{article.data.descriptionEn}</p>
-      </a>
-    ))}
-  </div>
+        <div class="articles-language-block" data-ui-copy="ja">
+          {page.intro.ja.map((paragraph) => <p class="articles-intro-line">{paragraph}</p>)}
+        </div>
+      </section>
+
+      <div class="articles-rule" aria-hidden="true"></div>
+
+      <section class="articles-taxonomy reveal">
+        <div class="articles-language-block" data-ui-copy="zh">
+          <p class="articles-taxonomy-title">{page.taxonomy.zh.title}</p>
+          {page.taxonomy.zh.items.map((item) => <p class="articles-taxonomy-item">{item}</p>)}
+        </div>
+
+        <div class="articles-language-block" data-ui-copy="ja">
+          <p class="articles-taxonomy-title">{page.taxonomy.ja.title}</p>
+          {page.taxonomy.ja.items.map((item) => <p class="articles-taxonomy-item">{item}</p>)}
+        </div>
+      </section>
+
+      <div class="articles-rule" aria-hidden="true"></div>
+
+      <section class="articles-list reveal">
+        {displayArticles.map((article) => (
+          <article class="articles-item">
+            <div class="articles-language-block" data-ui-copy="zh">
+              <p class="articles-meta">{article.dateZh}｜{article.categoryZh}</p>
+              <h1 class="articles-item-title">
+                <a href={article.href}>{article.titleZh}</a>
+              </h1>
+              <p class="articles-author">— {article.authorZh}</p>
+            </div>
+
+            <div class="articles-language-block" data-ui-copy="ja">
+              <p class="articles-meta">{article.dateJa}｜{article.categoryJa}</p>
+              <h1 class="articles-item-title">
+                <a href={article.href}>{article.titleJa}</a>
+              </h1>
+              <p class="articles-author">— {article.authorJa}</p>
+            </div>
+          </article>
+        ))}
+      </section>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .articles-page {
+    padding: 3rem 0 var(--space-screen-wide);
+  }
+
+  .articles-shell {
+    width: min(calc(100% - (var(--gutter) * 2)), 640px);
+    margin: 0 auto;
+  }
+
+  .articles-header,
+  .articles-intro,
+  .articles-taxonomy {
+    text-align: center;
+  }
+
+  .articles-page-title,
+  .articles-intro-line,
+  .articles-taxonomy-title,
+  .articles-taxonomy-item,
+  .articles-meta,
+  .articles-item-title,
+  .articles-author {
+    margin: 0;
+  }
+
+  .articles-page-title {
+    color: var(--ink-main);
+    font-size: var(--size-h2);
+    line-height: var(--leading-tight);
+    letter-spacing: 0.18em;
+  }
+
+  .articles-intro {
+    margin-top: 3rem;
+  }
+
+  .articles-intro-line,
+  .articles-taxonomy-title,
+  .articles-taxonomy-item,
+  .articles-meta,
+  .articles-author {
+    color: var(--ink-mid);
+    font-size: var(--size-body);
+    line-height: 2;
+    letter-spacing: 0.06em;
+  }
+
+  .articles-intro-line + .articles-intro-line,
+  .articles-taxonomy-item + .articles-taxonomy-item {
+    margin-top: 0.2rem;
+  }
+
+  .articles-rule {
+    width: 100%;
+    height: 1px;
+    margin: 3rem 0;
+    background: rgba(31, 26, 21, 0.12);
+  }
+
+  .articles-taxonomy-title {
+    margin-bottom: 1rem;
+  }
+
+  .articles-list {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .articles-item {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(31, 26, 21, 0.08);
+  }
+
+  .articles-item:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .articles-meta {
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .articles-item-title {
+    margin-top: 0.55rem;
+    color: var(--ink-main);
+    font-size: var(--size-h3);
+    font-weight: var(--weight-medium);
+    line-height: 1.75;
+    letter-spacing: 0.04em;
+  }
+
+  .articles-item-title a {
+    border-bottom: 0;
+    color: inherit;
+  }
+
+  .articles-author {
+    margin-top: 0.65rem;
+    color: var(--ink-light);
+    font-size: var(--size-small);
+  }
+
+  @media (max-width: 767px) {
+    .articles-page {
+      padding-top: 2rem;
+      padding-bottom: var(--space-screen);
+    }
+
+    .articles-rule {
+      margin: 2.5rem 0;
+    }
+  }
+</style>

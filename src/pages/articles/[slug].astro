@@ -1,166 +1,290 @@
 ---
-import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import ArticleContentBlocks from '../../components/ArticleContentBlocks.astro';
+import { getAllArticles, getArticleBySlug } from '../../lib/articles';
 
 export async function getStaticPaths() {
-  const articles = await getCollection('articles');
-  return articles.map(article => ({
-    params: { slug: article.id },
-    props: { article },
+  return getAllArticles().map((article) => ({
+    params: { slug: article.slug },
   }));
 }
 
-const { article } = Astro.props;
-const { Content } = await render(article);
+const { slug } = Astro.params;
+const article = slug ? getArticleBySlug(slug) : undefined;
 
-// SEO metadata
-const articleTitle = `${article.data.title} | 蓐収株式会社`;
-const articleDescription = article.data.description;
-const publishedTime = article.data.date.toISOString();
+if (!article) {
+  return Astro.redirect('/articles');
+}
+
+const articles = getAllArticles();
+const currentIndex = articles.findIndex((item) => item.slug === article.slug);
+const newerArticle = currentIndex > 0 ? articles[currentIndex - 1] : undefined;
+const olderArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : undefined;
+
+const pageTitle = `${article.ja.title} | 蓐収株式会社`;
+const pageDescription = article.ja.excerpt ?? article.zh.excerpt ?? '蓐収株式会社の文錄。';
+const publishedTime = new Date(article.date).toISOString();
 ---
 
 <Layout
-  title={articleTitle}
-  description={articleDescription}
+  title={pageTitle}
+  description={pageDescription}
   type="article"
   publishedTime={publishedTime}
-  author={article.data.author}
+  author={article.ja.author}
 >
-  <style>
-    .article-hero {
-      padding: 8rem 5% 4rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .article-eyebrow {
-      font-family: var(--en);
-      font-size: .72rem;
-      letter-spacing: .3em;
-      color: var(--gold);
-      margin-bottom: 1.2rem;
-      text-transform: uppercase;
-    }
-    .article-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 600;
-      line-height: 1.3;
-      letter-spacing: .05em;
-      margin-bottom: 1rem;
-    }
-    .article-meta {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-      margin-top: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-    .meta-item {
-      font-family: var(--sans);
-      font-size: .78rem;
-      color: var(--cream3);
-      letter-spacing: .08em;
-    }
-    .meta-divider {
-      width: 1px;
-      height: 1rem;
-      background: var(--border);
-    }
-    .article-body {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 5% 6rem;
-    }
-    .article-body :global(h2) {
-      font-size: 1.3rem;
-      font-weight: 600;
-      letter-spacing: .06em;
-      margin: 3rem 0 1rem;
-      color: var(--gold);
-      padding-left: 1rem;
-      border-left: 2px solid var(--gold);
-    }
-    .article-body :global(h3) {
-      font-size: 1.05rem;
-      font-weight: 600;
-      letter-spacing: .05em;
-      margin: 2rem 0 .8rem;
-      color: var(--cream);
-    }
-    .article-body :global(p) {
-      font-size: .95rem;
-      color: var(--cream2);
-      line-height: 2;
-      font-weight: 300;
-      margin-bottom: 1.2rem;
-    }
-    .article-body :global(strong) {
-      color: var(--cream);
-      font-weight: 500;
-    }
-    .article-body :global(ul), .article-body :global(ol) {
-      margin: 1.5rem 0;
-      padding-left: 2rem;
-    }
-    .article-body :global(li) {
-      font-size: .95rem;
-      color: var(--cream2);
-      line-height: 2;
-      margin-bottom: .8rem;
-    }
-    .article-body :global(hr) {
-      width: 48px;
-      height: 1px;
-      background: var(--gold);
-      margin: 2.5rem 0;
-      opacity: .5;
-      border: none;
-    }
-    .article-body :global(a) {
-      color: var(--gold);
-      text-decoration: none;
-      transition: opacity .2s;
-    }
-    .article-body :global(a:hover) {
-      opacity: .8;
-    }
-    .nav-back {
-      color: var(--cream2);
-      text-decoration: none;
-      font-family: var(--sans);
-      font-size: .85rem;
-      letter-spacing: .1em;
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      transition: color .2s;
-      margin-bottom: 2rem;
-    }
-    .nav-back:hover {
-      color: var(--gold);
-    }
-  </style>
+  <section class="article-page">
+    <div class="article-shell">
+      <a href="/articles" class="article-back" data-ui-copy="zh">← 返回文錄</a>
+      <a href="/articles" class="article-back" data-ui-copy="ja">← 文録へ戻る</a>
 
-  <div class="article-hero">
-    <a href="/" class="nav-back">← <span data-lang="zh">返回首頁</span><span data-lang="en">Back to Home</span></a>
-    <p class="article-eyebrow">{article.data.categoryEn}</p>
-    <h1 class="article-title" data-lang="zh">{article.data.title}</h1>
-    <h1 class="article-title" data-lang="en">{article.data.titleEn}</h1>
-    <div class="article-meta">
-      <span class="meta-item">{article.data.date.toLocaleDateString('zh-TW')}</span>
-      <div class="meta-divider"></div>
-      <span class="meta-item">{article.data.author}</span>
-      {article.data.readTime && (
-        <>
-          <div class="meta-divider"></div>
-          <span class="meta-item" data-lang="zh">閱讀約{article.data.readTime}</span>
-          <span class="meta-item" data-lang="en">Read time: {article.data.readTime}</span>
-        </>
+      <article class="article-language" lang="zh-Hant" data-ui-copy="zh">
+        <p class="article-eyebrow">{article.zh.category}｜{article.zh.dateDisplay}</p>
+        <h1 class="article-title">{article.zh.title}</h1>
+        {article.zh.subtitle ? <p class="article-subtitle">{article.zh.subtitle}</p> : null}
+        <div class="article-body">
+          <ArticleContentBlocks blocks={article.zh.content} />
+        </div>
+        <p class="article-signature">— {article.zh.author}</p>
+      </article>
+
+      <article class="article-language" lang="ja-JP" data-ui-copy="ja">
+        <p class="article-eyebrow">{article.ja.category}｜{article.ja.dateDisplay}</p>
+        <h1 class="article-title">{article.ja.title}</h1>
+        {article.ja.subtitle ? <p class="article-subtitle">{article.ja.subtitle}</p> : null}
+        <div class="article-body">
+          <ArticleContentBlocks blocks={article.ja.content} />
+        </div>
+        <p class="article-signature">— {article.ja.author}</p>
+      </article>
+
+      {(newerArticle || olderArticle) && (
+        <nav class="article-pagination" aria-label="Article pagination">
+          <div class="article-pagination-language" data-ui-copy="zh">
+            {newerArticle ? (
+              <a class="article-pagination-link" href={`/articles/${newerArticle.slug}`}>
+                ← 上一篇：{newerArticle.zh.title}
+              </a>
+            ) : <span class="article-pagination-placeholder"></span>}
+
+            {olderArticle ? (
+              <a class="article-pagination-link article-pagination-link-next" href={`/articles/${olderArticle.slug}`}>
+                下一篇：{olderArticle.zh.title} →
+              </a>
+            ) : <span class="article-pagination-placeholder"></span>}
+          </div>
+
+          <div class="article-pagination-language" data-ui-copy="ja">
+            {newerArticle ? (
+              <a class="article-pagination-link" href={`/articles/${newerArticle.slug}`}>
+                ← 前の記事：{newerArticle.ja.title}
+              </a>
+            ) : <span class="article-pagination-placeholder"></span>}
+
+            {olderArticle ? (
+              <a class="article-pagination-link article-pagination-link-next" href={`/articles/${olderArticle.slug}`}>
+                次の記事：{olderArticle.ja.title} →
+              </a>
+            ) : <span class="article-pagination-placeholder"></span>}
+          </div>
+        </nav>
       )}
     </div>
-  </div>
-
-  <div class="article-body">
-    <Content />
-  </div>
+  </section>
 </Layout>
+
+<style>
+  .article-page {
+    padding: 3rem 0 var(--space-screen-wide);
+  }
+
+  .article-shell {
+    width: min(calc(100% - (var(--gutter) * 2)), 640px);
+    margin: 0 auto;
+  }
+
+  .article-back,
+  .article-eyebrow,
+  .article-title,
+  .article-subtitle,
+  .article-signature {
+    margin: 0;
+  }
+
+  .article-back {
+    display: inline-flex;
+    margin-bottom: 2rem;
+    border-bottom: 0;
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .article-back:hover {
+    color: var(--accent-red);
+  }
+
+  .article-language {
+    color: var(--ink-mid);
+  }
+
+  .article-eyebrow {
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .article-title {
+    margin-top: 0.9rem;
+    color: var(--ink-main);
+    font-size: clamp(2rem, 4vw, 2.7rem);
+    font-weight: var(--weight-medium);
+    line-height: 1.55;
+    letter-spacing: 0.08em;
+  }
+
+  .article-subtitle {
+    margin-top: 1rem;
+    color: var(--ink-light);
+    font-size: var(--size-body);
+    line-height: 1.95;
+    letter-spacing: 0.06em;
+  }
+
+  .article-body {
+    margin-top: 3rem;
+  }
+
+  .article-body :global(h2),
+  .article-body :global(h3),
+  .article-body :global(p),
+  .article-body :global(blockquote),
+  .article-body :global(blockquote p) {
+    margin: 0;
+  }
+
+  .article-body :global(h2) {
+    margin-top: 3.5rem;
+    color: var(--ink-main);
+    font-size: var(--size-h3);
+    font-weight: var(--weight-medium);
+    line-height: 1.8;
+    letter-spacing: 0.08em;
+  }
+
+  .article-body :global(h3) {
+    margin-top: 2.25rem;
+    color: var(--ink-main);
+    font-size: var(--size-body);
+    font-weight: var(--weight-medium);
+    line-height: 1.95;
+    letter-spacing: 0.08em;
+  }
+
+  .article-body :global(p) {
+    color: var(--ink-mid);
+    font-size: var(--size-body);
+    line-height: 2.05;
+    letter-spacing: 0.06em;
+  }
+
+  .article-body :global(p + p) {
+    margin-top: 1.5rem;
+  }
+
+  .article-body :global(h2 + p),
+  .article-body :global(h3 + p),
+  .article-body :global(blockquote + p),
+  .article-body :global(hr + p) {
+    margin-top: 1.5rem;
+  }
+
+  .article-body :global(blockquote) {
+    margin-top: 1.75rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--border-line);
+    background: var(--paper-deep);
+  }
+
+  .article-body :global(blockquote p) {
+    color: var(--ink-light);
+  }
+
+  .article-body :global(blockquote p + p) {
+    margin-top: 1rem;
+  }
+
+  .article-body :global(hr) {
+    width: 48px;
+    height: 1px;
+    margin: 2.75rem auto 0;
+    border: 0;
+    background: rgba(31, 26, 21, 0.16);
+  }
+
+  .article-body :global(.article-coda) {
+    color: var(--ink-main);
+  }
+
+  .article-body :global(strong) {
+    color: var(--ink-main);
+    font-weight: var(--weight-medium);
+  }
+
+  .article-signature {
+    margin-top: 3rem;
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    text-align: right;
+    letter-spacing: 0.12em;
+  }
+
+  .article-pagination {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(31, 26, 21, 0.12);
+  }
+
+  .article-pagination-language {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .article-pagination-link,
+  .article-pagination-placeholder {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .article-pagination-link {
+    border-bottom: 0;
+    color: var(--ink-mid);
+    font-size: var(--size-small);
+    line-height: 1.9;
+    letter-spacing: 0.05em;
+  }
+
+  .article-pagination-link:hover {
+    color: var(--accent-red);
+  }
+
+  .article-pagination-link-next {
+    text-align: right;
+  }
+
+  @media (max-width: 767px) {
+    .article-page {
+      padding-top: 2rem;
+      padding-bottom: var(--space-screen);
+    }
+
+    .article-pagination-language {
+      flex-direction: column;
+    }
+
+    .article-pagination-link-next {
+      text-align: left;
+    }
+  }
+</style>

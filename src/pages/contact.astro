@@ -1,6 +1,314 @@
 ---
-import StandardPage from '../components/StandardPage.astro';
+import Layout from '../layouts/Layout.astro';
 import page from '../data/pages/contact.json';
+
+const formAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || '';
+const hasFormspreeEndpoint = Boolean(formAction);
 ---
 
-<StandardPage page={page} />
+<Layout title={page.title} description={page.description}>
+  <section class="contact-page">
+    <div class="contact-shell">
+      <header class="contact-header reveal">
+        <p class="contact-page-title" data-ui-copy="zh">{page.pageTitleZh}</p>
+        <p class="contact-page-title" data-ui-copy="ja">{page.pageTitleJa}</p>
+      </header>
+
+      <section class="contact-intro reveal reveal-delay-1">
+        <div class="contact-language-block" data-ui-copy="zh">
+          {page.intro.zh.map((paragraph) => <p class="contact-intro-line">{paragraph}</p>)}
+        </div>
+
+        <div class="contact-language-block" data-ui-copy="ja">
+          {page.intro.ja.map((paragraph) => <p class="contact-intro-line">{paragraph}</p>)}
+        </div>
+      </section>
+
+      <div class="contact-rule" aria-hidden="true"></div>
+
+      <section class="contact-form-section reveal">
+        <form
+          class="contact-form"
+          action={formAction || undefined}
+          method="POST"
+          data-formspree
+          data-formspree-thanks={page.form.next}
+          data-formspree-enabled={hasFormspreeEndpoint ? 'true' : 'false'}
+        >
+          <input type="hidden" name="_subject" value={page.form.subject} />
+          <input type="hidden" name="_next" value={page.form.next} />
+          <input type="hidden" name="_language" value="ja" />
+          <input type="text" name={page.form.honeypotName} tabindex="-1" autocomplete="off" class="contact-honeypot" />
+
+          <label class="contact-field">
+            <span class="contact-label" data-ui-copy="zh">{page.form.fields.name.labelZh}</span>
+            <span class="contact-label" data-ui-copy="ja">{page.form.fields.name.labelJa}</span>
+            <input
+              class="contact-input"
+              type="text"
+              name="name"
+              required
+              data-ui-copy="zh"
+              placeholder={page.form.fields.name.placeholderZh}
+            />
+            <input
+              class="contact-input"
+              type="text"
+              name="name"
+              required
+              data-ui-copy="ja"
+              placeholder={page.form.fields.name.placeholderJa}
+            />
+          </label>
+
+          <label class="contact-field">
+            <span class="contact-label" data-ui-copy="zh">{page.form.fields.contact.labelZh}</span>
+            <span class="contact-label" data-ui-copy="ja">{page.form.fields.contact.labelJa}</span>
+            <input
+              class="contact-input"
+              type="text"
+              name="contact"
+              required
+              data-ui-copy="zh"
+              placeholder={page.form.fields.contact.placeholderZh}
+            />
+            <input
+              class="contact-input"
+              type="text"
+              name="contact"
+              required
+              data-ui-copy="ja"
+              placeholder={page.form.fields.contact.placeholderJa}
+            />
+          </label>
+
+          <label class="contact-field">
+            <span class="contact-label" data-ui-copy="zh">{page.form.fields.message.labelZh}</span>
+            <span class="contact-label" data-ui-copy="ja">{page.form.fields.message.labelJa}</span>
+            <textarea
+              class="contact-textarea"
+              name="message"
+              rows="8"
+              required
+              data-ui-copy="zh"
+              placeholder={page.form.fields.message.placeholderZh}
+            ></textarea>
+            <textarea
+              class="contact-textarea"
+              name="message"
+              rows="8"
+              required
+              data-ui-copy="ja"
+              placeholder={page.form.fields.message.placeholderJa}
+            ></textarea>
+          </label>
+
+          <label class="contact-consent">
+            <input type="checkbox" name="consent" required />
+            <span>{page.form.consent.label}</span>
+            <a href={page.form.consent.href}>{page.form.consent.linkLabel}</a>
+          </label>
+
+          <div class="contact-submit-row">
+            <button class="contact-submit" type="submit" data-ui-copy="zh">［ {page.form.submitZh} ］</button>
+            <button class="contact-submit" type="submit" data-ui-copy="ja">［ {page.form.submitJa} ］</button>
+          </div>
+
+          <p class="contact-status" data-formspree-status aria-live="polite"></p>
+          {!hasFormspreeEndpoint ? (
+            <p class="contact-config-note">
+              Formspree endpoint 未配置；请先设置 `PUBLIC_FORMSPREE_ENDPOINT`。
+            </p>
+          ) : null}
+        </form>
+      </section>
+
+      <div class="contact-rule" aria-hidden="true"></div>
+
+      <section class="contact-details reveal">
+        <div class="contact-language-block" data-ui-copy="zh">
+          {page.contacts.zh.map((line) => <p class="contact-detail-line">{line}</p>)}
+        </div>
+
+        <div class="contact-language-block" data-ui-copy="ja">
+          {page.contacts.ja.map((line) => <p class="contact-detail-line">{line}</p>)}
+        </div>
+      </section>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-page {
+    padding: 3rem 0 var(--space-screen-wide);
+  }
+
+  .contact-shell {
+    width: min(calc(100% - (var(--gutter) * 2)), 640px);
+    margin: 0 auto;
+  }
+
+  .contact-header,
+  .contact-intro,
+  .contact-details {
+    text-align: center;
+  }
+
+  .contact-page-title,
+  .contact-intro-line,
+  .contact-detail-line,
+  .contact-label,
+  .contact-status {
+    margin: 0;
+  }
+
+  .contact-page-title {
+    color: var(--ink-main);
+    font-size: var(--size-h2);
+    line-height: var(--leading-tight);
+    letter-spacing: 0.18em;
+  }
+
+  .contact-intro {
+    margin-top: 3rem;
+  }
+
+  .contact-intro-line,
+  .contact-detail-line,
+  .contact-label,
+  .contact-status,
+  .contact-consent {
+    color: var(--ink-mid);
+    font-size: var(--size-body);
+    line-height: 2;
+    letter-spacing: 0.06em;
+  }
+
+  .contact-intro-line + .contact-intro-line,
+  .contact-detail-line + .contact-detail-line {
+    margin-top: 0.2rem;
+  }
+
+  .contact-rule {
+    width: 100%;
+    height: 1px;
+    margin: 3rem 0;
+    background: rgba(31, 26, 21, 0.12);
+  }
+
+  .contact-form {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .contact-field {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .contact-label {
+    color: var(--ink-main);
+  }
+
+  .contact-input,
+  .contact-textarea {
+    width: 100%;
+    border: 1px solid rgba(31, 26, 21, 0.12);
+    background: rgba(255, 255, 255, 0.45);
+    color: var(--ink-main);
+    font: inherit;
+    letter-spacing: 0.04em;
+  }
+
+  .contact-input {
+    min-height: 48px;
+    padding: 0.8rem 1rem;
+  }
+
+  .contact-textarea {
+    resize: vertical;
+    min-height: 12rem;
+    padding: 1rem;
+    line-height: 1.95;
+  }
+
+  .contact-input:focus,
+  .contact-textarea:focus {
+    outline: none;
+    border-color: rgba(121, 79, 52, 0.4);
+    box-shadow: 0 0 0 2px rgba(121, 79, 52, 0.08);
+  }
+
+  .contact-consent {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .contact-consent input {
+    margin: 0;
+  }
+
+  .contact-consent a {
+    color: var(--ink-main);
+  }
+
+  .contact-submit-row {
+    display: flex;
+    justify-content: center;
+  }
+
+  .contact-submit {
+    border: 0;
+    background: transparent;
+    color: var(--ink-main);
+    font: inherit;
+    font-size: var(--size-body);
+    letter-spacing: 0.12em;
+    cursor: pointer;
+  }
+
+  .contact-submit:hover {
+    color: var(--accent-red);
+  }
+
+  .contact-submit:disabled {
+    color: var(--ink-light);
+    cursor: wait;
+  }
+
+  .contact-status {
+    min-height: 2rem;
+    color: var(--ink-light);
+    text-align: center;
+  }
+
+  .contact-config-note {
+    margin: 0;
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  .contact-honeypot {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .contact-page {
+      padding-top: 2rem;
+      padding-bottom: var(--space-screen);
+    }
+
+    .contact-rule {
+      margin: 2.5rem 0;
+    }
+
+    .contact-consent {
+      align-items: flex-start;
+    }
+  }
+</style>

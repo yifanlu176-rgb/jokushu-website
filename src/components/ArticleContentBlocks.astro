@@ -1,0 +1,41 @@
+---
+import type { ArticleContentBlock } from '../lib/articles';
+
+interface Props {
+  blocks: ArticleContentBlock[];
+}
+
+const { blocks } = Astro.props as Props;
+---
+
+{
+  blocks.map((block) => {
+    if (block.type === 'heading') {
+      const level = block.level === 3 ? 'h3' : 'h2';
+
+      return level === 'h3' ? (
+        <h3>{block.text}</h3>
+      ) : (
+        <h2>{block.text}</h2>
+      );
+    }
+
+    if (block.type === 'quote') {
+      return (
+        <blockquote>
+          {block.text?.split('\n').map((line) => <p>{line}</p>)}
+        </blockquote>
+      );
+    }
+
+    if (block.type === 'divider') {
+      return <hr />;
+    }
+
+    if (block.type === 'coda') {
+      return <p class="article-coda">{block.text}</p>;
+    }
+
+    return <p set:html={block.text ?? ''} />;
+  })
+}

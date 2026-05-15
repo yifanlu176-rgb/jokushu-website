@@ -1,0 +1,137 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import page from '../../data/pages/collections.json';
+---
+
+<Layout title={page.title} description={page.description}>
+  <section class="collections-page">
+    <div class="collections-shell">
+      <header class="collections-header reveal">
+        <p class="collections-page-title" data-ui-copy="zh">{page.pageTitleZh}</p>
+        <p class="collections-page-title" data-ui-copy="ja">{page.pageTitleJa}</p>
+      </header>
+
+      <section class="collections-intro reveal reveal-delay-1">
+        <div class="collections-language-block" data-ui-copy="zh">
+          {page.intro.zh.map((paragraph) => <p class="collections-intro-line">{paragraph}</p>)}
+        </div>
+
+        <div class="collections-language-block" data-ui-copy="ja">
+          {page.intro.ja.map((paragraph) => <p class="collections-intro-line">{paragraph}</p>)}
+        </div>
+      </section>
+
+      <div class="collections-rule" aria-hidden="true"></div>
+
+      <section class="collections-volumes reveal">
+        <div class="collections-language-block" data-ui-copy="zh">
+          {page.volumes.zh.map((item) => <p class="collections-volume-item">{item}</p>)}
+        </div>
+
+        <div class="collections-language-block" data-ui-copy="ja">
+          {page.volumes.ja.map((item) => <p class="collections-volume-item">{item}</p>)}
+        </div>
+      </section>
+
+      <div class="collections-rule" aria-hidden="true"></div>
+
+      <section class="collections-closing reveal">
+        <p class="collections-closing-text" data-ui-copy="zh">{page.closing.zh}</p>
+        <p class="collections-closing-text" data-ui-copy="ja">{page.closing.ja}</p>
+
+        <div class="collections-contact-link">
+          <a href={page.contact.href} data-ui-copy="zh">［ {page.contact.labelZh} ］</a>
+          <a href={page.contact.href} data-ui-copy="ja">［ {page.contact.labelJa} ］</a>
+        </div>
+      </section>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .collections-page {
+    padding: 3rem 0 var(--space-screen-wide);
+  }
+
+  .collections-shell {
+    width: min(calc(100% - (var(--gutter) * 2)), 640px);
+    margin: 0 auto;
+  }
+
+  .collections-header,
+  .collections-intro,
+  .collections-volumes,
+  .collections-closing {
+    text-align: center;
+  }
+
+  .collections-page-title,
+  .collections-intro-line,
+  .collections-volume-item,
+  .collections-closing-text {
+    margin: 0;
+  }
+
+  .collections-page-title {
+    color: var(--ink-main);
+    font-size: var(--size-h2);
+    line-height: var(--leading-tight);
+    letter-spacing: 0.18em;
+  }
+
+  .collections-intro {
+    margin-top: 3rem;
+  }
+
+  .collections-intro-line,
+  .collections-volume-item,
+  .collections-closing-text {
+    color: var(--ink-mid);
+    font-size: var(--size-body);
+    line-height: 2;
+    letter-spacing: 0.06em;
+  }
+
+  .collections-intro-line + .collections-intro-line,
+  .collections-volume-item + .collections-volume-item {
+    margin-top: 0.3rem;
+  }
+
+  .collections-rule {
+    width: 100%;
+    height: 1px;
+    margin: 3rem 0;
+    background: rgba(31, 26, 21, 0.12);
+  }
+
+  .collections-volume-item {
+    color: var(--ink-main);
+    letter-spacing: 0.12em;
+  }
+
+  .collections-contact-link {
+    margin-top: 1.5rem;
+  }
+
+  .collections-contact-link a {
+    border-bottom: 0;
+    color: var(--ink-main);
+    font-size: var(--size-body);
+    letter-spacing: 0.12em;
+  }
+
+  .collections-contact-link a:hover {
+    color: var(--accent-red);
+  }
+
+  @media (max-width: 767px) {
+    .collections-page {
+      padding-top: 2rem;
+      padding-bottom: var(--space-screen);
+    }
+
+    .collections-rule {
+      margin: 2.5rem 0;
+    }
+  }
+</style>

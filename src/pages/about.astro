@@ -1,6 +1,207 @@
 ---
-import StandardPage from '../components/StandardPage.astro';
-import page from '../data/pages/about.json';
+import Layout from '../layouts/Layout.astro';
+import about from '../data/pages/about.json';
 ---
 
-<StandardPage page={page} />
+<Layout title={about.title} description={about.description}>
+  <section class="about-page">
+    <div class="about-shell">
+      <header class="about-header reveal">
+        <p class="about-page-title" data-ui-copy="zh">{about.pageTitleZh}</p>
+        <p class="about-page-title" data-ui-copy="ja">{about.pageTitleJa}</p>
+      </header>
+
+      {about.sections.map((section, index) => (
+        <section class:list={['about-section', section.closing && 'about-section-closing', 'reveal']} style={`transition-delay:${index * 60}ms;`}>
+          {!section.closing && (
+            <div class="about-section-head">
+              <div class="about-section-rule" aria-hidden="true"></div>
+              <p class="about-section-marker" data-ui-copy="zh">{section.markerZh}</p>
+              <p class="about-section-marker" data-ui-copy="ja">{section.markerJa}</p>
+              <h1 class="about-section-title" data-ui-copy="zh">{section.titleZh}</h1>
+              <h1 class="about-section-title" data-ui-copy="ja">{section.titleJa}</h1>
+            </div>
+          )}
+
+          <div class="about-single-language-block">
+            <article class="about-language" lang="zh-Hant" data-ui-copy="zh">
+              {!section.closing ? null : <p class="about-closing-marker">{section.markerZh}・{section.titleZh}</p>}
+              {section.zh.quote?.length ? (
+                <div class="about-quote-box">
+                  {section.zh.quote.map((paragraph) => <p>{paragraph}</p>)}
+                </div>
+              ) : null}
+              <div class="about-prose">
+                {section.zh.body.map((paragraph) => <p>{paragraph}</p>)}
+              </div>
+            </article>
+
+            <article class="about-language" lang="ja-JP" data-ui-copy="ja">
+              {!section.closing ? null : <p class="about-closing-marker">{section.markerJa}・{section.titleJa}</p>}
+              {section.ja.quote?.length ? (
+                <div class="about-quote-box">
+                  {section.ja.quote.map((paragraph) => <p>{paragraph}</p>)}
+                </div>
+              ) : null}
+              <div class="about-prose">
+                {section.ja.body.map((paragraph) => <p>{paragraph}</p>)}
+              </div>
+            </article>
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-page {
+    padding: 3rem 0 var(--space-screen-wide);
+  }
+
+  .about-shell {
+    width: min(calc(100% - (var(--gutter) * 2)), 640px);
+    margin: 0 auto;
+  }
+
+  .about-header {
+    margin-bottom: var(--space-screen);
+    text-align: center;
+  }
+
+  .about-page-title {
+    margin: 0;
+    color: var(--ink-main);
+    font-size: var(--size-h2);
+    line-height: var(--leading-tight);
+    letter-spacing: 0.18em;
+  }
+
+  .about-section {
+    margin-top: var(--space-screen);
+  }
+
+  .about-section:first-of-type {
+    margin-top: 0;
+  }
+
+  .about-section-closing {
+    margin-top: var(--space-screen-wide);
+    min-height: 72vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .about-section-head {
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .about-section-rule {
+    width: 48px;
+    height: 1px;
+    margin: 0 auto 1rem;
+    background: var(--ink-main);
+    opacity: 0.4;
+  }
+
+  .about-section-marker {
+    margin: 0 0 0.55rem;
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    letter-spacing: 0.18em;
+  }
+
+  .about-section-title {
+    margin: 0;
+    color: var(--ink-main);
+    font-size: var(--size-h2);
+    font-weight: var(--weight-medium);
+    line-height: 1.55;
+    letter-spacing: 0.08em;
+  }
+
+  .about-single-language-block {
+    position: relative;
+  }
+
+  .about-language {
+    color: var(--ink-mid);
+    width: 100%;
+  }
+
+  .about-quote-box {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-line);
+    background: var(--paper-deep);
+  }
+
+  .about-quote-box p,
+  .about-prose p,
+  .about-closing-marker {
+    margin: 0;
+  }
+
+  .about-quote-box p + p,
+  .about-prose p + p {
+    margin-top: 1.5rem;
+  }
+
+  .about-prose p,
+  .about-quote-box p {
+    font-size: var(--size-body);
+    line-height: 2.05;
+    letter-spacing: 0.06em;
+  }
+
+  .about-closing-marker {
+    margin-bottom: 2rem;
+    color: var(--ink-main);
+    text-align: center;
+    font-size: var(--size-small);
+    letter-spacing: 0.18em;
+  }
+
+  .about-section-closing .about-prose {
+    text-align: center;
+  }
+
+  .about-section-closing .about-prose p {
+    color: var(--ink-main);
+    font-size: var(--size-h3);
+    line-height: 1.9;
+  }
+
+  @media (max-width: 767px) {
+    .about-page {
+      padding-top: 2rem;
+      padding-bottom: var(--space-screen);
+    }
+
+    .about-header,
+    .about-section {
+      margin-top: 5.5rem;
+    }
+
+    .about-header {
+      margin-bottom: 5.5rem;
+    }
+
+    .about-section:first-of-type {
+      margin-top: 0;
+    }
+
+    .about-section-closing {
+      min-height: auto;
+    }
+
+    .about-quote-box {
+      padding: 1.25rem;
+    }
+
+    .about-section-closing .about-prose p {
+      font-size: var(--size-body);
+    }
+  }
+</style>
