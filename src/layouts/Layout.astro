@@ -41,7 +41,7 @@ const locale = lang === 'zh' ? 'zh_TW' : lang === 'en' ? 'en_US' : 'ja_JP';
   <meta name="title" content={title}>
   <meta name="description" content={description}>
   <meta name="author" content={author}>
-  <meta name="theme-color" content="#0c0b08">
+  <meta name="theme-color" content="#F5EFE3">
   <link rel="canonical" href={canonicalURL}>
 
   <meta property="og:type" content={type}>
@@ -75,7 +75,7 @@ const locale = lang === 'zh' ? 'zh_TW' : lang === 'en' ? 'en_US' : 'ja_JP';
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Noto+Serif+JP:wght@400;500&family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
 
   <script type="application/ld+json">
     {
@@ -105,7 +105,7 @@ const locale = lang === 'zh' ? 'zh_TW' : lang === 'en' ? 'en_US' : 'ja_JP';
     }
   </script>
 </head>
-<body>
+<body data-site-lang={lang}>
   <Nav />
   <main id="content">
     <slot />
@@ -113,6 +113,64 @@ const locale = lang === 'zh' ? 'zh_TW' : lang === 'en' ? 'en_US' : 'ja_JP';
   <Footer />
 
   <script>
+    const supportedLanguages = ['ja', 'zh'];
+    const languageButtons = document.querySelectorAll('[data-lang-switch]');
+    const root = document.documentElement;
+    const body = document.body;
+    const storedLanguage = window.localStorage.getItem('jokushu-language');
+    const browserLanguage = navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'ja';
+    const initialLanguage = supportedLanguages.includes(storedLanguage ?? '')
+      ? storedLanguage
+      : supportedLanguages.includes(body.dataset.siteLang ?? '')
+        ? body.dataset.siteLang
+        : browserLanguage;
+
+    const applyLanguage = (nextLanguage) => {
+      const currentLanguage = supportedLanguages.includes(nextLanguage) ? nextLanguage : 'ja';
+      body.dataset.uiLanguage = currentLanguage;
+      root.dataset.uiLanguage = currentLanguage;
+
+      languageButtons.forEach((button) => {
+        const isActive = button.dataset.langSwitch === currentLanguage;
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      window.localStorage.setItem('jokushu-language', currentLanguage);
+
+      const localizedControls = document.querySelectorAll('form [data-ui-copy]');
+
+      localizedControls.forEach((control) => {
+        const element = control;
+        const isActive = element.dataset.uiCopy === currentLanguage;
+        const formControl = (
+          element instanceof HTMLInputElement ||
+          element instanceof HTMLTextAreaElement ||
+          element instanceof HTMLSelectElement ||
+          element instanceof HTMLButtonElement
+        )
+          ? element
+          : null;
+
+        if (formControl) {
+          formControl.disabled = !isActive;
+        }
+      });
+
+      const languageFields = document.querySelectorAll('form input[name="_language"]');
+
+      languageFields.forEach((field) => {
+        field.value = currentLanguage;
+      });
+    };
+
+    applyLanguage(initialLanguage);
+
+    languageButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        applyLanguage(button.dataset.langSwitch);
+      });
+    });
+
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -131,6 +189,12 @@ const locale = lang === 'zh' ? 'zh_TW' : lang === 'en' ? 'en_US' : 'ja_JP';
         const submitButton = form.querySelector('[type="submit"]');
         const status = form.querySelector('[data-formspree-status]');
         const thanks = form.dataset.formspreeThanks || '/contact/thanks';
+        const formEnabled = form.dataset.formspreeEnabled !== 'false';
+
+        if (!formEnabled || !form.action) {
+          if (status) status.textContent = 'Formspree endpoint 未配置，当前无法发送。';
+          return;
+        }
 
         if (submitButton) submitButton.disabled = true;
         if (status) status.textContent = '送信中...';

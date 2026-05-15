@@ -1,76 +1,93 @@
 {
-  "title": "奉事 | JOKUSHU",
-  "description": "JOKUSHU が提供する奉事の全体像をまとめたサービスハブページです。",
-  "hero": {
-    "kicker": "奉事",
-    "title": "五つの入口で、相談を整理する。",
-    "lead": "サービスは、単発の鑑定ではなく、目的ごとに入口を分けて案内します。まずは該当する領域を選び、必要な内容だけを相談してください。",
-    "summary": "四つの定番領域に、道教祈願と開運用品を加え、用途別に分かりやすく整理しました。",
-    "ctas": [
-      {
-        "label": "料金を見る",
-        "href": "/pricing",
-        "variant": "primary"
-      },
-      {
-        "label": "相談する",
-        "href": "/contact",
-        "variant": "secondary"
-      }
+  "title": "奉事 | 蓐収株式会社",
+  "description": "蓐収株式会社の奉事四維。時・空・人・事の四つの次元から、相形度勢、擇時推演、命理解析、事体諮詢を示す。",
+  "pageTitleZh": "奉事",
+  "pageTitleJa": "奉事",
+  "intro": {
+    "zh": [
+      "時、空、人、事——四維。",
+      "我們做的事，正在這四個維度之中。",
+      "各盡其能，互不混淆。"
     ],
-    "aside": {
-      "title": "対応領域",
-      "items": [
-        { "label": "相形度勢", "value": "看地看屋" },
-        { "label": "擇時推演", "value": "奇門遁甲择日" },
-        { "label": "命理解析", "value": "看人看命" },
-        { "label": "事體諮詢", "value": "総合相談" }
-      ]
-    }
+    "ja": [
+      "時・空・人・事——四維。",
+      "我らが為すこと、まさにこの四つの維の中にあり。",
+      "各々その能を尽くし、互いに混じらず。"
+    ]
   },
-  "sections": [
+  "items": [
     {
-      "type": "cards",
-      "kicker": "サービス一覧",
-      "title": "用途別に選べる五つの窓口",
-      "lead": "詳細ページは次段階で順次展開します。まずは相談の入口を明確にすることを優先しています。",
-      "items": [
-      {
-        "tag": "fengshui",
-        "title": "風水鑑定",
-        "body": "住まい、店舗、オフィスの配置や気の流れを読み、整えるための鑑定です。",
-        "href": "/services/fengshui",
-        "linkLabel": "詳細を見る"
-      },
-      {
-        "tag": "fortune",
-        "title": "命理運勢相談",
-        "body": "個人の流れや時期の傾向を整理し、判断しやすい形でお伝えします。",
-        "href": "/services/fortune",
-        "linkLabel": "詳細を見る"
-      },
-      {
-        "tag": "strategy",
-        "title": "事業戦略文化企画",
-        "body": "事業や企画の方向性を、文化的な文脈と実務の両側から整理します。",
-        "href": "/services/strategy",
-        "linkLabel": "詳細を見る"
-      },
-      {
-        "tag": "ritual",
-        "title": "道教科儀祈願相談",
-        "body": "祈願や科儀の相談を、目的と作法が分かる形で案内します。",
-        "href": "/services/ritual",
-        "linkLabel": "詳細を見る"
-      },
-      {
-        "tag": "items",
-        "title": "開運用品文化商品",
-        "body": "用途に応じた開運用品や文化商品を、意味と使い方を添えて紹介します。",
-        "href": "/services/items",
-        "linkLabel": "詳細を見る"
-      }
-      ]
+      "indexZh": "一",
+      "indexJa": "一",
+      "nameZh": "相形度勢",
+      "nameJa": "形勢を相る",
+      "dimensionZh": "地、屋、格局",
+      "dimensionJa": "地・屋・格局",
+      "quoteZh": "「相形度勢，求人居相安。」",
+      "quoteJa": "「形を相し勢を度り、人居の相安を求む。」",
+      "summaryZh": "風水堪輿。觀地形之實，動陳設之機，求人居相安。",
+      "summaryJa": "風水の学。その本は形を相し勢を度るにあり。地形と気の場を観、設えと時機を整え、人居の相安を求む。",
+      "href": "/services/fengshui",
+      "linkZh": "詳述 →",
+      "linkJa": "詳述 →"
+    },
+    {
+      "indexZh": "二",
+      "indexJa": "二",
+      "nameZh": "擇時推演",
+      "nameJa": "時を擇び勢を推す",
+      "dimensionZh": "時、勢、機",
+      "dimensionJa": "時・勢・機",
+      "quoteZh": "「時止則止，時行則行。動靜不失其時。」",
+      "quoteJa": "「時に止まるべくは止まり、時に行くべくは行く。動静その時を失はず。」",
+      "summaryZh": "奇門遁甲。判時局之象，建時機之議，使動靜不失其時。",
+      "summaryJa": "奇門遁甲。時局の象を判じ、時機の議を立て、動静その時を失はざらしむ。",
+      "href": "/services/divination",
+      "linkZh": "詳述 →",
+      "linkJa": "詳述 →"
+    },
+    {
+      "indexZh": "三",
+      "indexJa": "三",
+      "nameZh": "命理解析",
+      "nameJa": "命理を解く",
+      "dimensionZh": "人、命、週期",
+      "dimensionJa": "人・命・周期",
+      "quoteZh": "「知命者不立乎巖牆之下。」",
+      "quoteJa": "「命を知る者は巌牆の下に立たず。」",
+      "summaryZh": "四柱八字、紫微斗數、西方占星。讀人本身之格局與週期，助知所長、知所止。",
+      "summaryJa": "四柱八字・紫微斗数・西洋占星。人そのものの格局と周期を読み、長ずるところと止まるべきところを知るを助く。",
+      "href": "/services/fortune",
+      "linkZh": "詳述 →",
+      "linkJa": "詳述 →"
+    },
+    {
+      "indexZh": "四",
+      "indexJa": "四",
+      "nameZh": "事體諮詢",
+      "nameJa": "事体を諮る",
+      "dimensionZh": "事、變、策",
+      "dimensionJa": "事・変・策",
+      "quoteZh": "「人生有大事，須有大事的看法。」",
+      "quoteJa": "「人生に大事あれば、大事の見方を要す。」",
+      "summaryZh": "人生大事的綜合奉事。匯地、時、人於一事，以整體之視角，輔大事之決斷。",
+      "summaryJa": "人生の大事に対する綜合奉事。地・時・人を一事に合わせ、整体の視座を以て大事の決断を輔く。",
+      "href": "/services/strategy",
+      "linkZh": "詳述 →",
+      "linkJa": "詳述 →"
     }
-  ]
+  ],
+  "contact": {
+    "zh": [
+      "如有事在前，尚未可一端而論，可遣信來。",
+      "我們會先辨其所屬，再答以當行之途。"
+    ],
+    "ja": [
+      "もし事すでに前にあり、いまだ一端を以て論じ難ければ、文をお送りください。",
+      "まずその属するところを弁え、しかる後に行うべき道をお答えします。"
+    ],
+    "href": "/contact",
+    "buttonZh": "通信",
+    "buttonJa": "通信"
+  }
 }

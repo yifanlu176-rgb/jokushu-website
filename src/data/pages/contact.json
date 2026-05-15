@@ -1,135 +1,71 @@
 {
-  "title": "通信 | JOKUSHU",
-  "description": "JOKUSHU へのお問い合わせ方法をまとめたページです。",
-  "hero": {
-    "kicker": "通信",
-    "title": "まずは、目的だけ送ってください。",
-    "lead": "細かな文章に整える前でも構いません。何を決めたいのか、どの領域の相談か、いつまでに必要かを伝えていただければ十分です。",
-    "summary": "Formspree で送信する問い合わせフォームを用意し、必要な情報だけを先に受け取れるようにしています。",
-    "ctas": [
-      {
-        "label": "奉事を見る",
-        "href": "/services",
-        "variant": "primary"
-      },
-      {
-        "label": "FAQ を見る",
-        "href": "/faq",
-        "variant": "secondary"
-      }
+  "title": "通信 | 蓐収株式会社",
+  "description": "蓐収株式会社への通信頁。簡素な三欄の書信フォームと、別途連絡先のみを静かに示す。",
+  "pageTitleZh": "通信",
+  "pageTitleJa": "通信",
+  "intro": {
+    "zh": [
+      "如有所詢，可遣信來。",
+      "我們會在閱讀後，誠實回應。",
+      "來信不必拘禮，但望真誠。",
+      "我們不接無緣之事，亦不收無心之問——",
+      "此非倨傲，是為彼此珍重。"
     ],
-    "aside": {
-      "title": "連絡先",
-      "items": [
-        { "label": "Email", "value": "contact@jokushu.co.jp" },
-        { "label": "返信目安", "value": "2営業日以内" },
-        { "label": "対応", "value": "内容確認後に案内" }
-      ]
-    }
+    "ja": [
+      "問うところあらば、書を遣わされたし。",
+      "拝読の後、誠をもって応ず。",
+      "文は礼に拘らずともよし、ただ真率を望む。",
+      "我らは縁なき事を受けず、心なき問いを収めず——",
+      "これは驕りにあらず、互いを珍重するが為なり。"
+    ]
   },
-  "sections": [
-    {
-      "type": "cards",
-      "kicker": "相談の進み方",
-      "title": "送ってほしい内容",
-      "lead": "最初の連絡は短くて構いません。次の三点が分かると、やり取りが速くなります。",
-      "items": [
-        {
-          "tag": "01",
-          "title": "何を決めたいか",
-          "body": "住まい、時期、方向性など、判断したいテーマを一行で共有してください。"
-        },
-        {
-          "tag": "02",
-          "title": "いつ必要か",
-          "body": "期限がある案件は、最初に希望時期を知らせていただくと調整しやすくなります。"
-        },
-        {
-          "tag": "03",
-          "title": "どの領域か",
-          "body": "風水、命理、祈願、企画のどれに近いかを知らせていただけると案内が速くなります。"
-        }
-      ]
+  "form": {
+    "subject": "JOKUSHU contact form",
+    "next": "/contact/thanks",
+    "honeypotName": "_gotcha",
+    "fields": {
+      "name": {
+        "labelZh": "姓名",
+        "labelJa": "姓名",
+        "placeholderZh": "張三",
+        "placeholderJa": "山田 太郎"
+      },
+      "contact": {
+        "labelZh": "聯絡方式（Email・LINE・WeChat 任一）",
+        "labelJa": "連絡先（Email・LINE・WeChat のいずれか）",
+        "placeholderZh": "email@example.com / LINE / WeChat",
+        "placeholderJa": "email@example.com / LINE / WeChat"
+      },
+      "message": {
+        "labelZh": "所詢何事",
+        "labelJa": "何を問うか",
+        "placeholderZh": "請直述所詢之事。",
+        "placeholderJa": "問うところを簡潔に記されたし。"
+      }
     },
-    {
-      "type": "form",
-      "kicker": "お問い合わせフォーム",
-      "title": "相談内容を送る",
-      "lead": "Formspree を使って、必要最小限の項目だけを送信します。返信先はメールまたは別の連絡手段を本文で指定してください。",
-      "subject": "JOKUSHU contact form",
-      "language": "ja",
-      "honeypotName": "_gotcha",
-      "next": "/contact/thanks",
-      "submitLabel": "送信する",
-      "note": "送信前に、プライバシーポリシーへの同意を確認してください。",
-      "fields": [
-        {
-          "type": "text",
-          "name": "name",
-          "label": "お名前",
-          "placeholder": "山田 太郎",
-          "required": true
-        },
-        {
-          "type": "text",
-          "name": "contact",
-          "label": "連絡先",
-          "placeholder": "email@example.com",
-          "required": true
-        },
-        {
-          "type": "select",
-          "name": "service",
-          "label": "相談領域",
-          "required": true,
-          "options": [
-            { "label": "風水鑑定", "value": "fengshui" },
-            { "label": "命理運勢相談", "value": "fortune" },
-            { "label": "道教科儀祈願相談", "value": "ritual" },
-            { "label": "開運用品文化商品", "value": "items" },
-            { "label": "事業戦略文化企画", "value": "strategy" }
-          ]
-        },
-        {
-          "type": "text",
-          "name": "preferred_time",
-          "label": "希望時期",
-          "placeholder": "例: 2週間以内"
-        },
-        {
-          "type": "textarea",
-          "name": "message",
-          "label": "相談内容",
-          "placeholder": "何を決めたいか、いつまでに必要かを書いてください。",
-          "rows": 7,
-          "required": true
-        },
-        {
-          "type": "checkbox",
-          "name": "consent",
-          "label": "個人情報の取り扱いに同意します。",
-          "href": "/privacy",
-          "linkLabel": "プライバシーポリシーを確認"
-        }
-      ]
+    "consent": {
+      "label": "個人情報の取り扱いに同意します。",
+      "linkLabel": "プライバシーポリシーを確認",
+      "href": "/privacy"
     },
-    {
-      "type": "cta",
-      "kicker": "次の一歩",
-      "title": "送信以外の連絡手段",
-      "body": "フォーム送信が難しい場合は、メールでも受け付けます。送信後の詳細な案内は、個別に返信します。",
-      "buttons": [
-        {
-          "label": "メールで連絡",
-          "href": "mailto:contact@jokushu.co.jp",
-          "variant": "primary"
-        },
-        {
-          "label": "料金を見る",
-          "href": "/pricing",
-          "variant": "secondary"
-        }
-      ]
-    }
-  ]
+    "submitZh": "遣信",
+    "submitJa": "送る",
+    "statusSendingJa": "送信中...",
+    "statusErrorJa": "送信に失敗しました。内容を確認して、もう一度お試しください。",
+    "statusNetworkJa": "通信エラーが発生しました。時間をおいて再試行してください。"
+  },
+  "contacts": {
+    "zh": [
+      "LINE　　@jokushu",
+      "WeChat　jokushu_co",
+      "Email　 contact@jokushu.co.jp",
+      "所在地：日本國　大阪府"
+    ],
+    "ja": [
+      "LINE　　@jokushu",
+      "WeChat　jokushu_co",
+      "Email　 contact@jokushu.co.jp",
+      "所在地：日本国　大阪府"
+    ]
+  }
 }

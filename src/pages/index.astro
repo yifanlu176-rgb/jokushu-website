@@ -1,154 +1,132 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import home from '../data/pages/home.json';
+
+const articles = await getCollection('articles');
+const articleMap = new Map(articles.map((article) => [article.id, article]));
+const featuredArticles = home.writings.order
+  .map((id) => {
+    const article = articleMap.get(id);
+    const copy = home.writings.items[id];
+
+    if (!article || !copy) return null;
+
+    return {
+      href: `/articles/${article.id}`,
+      dateZh: copy.dateZh,
+      dateJa: copy.dateJa,
+      titleZh: copy.titleZh,
+      titleJa: copy.titleJa,
+    };
+  })
+  .filter(Boolean);
 ---
 
-<Layout
-  title="蓐収株式會社 | 風水・命理・道教科儀・事業戦略"
-  description="蓐収株式會社の第一版サイト。大阪を拠点に、在日華人の経営者へ風水鑑定、命理相談、祈願相談、文化商品、事業戦略の入口を示します。"
->
-  <section class="hero-section">
-    <div class="hero-grid">
-      <div class="hero-copy reveal">
-        <p class="hero-kicker">{home.hero.kicker}</p>
-        <h1 class="hero-title">
-          {home.hero.titleLine1}<br>
-          <em>{home.hero.titleLine2}</em>
-        </h1>
-        <p class="hero-lead">{home.hero.lead}</p>
-        <p class="hero-summary">{home.hero.summary}</p>
-        <div class="hero-actions button-row">
-          <a class="button button-primary" href="/#contact">{home.hero.primaryCta}</a>
-          <a class="button" href="/#services">{home.hero.secondaryCta}</a>
+<Layout title={home.title} description={home.description}>
+  <section class="home-screen home-opening">
+    <div class="home-screen-inner home-opening-inner reveal">
+      <div class="home-opening-copy">
+        <h1 class="home-mark">{home.opening.mark}</h1>
+
+        <div class="home-copy-block" data-ui-copy="zh">
+          {home.opening.zh.map((line) => <p class="home-annotation">{line}</p>)}
+        </div>
+
+        <div class="home-copy-block" data-ui-copy="ja">
+          {home.opening.ja.map((line) => <p class="home-annotation">{line}</p>)}
         </div>
       </div>
 
-      <aside class="hero-panel reveal reveal-delay-1">
-        <p class="hero-panel-title">{home.hero.panelTitle}</p>
-        <ul class="hero-panel-list">
-          {home.hero.panel.map((item) => (
-            <li>
-              <strong>{item.label}</strong>
-              <span>{item.value}</span>
-            </li>
-          ))}
-        </ul>
-      </aside>
+      <a class="home-scroll-link" href={home.opening.scrollTarget}>
+        <span aria-hidden="true">↓</span>
+        <span>{home.opening.scrollLabel}</span>
+      </a>
     </div>
   </section>
 
-  <section class="info-strip">
-    <div class="info-strip-inner reveal">
-      <strong>{home.infoStrip.primary}</strong>
-      <span>・</span>
-      <span>{home.infoStrip.secondary}</span>
-      <span>・</span>
-      <span>{home.infoStrip.tertiary}</span>
+  <section id="home-tagline" class="home-screen home-tagline-section">
+    <div class="home-screen-inner reveal">
+      <p class="home-tagline" data-ui-copy="zh">{home.tagline.zh}</p>
+      <p class="home-tagline" data-ui-copy="ja">{home.tagline.ja}</p>
     </div>
   </section>
 
-  <section id="about">
-    <div class="section-inner">
-      <div class="reveal">
-        <p class="section-kicker">{home.about.kicker}</p>
-        <h2 class="section-title">{home.about.titlePrefix}<em>{home.about.titleEmphasis}</em></h2>
-        <div class="section-rule"></div>
-        <p class="section-lead">{home.about.lead}</p>
+  <section id="home-source" class="home-screen home-source-section">
+    <div class="home-narrow reveal">
+      <div class="home-copy-block" data-ui-copy="zh">
+        {home.sourceIntro.zh.map((line) => <p class="home-prose">{line}</p>)}
+        <a class="home-block-link" href={home.sourceIntro.href}>{home.sourceIntro.linkZh}</a>
       </div>
 
-      <div class="section-grid-3" style="margin-top: 2rem;">
-        {home.about.principles.map((item, index) => (
-          <article class="card panel reveal" aria-label={item.title} style={`transition-delay:${index * 100}ms;`}>
-            <p class="panel-title">{item.title}</p>
-            <p class="panel-text">{item.body}</p>
+      <div class="home-copy-block" data-ui-copy="ja">
+        {home.sourceIntro.ja.map((line) => <p class="home-prose">{line}</p>)}
+        <a class="home-block-link" href={home.sourceIntro.href}>{home.sourceIntro.linkJa}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-screen home-services-section">
+    <div class="home-wide reveal">
+      <h2 class="home-section-title" data-ui-copy="zh">{home.services.titleZh}</h2>
+      <h2 class="home-section-title" data-ui-copy="ja">{home.services.titleJa}</h2>
+
+      <div class="home-service-grid">
+        {home.services.items.map((item) => (
+          <article class="home-service-item">
+            <p class="home-service-title" data-ui-copy="zh">{item.titleZh}</p>
+            <p class="home-service-title" data-ui-copy="ja">{item.titleJa}</p>
+            <p class="home-service-keywords" data-ui-copy="zh">{item.keywordsZh}</p>
+            <p class="home-service-keywords" data-ui-copy="ja">{item.keywordsJa}</p>
           </article>
         ))}
       </div>
+
+      <div class="home-link-row">
+        <a class="home-block-link" data-ui-copy="zh" href={home.services.href}>{home.services.linkZh}</a>
+        <a class="home-block-link" data-ui-copy="ja" href={home.services.href}>{home.services.linkJa}</a>
+      </div>
     </div>
   </section>
 
-  <section id="services">
-    <div class="section-inner">
-      <div class="reveal">
-        <p class="section-kicker">{home.services.kicker}</p>
-        <h2 class="section-title">{home.services.titlePrefix}<em>{home.services.titleEmphasis}</em></h2>
-        <div class="section-rule"></div>
-        <p class="section-lead">{home.services.lead}</p>
-      </div>
+  <section class="home-screen home-writings-section">
+    <div class="home-wide reveal">
+      <h2 class="home-section-title" data-ui-copy="zh">{home.writings.titleZh}</h2>
+      <h2 class="home-section-title" data-ui-copy="ja">{home.writings.titleJa}</h2>
 
-      <div class="section-grid-3" style="margin-top: 2rem;">
-        {home.services.items.map((service, index) => (
-          <article class="card service-card reveal" style={`transition-delay:${index * 80}ms;`}>
-            <div class="service-card-head">
-              <span class="service-card-index">{service.index}</span>
-              <span class="service-card-tag">{service.tag}</span>
-            </div>
-            <h3 class="service-card-title">{service.title}</h3>
-            <p class="service-card-body">{service.body}</p>
-            <span class="service-card-link">詳細ページは次段で公開 →</span>
+      <div class="home-article-list">
+        {featuredArticles.map((article) => (
+          <article class="home-article-item">
+            <p class="home-article-date" data-ui-copy="zh">{article.dateZh}</p>
+            <p class="home-article-date" data-ui-copy="ja">{article.dateJa}</p>
+            <a class="home-article-link" href={article.href} data-ui-copy="zh">{article.titleZh}</a>
+            <a class="home-article-link" href={article.href} data-ui-copy="ja">{article.titleJa}</a>
           </article>
         ))}
       </div>
-    </div>
-  </section>
 
-  <section id="process">
-    <div class="section-inner">
-      <div class="reveal">
-        <p class="section-kicker">{home.process.kicker}</p>
-        <h2 class="section-title">{home.process.titlePrefix}<em>{home.process.titleEmphasis}</em></h2>
-        <div class="section-rule"></div>
-      </div>
-
-      <div class="flow-grid" style="margin-top: 2rem;">
-        {home.process.items.map((item, index) => (
-          <article class="card flow-step reveal" style={`transition-delay:${index * 90}ms;`}>
-            <div class="flow-step-index">{item.step}</div>
-            <h3 class="flow-step-title">{item.title}</h3>
-            <p class="flow-step-text">{item.body}</p>
-          </article>
-        ))}
+      <div class="home-link-row">
+        <a class="home-block-link" data-ui-copy="zh" href={home.writings.href}>{home.writings.linkZh}</a>
+        <a class="home-block-link" data-ui-copy="ja" href={home.writings.href}>{home.writings.linkJa}</a>
       </div>
     </div>
   </section>
 
-  <section id="pricing">
-    <div class="section-inner">
-      <div class="reveal">
-        <p class="section-kicker">{home.pricing.kicker}</p>
-        <h2 class="section-title">{home.pricing.titlePrefix}<em>{home.pricing.titleEmphasis}</em></h2>
-        <div class="section-rule"></div>
-        <p class="section-lead">{home.pricing.lead}</p>
-      </div>
-
-      <div class="pricing-grid" style="margin-top: 2rem;">
-        {home.pricing.items.map((item, index) => (
-          <article class="card pricing-card reveal" style={`transition-delay:${index * 90}ms;`}>
-            <div class="pricing-label">{item.label}</div>
-            <div class="pricing-price">{item.price}</div>
-            <p class="pricing-note">詳細は料金ページで整理します。</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="section-inner">
-      <div class="card cta-panel reveal">
-        <div>
-          <p class="section-kicker" style="margin-bottom: 0.7rem;">{home.contact.kicker}</p>
-          <h2 class="section-title" style="font-size: clamp(1.7rem, 3vw, 2.4rem);">{home.contact.titlePrefix}<em>{home.contact.titleEmphasis}</em></h2>
-          <p>{home.contact.lead}</p>
-        </div>
-        <div class="button-row">
-          <a class="button button-primary" href="/#about">{home.contact.primaryCta}</a>
-          <a class="button" href="/#services">{home.contact.secondaryCta}</a>
+  <section class="home-screen home-contact-section">
+    <div class="home-screen-inner reveal">
+      <div class="home-copy-block" data-ui-copy="zh">
+        {home.contact.zh.map((line) => <p class="home-closing-line">{line}</p>)}
+        <div class="home-contact-button-row">
+          <a class="button" href={home.contact.href}>{home.contact.buttonZh}</a>
         </div>
       </div>
-      <p class="legal-note" style="margin-top: 1rem;">
-        {home.contact.note}
-      </p>
+
+      <div class="home-copy-block" data-ui-copy="ja">
+        {home.contact.ja.map((line) => <p class="home-closing-line">{line}</p>)}
+        <div class="home-contact-button-row">
+          <a class="button" href={home.contact.href}>{home.contact.buttonJa}</a>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>

@@ -1,6 +1,200 @@
 ---
-import StandardPage from '../../components/StandardPage.astro';
+import Layout from '../../layouts/Layout.astro';
 import page from '../../data/pages/services.json';
 ---
 
-<StandardPage page={page} />
+<Layout title={page.title} description={page.description}>
+  <section class="services-page">
+    <div class="services-shell">
+      <header class="services-header reveal">
+        <p class="services-page-title" data-ui-copy="zh">{page.pageTitleZh}</p>
+        <p class="services-page-title" data-ui-copy="ja">{page.pageTitleJa}</p>
+      </header>
+
+      <section class="services-intro reveal reveal-delay-1">
+        <article class="services-language" lang="zh-Hant" data-ui-copy="zh">
+          {page.intro.zh.map((paragraph) => <p>{paragraph}</p>)}
+        </article>
+        <article class="services-language" lang="ja-JP" data-ui-copy="ja">
+          {page.intro.ja.map((paragraph) => <p>{paragraph}</p>)}
+        </article>
+      </section>
+
+      <div class="services-card-list">
+        {page.items.map((item, index) => (
+          <section class="services-card reveal" style={`transition-delay:${index * 70}ms;`}>
+            <article class="services-language" lang="zh-Hant" data-ui-copy="zh">
+              <div class="services-card-head">
+                <p class="services-card-index">{item.indexZh}</p>
+                <h1 class="services-card-title">{item.nameZh}</h1>
+                <p class="services-card-dimension">（{item.dimensionZh}）</p>
+              </div>
+              <p class="services-card-quote">{item.quoteZh}</p>
+              <p class="services-card-summary">{item.summaryZh}</p>
+              <a class="services-card-link" href={item.href}>{item.linkZh}</a>
+            </article>
+
+            <article class="services-language" lang="ja-JP" data-ui-copy="ja">
+              <div class="services-card-head">
+                <p class="services-card-index">{item.indexJa}</p>
+                <h1 class="services-card-title">{item.nameJa}</h1>
+                <p class="services-card-dimension">（{item.dimensionJa}）</p>
+              </div>
+              <p class="services-card-quote">{item.quoteJa}</p>
+              <p class="services-card-summary">{item.summaryJa}</p>
+              <a class="services-card-link" href={item.href}>{item.linkJa}</a>
+            </article>
+          </section>
+        ))}
+      </div>
+
+      <section class="services-contact reveal">
+        <article class="services-language" lang="zh-Hant" data-ui-copy="zh">
+          {page.contact.zh.map((paragraph) => <p>{paragraph}</p>)}
+          <div class="services-contact-button-row">
+            <a class="button" href={page.contact.href}>{page.contact.buttonZh}</a>
+          </div>
+        </article>
+
+        <article class="services-language" lang="ja-JP" data-ui-copy="ja">
+          {page.contact.ja.map((paragraph) => <p>{paragraph}</p>)}
+          <div class="services-contact-button-row">
+            <a class="button" href={page.contact.href}>{page.contact.buttonJa}</a>
+          </div>
+        </article>
+      </section>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .services-page {
+    padding: 3rem 0 var(--space-screen-wide);
+  }
+
+  .services-shell {
+    width: min(calc(100% - (var(--gutter) * 2)), 640px);
+    margin: 0 auto;
+  }
+
+  .services-header {
+    margin-bottom: 5rem;
+    text-align: center;
+  }
+
+  .services-page-title {
+    margin: 0;
+    color: var(--ink-main);
+    font-size: var(--size-h2);
+    line-height: var(--leading-tight);
+    letter-spacing: 0.18em;
+  }
+
+  .services-intro,
+  .services-card,
+  .services-contact {
+    position: relative;
+  }
+
+  .services-language p,
+  .services-card-title,
+  .services-card-index,
+  .services-card-dimension {
+    margin: 0;
+  }
+
+  .services-language p + p {
+    margin-top: 1rem;
+  }
+
+  .services-language p {
+    color: var(--ink-mid);
+    font-size: var(--size-body);
+    line-height: 2;
+    letter-spacing: 0.06em;
+  }
+
+  .services-card-list {
+    display: grid;
+    gap: 4rem;
+    margin-top: var(--space-screen);
+  }
+
+  .services-card {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(31, 26, 21, 0.12);
+  }
+
+  .services-card-head {
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+
+  .services-card-index {
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    letter-spacing: 0.18em;
+  }
+
+  .services-card-title {
+    margin-top: 0.45rem;
+    color: var(--ink-main);
+    font-size: var(--size-h2);
+    font-weight: var(--weight-medium);
+    line-height: 1.55;
+    letter-spacing: 0.08em;
+  }
+
+  .services-card-dimension {
+    margin-top: 0.4rem;
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    letter-spacing: 0.12em;
+  }
+
+  .services-card-quote {
+    color: var(--ink-main);
+    text-align: center;
+  }
+
+  .services-card-summary {
+    margin-top: 1.25rem;
+  }
+
+  .services-card-link {
+    display: inline-flex;
+    margin-top: 1.5rem;
+    color: var(--ink-main);
+    font-size: var(--size-body);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .services-contact {
+    margin-top: var(--space-screen-wide);
+    text-align: center;
+  }
+
+  .services-contact-button-row {
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 767px) {
+    .services-page {
+      padding-top: 2rem;
+      padding-bottom: var(--space-screen);
+    }
+
+    .services-header {
+      margin-bottom: 4rem;
+    }
+
+    .services-card-list {
+      gap: 3.25rem;
+      margin-top: 5.5rem;
+    }
+
+    .services-card-title {
+      font-size: var(--size-h3);
+    }
+  }
+</style>

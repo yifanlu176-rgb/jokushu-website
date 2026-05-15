@@ -1,6 +1,75 @@
 ---
-import StandardPage from '../../components/StandardPage.astro';
+import Layout from '../../layouts/Layout.astro';
 import page from '../../data/pages/contact-thanks.json';
 ---
 
-<StandardPage page={page} />
+<Layout title={page.title} description={page.description}>
+  <section class="thanks-page">
+    <div class="thanks-shell">
+      <div class="thanks-message" data-ui-copy="zh">
+        {page.messageZh.map((line) => <p>{line}</p>)}
+        <a href="/">{page.backHomeZh}</a>
+      </div>
+
+      <div class="thanks-message" data-ui-copy="ja">
+        {page.messageJa.map((line) => <p>{line}</p>)}
+        <a href="/">{page.backHomeJa}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .thanks-page {
+    padding: 18vh 0 var(--space-screen-wide);
+  }
+
+  .thanks-shell {
+    width: min(calc(100% - (var(--gutter) * 2)), 640px);
+    margin: 0 auto;
+  }
+
+  .thanks-message {
+    text-align: center;
+  }
+
+  .thanks-message p,
+  .thanks-message a {
+    margin: 0;
+  }
+
+  .thanks-message p {
+    color: var(--ink-main);
+    font-size: var(--size-h3);
+    line-height: 1.95;
+    letter-spacing: 0.08em;
+  }
+
+  .thanks-message p + p {
+    margin-top: 0.5rem;
+  }
+
+  .thanks-message a {
+    display: inline-block;
+    margin-top: 3rem;
+    border-bottom: 0;
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    letter-spacing: 0.12em;
+  }
+
+  .thanks-message a:hover {
+    color: var(--accent-red);
+  }
+
+  @media (max-width: 767px) {
+    .thanks-page {
+      padding-top: 14vh;
+      padding-bottom: var(--space-screen);
+    }
+
+    .thanks-message p {
+      font-size: var(--size-body);
+    }
+  }
+</style>

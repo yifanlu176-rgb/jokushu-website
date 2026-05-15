@@ -1,56 +1,87 @@
-# 联系表单设置（Formspree）
+# Formspree / Vercel 配置
 
-当前项目的联系表单方案采用 **Formspree**。它不依赖自建后端，前端只需要配置表单 `action` 地址，适合部署到 Vercel。
+本项目的通信页 `/contact` 使用 Formspree，不依赖自建后端。
 
-## 选择原因
+## 必要环境变量
 
-- 对静态站点友好
-- 不需要数据库
-- 表单字段简单时最省事
-
-## 配置步骤
-
-1. 注册 Formspree 账号
-2. 在后台新建一个表单
-3. 复制表单 ID
-4. 把部署环境变量 `PUBLIC_FORMSPREE_ENDPOINT` 设成你的 Formspree 地址，或直接把页面中的表单 `action` 改成你的 Formspree 地址
-
-示例：
-
-```html
-<form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+```env
+PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/your_form_id
 ```
 
-替换成真实 ID 后：
+注意：
 
-```html
-<form id="contactForm" action="https://formspree.io/f/xyzabc123" method="POST">
+- 变量名必须是 `PUBLIC_FORMSPREE_ENDPOINT`
+- 值必须是完整 endpoint，不是单独的 form id
+- 因为前端需要读取，所以必须使用 `PUBLIC_` 前缀
+
+## Vercel 配置
+
+在 Vercel 项目中添加该环境变量：
+
+1. 打开项目
+2. 进入 `Settings`
+3. 进入 `Environment Variables`
+4. 新增：
+
+   - Name: `PUBLIC_FORMSPREE_ENDPOINT`
+   - Value: `https://formspree.io/f/your_form_id`
+
+5. 至少启用：
+
+   - `Production`
+
+6. 如需测试预览分支，也启用：
+
+   - `Preview`
+
+保存后重新部署。
+
+## 本地开发配置
+
+在仓库根目录创建 `.env`：
+
+```env
+PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/your_form_id
 ```
 
-## 推荐字段
+然后重启开发服务器：
+
+```bash
+npm run dev
+```
+
+## 当前表单字段
+
+通信页按任务书 v2.1 保留 3 个业务字段：
 
 - `name`
 - `contact`
-- `service`
 - `message`
+
+同时还会提交这些辅助字段：
+
 - `_subject`
 - `_language`
+- `_next`
+- `_gotcha`
 
-## 可选增强
+## 当前行为
 
-- `_next` 用于提交成功后的跳转
-- 蜜罐字段用于基础反垃圾
-- Formspree 后台可开启通知邮件和自动回复
+如果 `PUBLIC_FORMSPREE_ENDPOINT` 已配置：
 
-## 不采用的方案
+- 点击“遣信 / 送る”会向 Formspree 提交
+- 成功后跳转 `/contact/thanks`
 
-- Google Forms
-- 自建 API + 邮件服务
+如果未配置：
 
-## 下一步
+- 页面会显示未配置提示
+- 按钮不会实际发送
 
-1. 注册 Formspree
-2. 创建表单
-3. 更新部署环境变量 `PUBLIC_FORMSPREE_ENDPOINT`
-4. 本地测试提交
-5. 部署到 Vercel
+## 调试检查
+
+如果按钮无法发送，优先检查：
+
+1. Vercel 环境变量名是否拼写正确
+2. endpoint 是否是完整 `https://formspree.io/f/...`
+3. 修改变量后是否重新部署
+4. 浏览器当前语言对应的表单字段是否填写完整
