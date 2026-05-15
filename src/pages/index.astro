@@ -1,26 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import home from '../data/pages/home.json';
+import { getAllArticles } from '../lib/articles';
 
-const articles = await getCollection('articles');
-const articleMap = new Map(articles.map((article) => [article.id, article]));
-const featuredArticles = home.writings.order
-  .map((id) => {
-    const article = articleMap.get(id);
-    const copy = home.writings.items[id];
-
-    if (!article || !copy) return null;
-
-    return {
-      href: `/articles/${article.id}`,
-      dateZh: copy.dateZh,
-      dateJa: copy.dateJa,
-      titleZh: copy.titleZh,
-      titleJa: copy.titleJa,
-    };
-  })
-  .filter(Boolean);
+const featuredArticles = getAllArticles()
+  .slice(0, 4)
+  .map((article) => ({
+    href: `/articles/${article.slug}`,
+    dateZh: article.zh.dateDisplay,
+    dateJa: article.ja.dateDisplay,
+    titleZh: article.zh.title,
+    titleJa: article.ja.title,
+  }));
 ---
 
 <Layout title={home.title} description={home.description}>
