@@ -26,21 +26,15 @@
     "fields": {
       "name": {
         "labelZh": "姓名",
-        "labelJa": "姓名",
-        "placeholderZh": "張三",
-        "placeholderJa": "山田 太郎"
+        "labelJa": "姓名"
       },
       "contact": {
         "labelZh": "聯絡方式（Email・LINE・WeChat 任一）",
-        "labelJa": "連絡先（Email・LINE・WeChat のいずれか）",
-        "placeholderZh": "email@example.com / LINE / WeChat",
-        "placeholderJa": "email@example.com / LINE / WeChat"
+        "labelJa": "連絡先（Email・LINE・WeChat のいずれか）"
       },
       "message": {
         "labelZh": "所詢何事",
-        "labelJa": "何を問うか",
-        "placeholderZh": "請直述所詢之事。",
-        "placeholderJa": "問うところを簡潔に記されたし。"
+        "labelJa": "何を問うか"
       }
     },
     "consent": {

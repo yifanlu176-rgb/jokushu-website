@@ -238,7 +238,6 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
                         <textarea
                           name={field.name}
                           rows={field.rows ?? 6}
-                          placeholder={field.placeholder}
                           required={field.required ?? false}
                         />
                       </label>
@@ -286,7 +285,6 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
                       <input
                         type={field.type ?? 'text'}
                         name={field.name}
-                        placeholder={field.placeholder}
                         required={field.required ?? false}
                         value={field.value}
                       />
@@ -526,25 +524,20 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
   .form-field select,
   .form-field textarea {
     width: 100%;
-    padding: 0.9rem 1rem;
-    border-radius: 0.9rem;
-    border: 1px solid rgba(197, 155, 83, 0.22);
-    background: rgba(255, 255, 255, 0.03);
+    padding: 0.9rem 0;
+    border: none;
+    border-bottom: 1px solid var(--border-line);
+    border-radius: 0;
+    background: transparent;
     color: var(--text-primary);
     font: inherit;
-  }
-
-  .form-field input::placeholder,
-  .form-field textarea::placeholder {
-    color: var(--text-faint);
   }
 
   .form-field input:focus,
   .form-field select:focus,
   .form-field textarea:focus {
     outline: none;
-    border-color: rgba(197, 155, 83, 0.6);
-    box-shadow: 0 0 0 3px rgba(197, 155, 83, 0.12);
+    border-bottom-color: var(--accent-red);
   }
 
   .form-field-full {

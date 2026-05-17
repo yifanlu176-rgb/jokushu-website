@@ -63,6 +63,8 @@
   --text-strong: var(--ink-main);
   --text-soft: var(--ink-mid);
   --text-faint: var(--ink-light);
+  --text-primary: var(--ink-main);
+  --text-secondary: var(--ink-mid);
   --accent: var(--ink-main);
   --accent-strong: var(--accent-red);
   --accent-deep: var(--accent-gold);

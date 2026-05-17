@@ -49,7 +49,6 @@ const hasFormspreeEndpoint = Boolean(formAction);
               name="name"
               required
               data-ui-copy="zh"
-              placeholder={page.form.fields.name.placeholderZh}
             />
             <input
               class="contact-input"
@@ -57,7 +56,6 @@ const hasFormspreeEndpoint = Boolean(formAction);
               name="name"
               required
               data-ui-copy="ja"
-              placeholder={page.form.fields.name.placeholderJa}
             />
           </label>
 
@@ -70,7 +68,6 @@ const hasFormspreeEndpoint = Boolean(formAction);
               name="contact"
               required
               data-ui-copy="zh"
-              placeholder={page.form.fields.contact.placeholderZh}
             />
             <input
               class="contact-input"
@@ -78,7 +75,6 @@ const hasFormspreeEndpoint = Boolean(formAction);
               name="contact"
               required
               data-ui-copy="ja"
-              placeholder={page.form.fields.contact.placeholderJa}
             />
           </label>
 
@@ -91,7 +87,6 @@ const hasFormspreeEndpoint = Boolean(formAction);
               rows="8"
               required
               data-ui-copy="zh"
-              placeholder={page.form.fields.message.placeholderZh}
             ></textarea>
             <textarea
               class="contact-textarea"
@@ -99,7 +94,6 @@ const hasFormspreeEndpoint = Boolean(formAction);
               rows="8"
               required
               data-ui-copy="ja"
-              placeholder={page.form.fields.message.placeholderJa}
             ></textarea>
           </label>
 
@@ -213,8 +207,10 @@ const hasFormspreeEndpoint = Boolean(formAction);
   .contact-input,
   .contact-textarea {
     width: 100%;
-    border: 1px solid rgba(31, 26, 21, 0.12);
-    background: rgba(255, 255, 255, 0.45);
+    border: none;
+    border-bottom: 1px solid var(--border-line);
+    border-radius: 0;
+    background: transparent;
     color: var(--ink-main);
     font: inherit;
     letter-spacing: 0.04em;
@@ -222,21 +218,20 @@ const hasFormspreeEndpoint = Boolean(formAction);
 
   .contact-input {
     min-height: 48px;
-    padding: 0.8rem 1rem;
+    padding: 0.8rem 0;
   }
 
   .contact-textarea {
     resize: vertical;
     min-height: 12rem;
-    padding: 1rem;
+    padding: 1rem 0;
     line-height: 1.95;
   }
 
   .contact-input:focus,
   .contact-textarea:focus {
     outline: none;
-    border-color: rgba(121, 79, 52, 0.4);
-    box-shadow: 0 0 0 2px rgba(121, 79, 52, 0.08);
+    border-bottom-color: var(--accent-red);
   }
 
   .contact-consent {
@@ -260,17 +255,25 @@ const hasFormspreeEndpoint = Boolean(formAction);
   }
 
   .contact-submit {
-    border: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.75rem 2.5rem;
+    border: 1px solid var(--ink-main);
+    border-radius: 0;
     background: transparent;
     color: var(--ink-main);
     font: inherit;
     font-size: var(--size-body);
     letter-spacing: 0.12em;
     cursor: pointer;
+    transition: color 300ms ease, border-color 300ms ease;
   }
 
   .contact-submit:hover {
     color: var(--accent-red);
+    border-color: var(--accent-red);
   }
 
   .contact-submit:disabled {
