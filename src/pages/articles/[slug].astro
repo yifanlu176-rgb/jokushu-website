@@ -24,6 +24,25 @@ const olderArticle = currentIndex < articles.length - 1 ? articles[currentIndex 
 const pageTitle = `${article.ja.title} | 蓐収株式会社`;
 const pageDescription = article.ja.excerpt ?? article.zh.excerpt ?? '蓐収株式会社の文錄。';
 const publishedTime = new Date(article.date).toISOString();
+const ogImage = `/og/${article.slug}.png`;
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: article.ja.title,
+  author: {
+    '@type': 'Person',
+    name: article.ja.author,
+  },
+  datePublished: article.date,
+  publisher: {
+    '@type': 'Organization',
+    name: '蓐収株式会社',
+    url: 'https://www.jokushu.co.jp',
+  },
+  description: pageDescription,
+  mainEntityOfPage: `https://www.jokushu.co.jp/articles/${article.slug}`,
+});
 ---
 
 <Layout
@@ -32,7 +51,9 @@ const publishedTime = new Date(article.date).toISOString();
   type="article"
   publishedTime={publishedTime}
   author={article.ja.author}
+  image={ogImage}
 >
+  <script type="application/ld+json" set:html={jsonLd} />
   <section class="article-page">
     <div class="article-shell">
       <a href="/articles" class="article-back" data-ui-copy="zh">← 返回文錄</a>

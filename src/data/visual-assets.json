@@ -1,0 +1,40 @@
+{
+  "note": "Visual asset manifest — documents what images are needed and where they appear. Replace placeholder SVGs with real photos when available.",
+  "assets": [
+    {
+      "path": "/images/source/wenfeng-tower.jpg",
+      "placeholder": "/images/source/wenfeng-tower-placeholder.svg",
+      "usedIn": ["about.astro (dongchun section)"],
+      "description": "威遠文峰塔 — 先祖董淳が嘉慶年間に建立。実物写真が望ましい。",
+      "specs": { "minWidth": 800, "aspectRatio": "4:3", "format": "jpg or webp" }
+    },
+    {
+      "path": "/images/source/tianqi-temple.jpg",
+      "placeholder": null,
+      "usedIn": ["about.astro (jining section, future)"],
+      "description": "天齊廟 — 家族が代々守る古廟。元の大徳四年の蟠龍碑が現存。",
+      "specs": { "minWidth": 800, "aspectRatio": "4:3 or 3:2", "format": "jpg or webp" }
+    },
+    {
+      "path": "/images/home/hero-atmosphere.jpg",
+      "placeholder": null,
+      "usedIn": ["index.astro (opening section, future)"],
+      "description": "首頁の雰囲気写真 — 書斎、硯、筆、古書など。ブランドの静謐な世界観を伝える。",
+      "specs": { "minWidth": 1200, "aspectRatio": "16:9 or 3:2", "format": "jpg or webp" }
+    },
+    {
+      "path": "/collections/*.jpg",
+      "placeholder": "/collections/placeholder.svg",
+      "usedIn": ["collections/index.astro", "collections/[slug].astro"],
+      "description": "藏品の実物写真。各アイテムのimages配列に対応するファイル名で配置。",
+      "specs": { "minWidth": 800, "aspectRatio": "4:3", "format": "jpg or webp" }
+    },
+    {
+      "path": "/images/brand/seal-jokushu.svg",
+      "placeholder": null,
+      "usedIn": ["brand identity"],
+      "description": "蓐収の印章SVG — 正式な書道版に差し替え可能。",
+      "specs": { "format": "svg", "note": "Replace with hand-drawn calligraphy scan when available" }
+    }
+  ]
+}

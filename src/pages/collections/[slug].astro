@@ -1,0 +1,223 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAllItems, getItemBySlug } from '../../lib/collections';
+import page from '../../data/pages/collections.json';
+
+export async function getStaticPaths() {
+  return getAllItems().map((item) => ({
+    params: { slug: item.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const item = slug ? getItemBySlug(slug) : undefined;
+
+if (!item) {
+  return Astro.redirect('/collections');
+}
+
+const volumeKey = String(item.volume) as keyof typeof page.volumeTitles;
+const volumeTitleZh = page.volumeTitles[volumeKey].zh;
+const volumeTitleJa = page.volumeTitles[volumeKey].ja;
+const pageTitle = `${item.ja.name} | 藏品 | 蓐収株式会社`;
+const pageDescription = item.ja.description;
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <section class="item-page">
+    <div class="item-shell">
+      <a href="/collections" class="item-back" data-ui-copy="zh">← 返回藏品</a>
+      <a href="/collections" class="item-back" data-ui-copy="ja">← 藏品へ戻る</a>
+
+      <div class="item-image-area">
+        {item.zh.images.length > 0 ? (
+          <img src={`/collections/${item.zh.images[0]}`} alt={item.ja.name} class="item-image" />
+        ) : (
+          <div class="item-image-placeholder">
+            <img src="/collections/placeholder.svg" alt="" aria-hidden="true" />
+          </div>
+        )}
+      </div>
+
+      <div class="item-detail" data-ui-copy="zh">
+        <p class="item-volume">{volumeTitleZh}</p>
+        <h1 class="item-name">{item.zh.name}</h1>
+        {item.zh.subtitle && <p class="item-subtitle">{item.zh.subtitle}</p>}
+        <p class="item-description">{item.zh.description}</p>
+        <dl class="item-meta">
+          <div class="item-meta-row">
+            <dt>來源</dt>
+            <dd>{item.zh.provenance}</dd>
+          </div>
+          {item.zh.era && (
+            <div class="item-meta-row">
+              <dt>年代</dt>
+              <dd>{item.zh.era}</dd>
+            </div>
+          )}
+          <div class="item-meta-row">
+            <dt>價格</dt>
+            <dd>{item.zh.priceRange}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="item-detail" data-ui-copy="ja">
+        <p class="item-volume">{volumeTitleJa}</p>
+        <h1 class="item-name">{item.ja.name}</h1>
+        {item.ja.subtitle && <p class="item-subtitle">{item.ja.subtitle}</p>}
+        <p class="item-description">{item.ja.description}</p>
+        <dl class="item-meta">
+          <div class="item-meta-row">
+            <dt>来歴</dt>
+            <dd>{item.ja.provenance}</dd>
+          </div>
+          {item.ja.era && (
+            <div class="item-meta-row">
+              <dt>年代</dt>
+              <dd>{item.ja.era}</dd>
+            </div>
+          )}
+          <div class="item-meta-row">
+            <dt>価格</dt>
+            <dd>{item.ja.priceRange}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="item-contact">
+        <a href="/contact" data-ui-copy="zh">［ 詢問此品 ］</a>
+        <a href="/contact" data-ui-copy="ja">［ この品を問う ］</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .item-page {
+    padding: 3rem 0 var(--space-screen-wide);
+  }
+
+  .item-shell {
+    width: min(calc(100% - (var(--gutter) * 2)), 640px);
+    margin: 0 auto;
+  }
+
+  .item-back {
+    display: inline-flex;
+    margin-bottom: 2rem;
+    border-bottom: 0;
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .item-back:hover {
+    color: var(--accent-red);
+  }
+
+  .item-image-area {
+    margin-bottom: 2.5rem;
+  }
+
+  .item-image {
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(31, 26, 21, 0.08);
+  }
+
+  .item-image-placeholder {
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--paper-deep);
+    border: 1px solid rgba(31, 26, 21, 0.08);
+  }
+
+  .item-image-placeholder img {
+    width: 80px;
+    height: 80px;
+    opacity: 0.4;
+  }
+
+  .item-volume {
+    margin: 0;
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .item-name {
+    margin: 0.8rem 0 0;
+    color: var(--ink-main);
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: var(--weight-medium);
+    line-height: 1.55;
+    letter-spacing: 0.08em;
+  }
+
+  .item-subtitle {
+    margin: 0.5rem 0 0;
+    color: var(--ink-light);
+    font-size: var(--size-body);
+    letter-spacing: 0.04em;
+  }
+
+  .item-description {
+    margin: 2rem 0 0;
+    color: var(--ink-mid);
+    font-size: var(--size-body);
+    line-height: 2.05;
+    letter-spacing: 0.06em;
+  }
+
+  .item-meta {
+    margin: 2.5rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(31, 26, 21, 0.12);
+  }
+
+  .item-meta-row {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.6rem 0;
+  }
+
+  .item-meta-row dt {
+    flex: 0 0 4em;
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    letter-spacing: 0.08em;
+  }
+
+  .item-meta-row dd {
+    margin: 0;
+    color: var(--ink-mid);
+    font-size: var(--size-body);
+    letter-spacing: 0.04em;
+  }
+
+  .item-contact {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  .item-contact a {
+    border-bottom: 0;
+    color: var(--ink-main);
+    font-size: var(--size-body);
+    letter-spacing: 0.12em;
+  }
+
+  .item-contact a:hover {
+    color: var(--accent-red);
+  }
+
+  @media (max-width: 767px) {
+    .item-page {
+      padding-top: 2rem;
+      padding-bottom: var(--space-screen);
+    }
+  }
+</style>

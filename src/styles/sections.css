@@ -382,6 +382,12 @@ body[data-ui-language="ja"] [data-ui-copy="ja"] {
   justify-items: center;
 }
 
+.home-mark-svg {
+  width: 120px;
+  height: 120px;
+  opacity: 0.85;
+}
+
 .home-mark {
   margin: 0;
   color: var(--ink-main);
