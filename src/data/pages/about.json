@@ -68,6 +68,11 @@
       "id": "dongchun",
       "markerZh": "二",
       "markerJa": "二",
+      "image": {
+        "src": "/images/source/wenfeng-tower-placeholder.svg",
+        "alt": "文峰塔 · 嘉慶年間",
+        "caption": { "zh": "威遠文峰塔——先祖董淳以堪輿為一方安文運", "ja": "威遠文峰塔——先祖董淳、堪輿を以て一方の文運を安んず" }
+      },
       "titleZh": "文宗董淳 · 鎮水興文",
       "titleJa": "文宗董淳・水を鎮め文を興す",
       "zh": {

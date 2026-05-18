@@ -1,22 +1,43 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+const articleContentBlock = z.object({
+  type: z.enum(['paragraph', 'heading', 'quote', 'divider', 'coda']),
+  text: z.string().optional(),
+  level: z.number().optional(),
+});
+
 const articles = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
+  loader: glob({ pattern: '**/*.{zh,ja}.json', base: './src/content/articles' }),
   schema: z.object({
-    title: z.string(),
-    titleEn: z.string(),
-    description: z.string(),
-    descriptionEn: z.string(),
-    date: z.coerce.date(),
+    slug: z.string(),
     category: z.string(),
-    categoryEn: z.string(),
-    tags: z.array(z.string()).optional(),
-    author: z.string().default('蓐收株式會社'),
-    readTime: z.string().optional(),
+    author: z.string(),
+    date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    dateDisplay: z.string(),
+    locale: z.enum(['zh', 'ja']),
+    title: z.string(),
+    subtitle: z.string().optional(),
+    excerpt: z.string().optional(),
+    content: z.array(articleContentBlock),
   }),
 });
 
-export const collections = {
-  articles,
-};
+const collections_items = defineCollection({
+  loader: glob({ pattern: '**/*.{zh,ja}.json', base: './src/content/collections' }),
+  schema: z.object({
+    slug: z.string(),
+    volume: z.number().min(1).max(3),
+    name: z.string(),
+    subtitle: z.string().optional(),
+    description: z.string(),
+    provenance: z.string(),
+    era: z.string().optional(),
+    priceRange: z.string(),
+    status: z.enum(['available', 'reserved', 'sold']),
+    images: z.array(z.string()),
+    locale: z.enum(['zh', 'ja']),
+  }),
+});
+
+export const collections = { articles, collections_items };

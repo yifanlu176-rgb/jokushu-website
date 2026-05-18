@@ -30,43 +30,5 @@
         "事例 ── 匿名化せる諮詢の観察（追って増す）"
       ]
     }
-  },
-  "items": {
-    "qimen": {
-      "dateZh": "二零二五　三月十五",
-      "dateJa": "二〇二五年三月十五日",
-      "categoryZh": "學理",
-      "categoryJa": "学理",
-      "titleJa": "奇門遁甲入門：八門・九星・八神、いかにして完き推演の体系を成すか",
-      "authorZh": "鲁逸凡",
-      "authorJa": "魯逸凡"
-    },
-    "japan-property": {
-      "dateZh": "二零二五　二月廿八",
-      "dateJa": "二〇二五年二月廿八日",
-      "categoryZh": "文化",
-      "categoryJa": "文化",
-      "titleJa": "日本にて屋を購ふ：玄学の視座より階と向きを評す",
-      "authorZh": "董越",
-      "authorJa": "董越"
-    },
-    "2025": {
-      "dateZh": "二零二五　一月初十",
-      "dateJa": "二〇二五年一月初十日",
-      "categoryZh": "學理",
-      "categoryJa": "学理",
-      "titleJa": "二〇二五乙巳の年：流年の運勢と布局の要点",
-      "authorZh": "鲁逸凡",
-      "authorJa": "魯逸凡"
-    },
-    "japanese-fengshui": {
-      "dateZh": "二零二四　十二月初五",
-      "dateJa": "二〇二四年十二月初五日",
-      "categoryZh": "文化",
-      "categoryJa": "文化",
-      "titleJa": "和の空間に華の風水を融かす：五つの実用原則",
-      "authorZh": "董越",
-      "authorJa": "董越"
-    }
   }
 }

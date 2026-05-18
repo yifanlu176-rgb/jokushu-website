@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#ede5d2"/>
+  <path d="M200 40 L200 260" stroke="#1f1a15" stroke-width="0.5" opacity="0.15"/>
+  <path d="M180 80 L200 40 L220 80" stroke="#1f1a15" stroke-width="0.8" opacity="0.2" fill="none"/>
+  <rect x="185" y="80" width="30" height="180" stroke="#1f1a15" stroke-width="0.8" opacity="0.2" fill="none"/>
+  <path d="M175 260 L225 260" stroke="#1f1a15" stroke-width="0.8" opacity="0.2"/>
+  <path d="M170 270 L230 270" stroke="#1f1a15" stroke-width="0.5" opacity="0.15"/>
+  <text x="200" y="290" text-anchor="middle" font-family="serif" font-size="10" fill="#1f1a15" opacity="0.3">文峰塔 · 嘉慶年間</text>
+</svg>

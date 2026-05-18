@@ -24,6 +24,17 @@ import about from '../data/pages/about.json';
           )}
 
           <div class="about-single-language-block">
+            {section.image && (
+              <figure class="about-section-figure">
+                <img src={section.image.src} alt={section.image.alt} class="about-section-image" loading="lazy" />
+                {section.image.caption && (
+                  <figcaption class="about-section-caption">
+                    <span data-ui-copy="zh">{section.image.caption.zh}</span>
+                    <span data-ui-copy="ja">{section.image.caption.ja}</span>
+                  </figcaption>
+                )}
+              </figure>
+            )}
             <article class="about-language" lang="zh-Hant" data-ui-copy="zh">
               {!section.closing ? null : <p class="about-closing-marker">{section.markerZh}・{section.titleZh}</p>}
               {section.zh.quote?.length ? (
@@ -123,6 +134,24 @@ import about from '../data/pages/about.json';
 
   .about-single-language-block {
     position: relative;
+  }
+
+  .about-section-figure {
+    margin: 0 0 2.5rem;
+  }
+
+  .about-section-image {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-faint);
+  }
+
+  .about-section-caption {
+    margin-top: 0.75rem;
+    color: var(--ink-light);
+    font-size: var(--size-small);
+    letter-spacing: 0.06em;
+    text-align: center;
   }
 
   .about-language {

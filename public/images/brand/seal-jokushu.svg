@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect x="4" y="4" width="56" height="56" stroke="#a0522d" stroke-width="2" rx="0"/>
+  <rect x="8" y="8" width="48" height="48" stroke="#a0522d" stroke-width="0.5" rx="0"/>
+  <text
+    x="32"
+    y="36"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="serif"
+    font-size="22"
+    fill="#a0522d"
+    letter-spacing="0.08em"
+  >蓐収</text>
+</svg>

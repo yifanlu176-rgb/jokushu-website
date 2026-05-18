@@ -26,6 +26,23 @@ const hasFormspreeEndpoint = Boolean(formAction);
 
       <div class="contact-rule" aria-hidden="true"></div>
 
+      <section class="contact-process reveal">
+        <h2 class="contact-process-title" data-ui-copy="zh">{page.process.titleZh}</h2>
+        <h2 class="contact-process-title" data-ui-copy="ja">{page.process.titleJa}</h2>
+
+        <ol class="contact-process-steps">
+          {page.process.steps.map((step, i) => (
+            <li class="contact-process-step">
+              <span class="contact-process-number">{['一', '二', '三', '四'][i]}</span>
+              <p class="contact-process-text" data-ui-copy="zh">{step.zh}</p>
+              <p class="contact-process-text" data-ui-copy="ja">{step.ja}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <div class="contact-rule" aria-hidden="true"></div>
+
       <section class="contact-form-section reveal">
         <form
           class="contact-form"
@@ -188,6 +205,43 @@ const hasFormspreeEndpoint = Boolean(formAction);
     height: 1px;
     margin: 3rem 0;
     background: rgba(31, 26, 21, 0.12);
+  }
+
+  .contact-process-title {
+    margin: 0 0 2rem;
+    color: var(--ink-main);
+    font-size: var(--size-h3);
+    font-weight: var(--weight-medium);
+    text-align: center;
+    letter-spacing: 0.12em;
+  }
+
+  .contact-process-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .contact-process-step {
+    display: grid;
+    grid-template-columns: 2em 1fr;
+    gap: 0 0.75rem;
+  }
+
+  .contact-process-number {
+    color: var(--ink-light);
+    font-size: var(--size-body);
+    letter-spacing: 0.08em;
+  }
+
+  .contact-process-text {
+    margin: 0;
+    color: var(--ink-mid);
+    font-size: var(--size-body);
+    line-height: 2;
+    letter-spacing: 0.04em;
   }
 
   .contact-form {
