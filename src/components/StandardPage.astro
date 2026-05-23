@@ -344,17 +344,17 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
   .page-title {
     margin: 0.45rem 0 0;
     font-size: clamp(2.4rem, 5vw, 4.6rem);
-    line-height: 0.95;
-    letter-spacing: -0.04em;
+    line-height: 1.08;
+    letter-spacing: 0.04em;
     font-family: var(--font-display);
-    color: var(--text-primary);
+    color: var(--ink-main);
   }
 
   .page-lead,
   .page-summary,
   .page-prose,
   .page-note {
-    color: var(--text-secondary);
+    color: var(--ink-mid);
   }
 
   .page-lead {
@@ -375,6 +375,7 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
 
   .page-hero-aside {
     padding: 1.4rem;
+    background: var(--paper-deep);
   }
 
   .hero-facts {
@@ -385,13 +386,13 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
   }
 
   .hero-facts dt {
-    color: var(--text-secondary);
+    color: var(--ink-light);
     font-size: 0.9rem;
   }
 
   .hero-facts dd {
     margin: 0;
-    color: var(--text-primary);
+    color: var(--ink-main);
   }
 
   .page-section {
@@ -406,29 +407,32 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
 
   .page-card {
     min-height: 100%;
+    background: var(--paper-deep);
   }
 
   .page-card-title {
     margin: 0;
     font-size: 1.2rem;
-    color: var(--text-primary);
+    color: var(--ink-main);
   }
 
   .page-card-body {
     margin: 0.8rem 0 0;
-    color: var(--text-secondary);
+    color: var(--ink-mid);
     line-height: 1.75;
   }
 
   .text-link {
     display: inline-flex;
     margin-top: 1rem;
-    color: var(--accent);
-    text-decoration: none;
+    color: var(--accent-red);
+    font-size: var(--size-small);
+    letter-spacing: var(--tracking-wide);
   }
 
   .page-prose {
     padding: 1.4rem;
+    background: var(--paper-deep);
     line-height: 1.85;
   }
 
@@ -439,7 +443,7 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
   .page-list {
     margin: 1rem 0 0;
     padding-left: 1.15rem;
-    color: var(--text-secondary);
+    color: var(--ink-mid);
   }
 
   .page-list li + li {
@@ -453,22 +457,28 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
 
   .page-faq-item {
     padding: 1rem 1.2rem;
+    background: var(--paper-deep);
   }
 
   .page-faq-item summary {
     cursor: pointer;
     list-style: none;
-    font-weight: 600;
-    color: var(--text-primary);
+    font-weight: var(--weight-medium);
+    color: var(--ink-main);
+    line-height: 1.7;
   }
 
   .page-faq-item summary::-webkit-details-marker {
     display: none;
   }
 
+  .page-faq-item[open] {
+    border-color: var(--accent-red);
+  }
+
   .page-faq-item p {
     margin: 0.9rem 0 0;
-    color: var(--text-secondary);
+    color: var(--ink-mid);
     line-height: 1.75;
   }
 
@@ -477,6 +487,7 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
     grid-template-columns: minmax(160px, 0.8fr) minmax(0, 1.2fr);
     gap: 0.8rem 1rem;
     padding: 1.2rem;
+    background: var(--paper-deep);
   }
 
   .info-table dt,
@@ -485,11 +496,11 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
   }
 
   .info-table dt {
-    color: var(--text-secondary);
+    color: var(--ink-light);
   }
 
   .info-table dd {
-    color: var(--text-primary);
+    color: var(--ink-main);
   }
 
   .page-note {
@@ -499,6 +510,7 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
 
   .contact-form {
     padding: 1.4rem;
+    background: var(--paper-deep);
   }
 
   .form-grid {
@@ -516,7 +528,7 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
 
   .form-field span,
   .form-consent span {
-    color: var(--text-secondary);
+    color: var(--ink-mid);
     font-size: 0.92rem;
   }
 
@@ -529,9 +541,15 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
     border-bottom: 1px solid var(--border-line);
     border-radius: 0;
     background: transparent;
-    color: var(--text-primary);
+    color: var(--ink-main);
     font: inherit;
   }
+
+  .form-field input::placeholder,
+  .form-field textarea::placeholder {
+    color: var(--ink-faint);
+  }
+
 
   .form-field input:focus,
   .form-field select:focus,
@@ -548,7 +566,8 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
     grid-template-columns: auto 1fr;
     align-items: start;
     margin-top: 0.3rem;
-    color: var(--text-soft);
+    color: var(--ink-mid);
+    line-height: 1.8;
   }
 
   .form-consent input {
@@ -583,22 +602,30 @@ const defaultFormAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://
 
   .legal-section {
     padding: 1.25rem;
+    background: var(--paper-deep);
   }
 
   .legal-section h3 {
     margin: 0;
     font-size: 1.08rem;
-    color: var(--text-primary);
+    color: var(--ink-main);
   }
 
   .legal-section p {
     margin: 0.8rem 0 0;
-    color: var(--text-secondary);
+    color: var(--ink-mid);
     line-height: 1.8;
   }
 
   .placeholder-panel {
     padding: 1.5rem;
+    background: var(--paper-deep);
+  }
+
+  .form-status {
+    margin: 1rem 0 0;
+    color: var(--ink-light);
+    font-size: var(--size-small);
   }
 
   @media (max-width: 900px) {
